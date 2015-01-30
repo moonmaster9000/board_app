@@ -1,33 +1,31 @@
+require "board/entities/team"
+
 module Board
   extend self
 
-  def create_team(name:,observer:)
-    CreateTeamUseCase.new(observer: observer, name: name)
+  def create_team(*args)
+    CreateTeamUseCase.new(*args)
   end
 
   class CreateTeamUseCase
-    def initialize(observer:, name:)
+    def initialize(observer:, name:, team_repo:)
       @observer = observer
       @name = name
+      @team_repo = team_repo
     end
 
     def execute
       if @name.empty?
         @observer.validation_failed(["name is required"])
       else
-        @observer.team_created(Team.new(name: @name))
+        team = Entities::Team.new(name: @name)
+        @team_repo.save(team)
+        @observer.team_created(team)
       end
     end
 
     private
 
 
-    class Team
-      attr_reader :name
-
-      def initialize(name:)
-        @name = name
-      end
-    end
   end
 end
