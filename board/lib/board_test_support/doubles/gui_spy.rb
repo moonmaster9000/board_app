@@ -13,4 +13,6 @@ class GuiSpy
     @spy_presented_team = team
   end
   attr_reader :spy_presented_team
+
+  attr_reader :spy_created_new_face
 end

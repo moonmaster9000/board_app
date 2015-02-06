@@ -1,5 +1,6 @@
 require 'securerandom'
 
+#note: this should be refactored
 class FakeTeamRepo
   def initialize
     @teams = Hash.new

@@ -1,4 +1,5 @@
 require "board/entities/team"
+require "board/entities/new_face"
 
 module Board
   extend self
@@ -9,6 +10,25 @@ module Board
 
   def present_team(*args)
     PresentTeamUseCase.new(*args)
+  end
+
+  def create_new_face(*args)
+    CreateNewFaceUseCase.new(*args)
+  end
+
+  class CreateNewFaceUseCase
+    def initialize(team_id:, new_face_repo:, attributes:, observer:)
+      @team_id = team_id
+      @new_face_repo = new_face_repo
+      @attributes = attributes
+      @observer = observer
+    end
+
+    def execute
+      new_face = Entities::NewFace.new(@attributes)
+      @new_face_repo.save(new_face)
+      @observer.new_face_created(new_face)
+    end
   end
 
   class PresentTeamUseCase
