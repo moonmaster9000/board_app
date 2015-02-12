@@ -10,6 +10,10 @@ class FakeNewFaceRepo
     @new_faces[new_face.id] = new_face
   end
 
+  def all
+    @new_faces.values
+  end
+
   def find(id)
     @new_faces[id]
   end

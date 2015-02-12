@@ -16,6 +16,33 @@ module Board
     CreateNewFaceUseCase.new(*args)
   end
 
+  def present_standup(*args)
+    PresentStandupUseCase.new(*args)
+  end
+
+  class PresentStandupUseCase
+    module Values
+      class Standup
+        attr_reader :new_faces
+
+        def initialize(new_faces:)
+          @new_faces = new_faces
+        end
+      end
+    end
+
+    def initialize(team_id:, new_face_repo:, observer:)
+      @observer = observer
+      @new_face_repo = new_face_repo
+      @team_id = team_id
+    end
+
+    def execute
+      standup = Values::Standup.new(new_faces: @new_face_repo.all)
+      @observer.standup_presented(standup)
+    end
+  end
+
   class CreateNewFaceUseCase
     def initialize(team_id:, new_face_repo:, attributes:, observer:)
       @team_id = team_id
@@ -26,13 +53,19 @@ module Board
 
     def execute
       new_face = Entities::NewFace.new(@attributes)
-      @new_face_repo.save(new_face)
-      @observer.new_face_created(new_face)
+
+      if new_face.valid?
+        @new_face_repo.save(new_face)
+        @observer.new_face_created(new_face)
+      else
+        @observer.validation_failed(new_face.validation_errors)
+      end
+
     end
   end
 
   class PresentTeamUseCase
-    def initialize(observer:,team_id:,team_repo:)
+    def initialize(observer:, team_id:, team_repo:)
       @team_repo = team_repo
       @observer = observer
       @team_id = team_id
