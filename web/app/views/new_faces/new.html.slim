@@ -1,0 +1,5 @@
+= form_for :new_face, url: standup_new_faces_path(@team_id) do |form|
+  = form.text_field :name
+  = form.date_field :date
+  br
+  = form.submit
