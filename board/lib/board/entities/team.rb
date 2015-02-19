@@ -15,12 +15,20 @@ module Board
       attr_reader :name
       attr_accessor :id
 
-      def initialize(name: nil)
+      def initialize(id: nil, name: nil)
+        @id = id
         @name = name
       end
 
       def valid?
         !@name.empty?
+      end
+
+      def attributes
+        {
+          name: @name,
+          id: @id,
+        }
       end
 
       def validation_errors
