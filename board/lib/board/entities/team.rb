@@ -12,6 +12,8 @@ module Board
 
   module Entities
     class Team
+      ATTRIBUTES = [:name, :id]
+
       attr_reader :name
       attr_accessor :id
 
