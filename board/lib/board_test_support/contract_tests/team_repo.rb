@@ -12,7 +12,8 @@ def assert_works_like_a_team_repo(team_repo_generator)
 
       it "allows a team to be fetched later" do
         team = create_team
-        expect(team_repo.find(team.id).id).to eq(team.id)
+
+        expect(team_repo.find(team.id)).to eq(team)
       end
     end
 
