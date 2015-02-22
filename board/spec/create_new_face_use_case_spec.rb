@@ -1,9 +1,9 @@
-require 'date'
-require 'board'
-require 'board_test_support/doubles/gui_spy'
-require 'board_test_support/test_attributes'
-require 'board_test_support/doubles/fake_team_repo'
-require 'board_test_support/doubles/fake_new_face_repo'
+require "date"
+require "board"
+require "board_test_support/doubles/gui_spy"
+require "board_test_support/test_attributes"
+require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_new_face_repo"
 require "support/common_assertions"
 
 describe "USE CASE: Create New Face" do

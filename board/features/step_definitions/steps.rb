@@ -1,8 +1,8 @@
-require 'board'
-require 'board_test_support/doubles/gui_spy'
-require 'board_test_support/doubles/fake_team_repo'
-require 'board_test_support/doubles/fake_new_face_repo'
-require 'board_test_support/test_attributes'
+require "board"
+require "board_test_support/doubles/gui_spy"
+require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_new_face_repo"
+require "board_test_support/test_attributes"
 
 module BoardTestDsl
   def gui
