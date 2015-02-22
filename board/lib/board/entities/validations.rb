@@ -57,10 +57,6 @@ module Board
           @field_name = field_name
           @error = error
         end
-
-        def ==(other_validation_error)
-          true
-        end
       end
 
 
