@@ -1,5 +1,5 @@
-require 'active_record'
-# require 'database_cleaner'
+require "active_record"
+require "database_cleaner"
 
 ActiveRecord::Base.establish_connection(
   adapter: "sqlite3",
@@ -8,15 +8,15 @@ ActiveRecord::Base.establish_connection(
   timeout: 5000,
 )
 
-# RSpec.configure do |config|
-#   config.before(:suite) do
-#     DatabaseCleaner.strategy = :transaction
-#     DatabaseCleaner.clean_with(:truncation)
-#   end
-#   config.before(:each) do
-#     DatabaseCleaner.start
-#   end
-#   config.after(:each) do
-#     DatabaseCleaner.clean
-#   end
-# end
+RSpec.configure do |config|
+   config.before(:suite) do
+     DatabaseCleaner.strategy = :transaction
+     DatabaseCleaner.clean_with(:truncation)
+   end
+   config.before(:each) do
+     DatabaseCleaner.start
+   end
+   config.after(:each) do
+     DatabaseCleaner.clean
+   end
+end

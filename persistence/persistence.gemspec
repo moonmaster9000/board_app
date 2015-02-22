@@ -9,4 +9,5 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "rails", "~> 4.1.9"
   gem.add_development_dependency "sqlite3"
+  gem.add_development_dependency "database_cleaner"
 end

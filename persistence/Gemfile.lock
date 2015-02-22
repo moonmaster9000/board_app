@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     hike (1.2.3)
@@ -103,6 +104,7 @@ PLATFORMS
 
 DEPENDENCIES
   board!
+  database_cleaner
   persistence!
   rspec
   sqlite3
