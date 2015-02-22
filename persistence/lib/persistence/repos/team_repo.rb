@@ -7,7 +7,7 @@ module Persistence
       def save(team)
         team_record = Private::Team.new(team.attributes)
         team_record.save
-        entity_from_record(team_record)
+        team.id = team_record.id
       end
 
       def find(id)

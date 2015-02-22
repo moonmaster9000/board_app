@@ -21,6 +21,7 @@ def assert_works_like_a_team_repo(team_repo_generator)
     def create_team
       team = Board::Entities::Team.new
       team_repo.save(team)
+      team
     end
   end
 end
