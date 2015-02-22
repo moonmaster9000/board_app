@@ -8,18 +8,15 @@ describe "creating a team" do
 
   context "given an empty team name" do
     let(:attributes) do
-      {name: ""}
+      valid_team_attributes.merge(name: "")
     end
 
     it "should tell the observer that name is required" do
       Board.create_team(attributes: attributes, observer: gui, team_repo: team_repo).execute
 
-      expect(gui.spy_validation_errors).to include(
-        Board::ValidationError.new(
-          field_name: :name,
-          error: :required,
-        )
-      )
+      expect(gui.spy_validation_errors.count).to eq 1
+      expect(gui.spy_validation_errors.first.field_name).to eq :name
+      expect(gui.spy_validation_errors.first.error).to eq :required
     end
   end
 

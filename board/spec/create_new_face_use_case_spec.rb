@@ -40,12 +40,9 @@ describe "USE CASE: Create New Face" do
         end
 
         specify "the use case tells the observer that creation failed because the name is required" do
-          expect(gui.spy_validation_errors).to eq [
-            Board::ValidationError.new(
-              field_name: :name,
-              error: :required,
-            )
-          ]
+          expect(gui.spy_validation_errors.count).to eq 1
+          expect(gui.spy_validation_errors.first.field_name).to eq :name
+          expect(gui.spy_validation_errors.first.error).to eq :required
         end
       end
     end
@@ -59,12 +56,9 @@ describe "USE CASE: Create New Face" do
         end
 
         specify "the use case tells the observer that creation failed because a date is required" do
-          expect(gui.spy_validation_errors).to eq [
-            Board::ValidationError.new(
-              field_name: :date,
-              error: :required,
-            )
-          ]
+          expect(gui.spy_validation_errors.count).to eq 1
+          expect(gui.spy_validation_errors.first.field_name).to eq :date
+          expect(gui.spy_validation_errors.first.error).to eq :required
         end
       end
     end
