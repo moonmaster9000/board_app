@@ -1,4 +1,4 @@
-class StandupsController < ApplicationController
+class TeamsController < ApplicationController
   def new
 
   end
@@ -20,13 +20,13 @@ class StandupsController < ApplicationController
   def create
     Board.create_team(
       observer: self,
-      attributes: params[:standup].symbolize_keys,
+      attributes: params[:team].symbolize_keys,
       team_repo: team_repo,
     ).execute
   end
 
   def team_created(team)
-    redirect_to standup_path(team.id)
+    redirect_to team_path(team.id)
   end
 
   def team_presented(team)
