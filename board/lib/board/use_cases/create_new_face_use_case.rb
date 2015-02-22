@@ -11,14 +11,40 @@ module Board
       end
 
       def execute
-        new_face = Entities::NewFace.new(@attributes)
-
-        if new_face.valid?
-          @new_face_repo.save(new_face)
-          @observer.new_face_created(new_face)
+        if valid?
+          persist
+          send_new_face_to_observer
         else
-          @observer.validation_failed(new_face.validation_errors)
+          send_errors_to_observer
         end
+      end
+
+      private
+      attr_reader(
+        :new_face_repo,
+        :team_id,
+        :attributes,
+        :observer,
+      )
+
+      def send_errors_to_observer
+        observer.validation_failed(new_face.validation_errors)
+      end
+
+      def send_new_face_to_observer
+        observer.new_face_created(new_face)
+      end
+
+      def persist
+        new_face_repo.save(new_face)
+      end
+
+      def valid?
+        new_face.valid?
+      end
+
+      def new_face
+        @new_face ||= Entities::NewFace.new(@attributes)
       end
     end
   end
