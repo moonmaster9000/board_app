@@ -1,5 +1,0 @@
-source "https://rubygems.org"
-
-gem "rspec"
-gem "board", path: "../board"
-gemspec
