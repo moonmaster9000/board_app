@@ -4,7 +4,7 @@ require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_new_face_repo"
 require "board_test_support/doubles/fake_team_repo"
 
-describe "presenting new faces at a standup" do
+describe "USE CASE: Present New Faces at Standup" do
   include TestAttributes
 
   context "Given there are new faces for a team" do
