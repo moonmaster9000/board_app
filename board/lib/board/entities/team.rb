@@ -23,7 +23,7 @@ module Board
       end
 
       def valid?
-        !@name.empty?
+        present?(@name)
       end
 
       def attributes
@@ -38,6 +38,11 @@ module Board
           field_name: :name,
           error: :required,
         )]
+      end
+
+      private
+      def present?(name)
+        !name.empty?
       end
     end
   end
