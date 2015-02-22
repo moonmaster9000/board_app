@@ -1,8 +1,8 @@
 = @team.name
 
-h1 New Faces
+h1= t("new_faces.title")
 = @standup.new_faces.map(&:name)
 
 br
 
-= link_to 'Create New Face', new_team_new_face_path(@team.id)
+= link_to t("new_faces.create"), new_team_new_face_path(@team.id)

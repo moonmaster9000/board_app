@@ -1,5 +1,5 @@
 = form_for :team, url: teams_path do |form|
-  | Name
+  = t("team.attributes.name")
   = form.text_field :name
   br
   = form.submit

@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  teams:
+    new: "New Team"
+  new_faces:
+    title: "New Faces"
+    create: "Create New Face"
+  team:
+    attributes:
+      name: "Name"
