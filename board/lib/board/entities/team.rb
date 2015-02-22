@@ -1,3 +1,5 @@
+require "board/entities/entity"
+
 module Board
   class ValidationError
     def initialize(field_name:, error:)
@@ -11,30 +13,14 @@ module Board
   end
 
   module Entities
-    class Team
-      ATTRIBUTES = [:name, :id]
-
-      attr_reader :name
-      attr_accessor :id
-
-      def initialize(id: nil, name: nil)
-        @id = id
-        @name = name
-      end
-
-      def ==(other_team)
-        other_team.id == id
-      end
+    class Team < Entity
+      set_attributes(
+        :name,
+        :id,
+      )
 
       def valid?
         present?(@name)
-      end
-
-      def attributes
-        {
-          name: @name,
-          id: @id,
-        }
       end
 
       def validation_errors

@@ -1,32 +1,13 @@
+require "board/entities/entity"
+
 module Board
   module Entities
-    class NewFace
-      attr_accessor :id
-
-      ATTRIBUTES = [
+    class NewFace < Entity
+      set_attributes(
+        :id,
         :name,
         :date,
-      ]
-
-      attr_reader(
-        *ATTRIBUTES
       )
-
-      def initialize(attributes={})
-        ATTRIBUTES.each do |attribute_name|
-          instance_variable_set(:"@#{attribute_name}", attributes[attribute_name])
-        end
-      end
-
-      def attributes
-        attrs = {}
-
-        ATTRIBUTES.each do |attribute|
-          attrs[attribute] = send attribute
-        end
-
-        attrs
-      end
 
       def valid?
         validation_errors.empty?

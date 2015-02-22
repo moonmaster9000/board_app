@@ -19,7 +19,7 @@ module Persistence
 
       def entity_from_record(team_record)
         team_record_attributes = team_record.attributes.symbolize_keys.slice(
-            *Board::Entities::Team::ATTRIBUTES
+            *Board::Entities::Team.attributes
         )
 
         Board::Entities::Team.new(
