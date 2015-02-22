@@ -22,6 +22,10 @@ module Board
         @name = name
       end
 
+      def ==(other_team)
+        other_team.id == id
+      end
+
       def valid?
         present?(@name)
       end
