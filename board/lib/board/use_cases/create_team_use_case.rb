@@ -1,3 +1,5 @@
+require "board/entities/team"
+
 module Board
   module UseCases
     class CreateTeamUseCase

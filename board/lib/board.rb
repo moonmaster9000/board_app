@@ -1,5 +1,3 @@
-require "board/entities/team"
-require "board/entities/new_face"
 require "board/use_cases/present_standup_use_case"
 require "board/use_cases/create_new_face_use_case"
 require "board/use_cases/create_team_use_case"

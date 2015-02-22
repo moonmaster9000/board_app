@@ -1,3 +1,5 @@
+require "board/entities/new_face"
+
 module Board
   module UseCases
     class CreateNewFaceUseCase
