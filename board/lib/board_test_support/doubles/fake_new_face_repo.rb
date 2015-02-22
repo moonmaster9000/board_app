@@ -1,20 +1,4 @@
-require 'securerandom'
+require "board_test_support/doubles/fake_entity_repo"
 
-class FakeNewFaceRepo
-  def initialize
-    @new_faces = Hash.new
-  end
-
-  def save(new_face)
-    new_face.id = SecureRandom.uuid
-    @new_faces[new_face.id] = new_face
-  end
-
-  def all
-    @new_faces.values
-  end
-
-  def find(id)
-    @new_faces[id]
-  end
+class FakeNewFaceRepo < FakeEntityRepo
 end
