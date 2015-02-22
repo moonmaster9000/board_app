@@ -2,9 +2,11 @@ require "board"
 require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_team_repo"
 require "board_test_support/test_attributes"
+require "support/common_assertions"
 
 describe "creating a team" do
   include TestAttributes
+  include CommonAssertions
 
   context "given an empty team name" do
     let(:attributes) do
@@ -14,9 +16,7 @@ describe "creating a team" do
     it "should tell the observer that name is required" do
       Board.create_team(attributes: attributes, observer: gui, team_repo: team_repo).execute
 
-      expect(gui.spy_validation_errors.count).to eq 1
-      expect(gui.spy_validation_errors.first.field_name).to eq :name
-      expect(gui.spy_validation_errors.first.error).to eq :required
+      assert_gui_received_error(:name, :required)
     end
   end
 
