@@ -30,6 +30,11 @@ describe "USE CASE: Create New Face" do
         specify "the use case persists the new face" do
           expect(new_face_repo.all).to include(gui.spy_created_new_face)
         end
+
+        specify "the use case associates the new face with the requested team" do
+          # this test is coupled to implementation
+          expect(gui.spy_created_new_face.team_id).to eq(gui.spy_created_team.id)
+        end
       end
     end
 

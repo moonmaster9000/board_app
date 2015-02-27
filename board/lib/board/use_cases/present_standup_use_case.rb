@@ -18,7 +18,7 @@ module Board
       end
 
       def execute
-        standup = Values::Standup.new(new_faces: @new_face_repo.all)
+        standup = Values::Standup.new(new_faces: @new_face_repo.all_by_team_id(@team_id))
         @observer.standup_presented(standup)
       end
     end

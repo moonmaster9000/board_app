@@ -36,6 +36,7 @@ module Board
       end
 
       def persist
+        new_face.team_id = team_id
         new_face_repo.save(new_face)
       end
 
