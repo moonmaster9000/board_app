@@ -11,3 +11,8 @@ gem 'sqlite3'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+
+group :development, :test do
+  gem 'capybara'
+  gem 'cucumber'
+end
