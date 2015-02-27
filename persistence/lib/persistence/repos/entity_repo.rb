@@ -12,6 +12,11 @@ module Persistence
         entity_from_record(entity_record)
       end
 
+      def all
+        entity_records = table_class.all
+        entity_records.map { |entity_record| entity_from_record(entity_record) }
+      end
+
       private
 
       def entity_from_record(entity_record)
