@@ -16,8 +16,8 @@ module Board
         end
       end
 
-      def ==(other_team)
-        other_team.id == id
+      def ==(other_entity)
+        other_entity.id == id
       end
 
       def attributes
