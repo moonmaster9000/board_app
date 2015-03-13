@@ -2,6 +2,7 @@ require "board/use_cases/present_standup_use_case"
 require "board/use_cases/create_new_face_use_case"
 require "board/use_cases/create_team_use_case"
 require "board/use_cases/present_team_use_case"
+require "board/use_cases/create_help_use_case"
 
 module Board
   extend self
@@ -22,5 +23,9 @@ module Board
 
   def present_standup(*args)
     PresentStandupUseCase.new(*args)
+  end
+
+  def create_help(*args)
+    CreateHelpUseCase.new(*args)
   end
 end
