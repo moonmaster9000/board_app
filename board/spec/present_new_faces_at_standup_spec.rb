@@ -5,8 +5,6 @@ require "board_test_support/doubles/fake_new_face_repo"
 require "board_test_support/doubles/fake_team_repo"
 
 describe "USE CASE: Present New Faces at Standup" do
-  include TestAttributes
-
   context "Given there are new faces for my team and another team" do
     before do
       @my_team = create_team
@@ -33,6 +31,8 @@ describe "USE CASE: Present New Faces at Standup" do
     let(:new_face_repo) { FakeNewFaceRepo.new }
     let(:team_repo) { FakeTeamRepo.new }
 
+    include TestAttributes
+    
     def create_new_face(team:)
       observer = GuiSpy.new 
       
