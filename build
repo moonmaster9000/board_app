@@ -1,2 +1,2 @@
-pushd board; bundle install; bundle exec cucumber; bundle exec rspec --color --format=doc; popd
-pushd persistence; bundle install; bundle exec rspec --color --format=doc; popd
+pushd board; bundle exec cucumber; bundle exec rspec --color --format=doc; popd
+pushd persistence; bundle exec rspec --color --format=doc; popd
