@@ -19,7 +19,7 @@ describe "USE CASE: Create Team" do
       end
 
       specify "Then it should tell the observer that name is required" do
-        assert_gui_received_error(:name, :required)
+        assert_gui_got_one_error(:name, :required)
       end
     end
   end

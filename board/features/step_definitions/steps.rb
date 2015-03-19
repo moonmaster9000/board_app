@@ -46,6 +46,7 @@ When(/^I view my team's standup$/) do
     team_id: gui.spy_created_team.id,
     new_face_repo: new_face_repo,
     observer: gui,
+    help_repo: help_repo,
   ).execute
 end
 
@@ -63,7 +64,7 @@ Given(/^there are helps for my team$/) do
 
   Board.create_help(
     team_id: gui.spy_created_team.id,
-    attributes: { author: "valid author", date: valid_date, description: "valid description" },
+    attributes: valid_help_attributes,
     observer: gui,
     help_repo: help_repo,
   ).execute

@@ -1,7 +1,4 @@
-require "board_test_support/doubles/fake_entity_repo"
+require "board_test_support/doubles/fake_entity_belonging_to_team_repo"
 
-class FakeNewFaceRepo < FakeEntityRepo
-  def all_by_team_id(team_id)
-    all.select {|new_face| new_face.team_id == team_id }
-  end
+class FakeNewFaceRepo < FakeEntityBelongingToTeamRepo
 end

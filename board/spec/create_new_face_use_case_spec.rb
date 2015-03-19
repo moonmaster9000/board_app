@@ -47,7 +47,7 @@ describe "USE CASE: Create New Face" do
         end
 
         specify "the use case tells the observer that creation failed because the name is required" do
-          assert_gui_received_error(:name, :required)
+          assert_gui_got_one_error(:name, :required)
         end
       end
     end
@@ -61,7 +61,7 @@ describe "USE CASE: Create New Face" do
         end
 
         specify "the use case tells the observer that creation failed because a date is required" do
-          assert_gui_received_error(:date, :required)
+          assert_gui_got_one_error(:date, :required)
         end
       end
     end

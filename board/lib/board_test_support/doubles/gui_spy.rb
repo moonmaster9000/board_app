@@ -9,6 +9,11 @@ class GuiSpy
   end
   attr_reader :spy_created_team
 
+  def help_created(help)
+    @spy_created_help = help
+  end
+  attr_reader :spy_created_help
+
   def team_presented(team)
     @spy_presented_team = team
   end
