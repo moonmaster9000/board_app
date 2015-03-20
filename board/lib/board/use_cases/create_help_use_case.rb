@@ -14,7 +14,7 @@ module Board
       def execute
         help = Entities::Help.new(@attributes.merge(team_id: @team_id))
 
-        if (help.valid?)
+        if help.valid?
           @help_repo.save(help)
           @observer.help_created(help)
         else
