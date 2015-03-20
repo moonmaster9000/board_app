@@ -1,5 +1,4 @@
 require "board/entities/entity"
-require "board/validation_error"
 require "board/entities/validations"
 
 module Board

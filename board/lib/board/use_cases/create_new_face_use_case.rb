@@ -1,51 +1,17 @@
 require "board/entities/new_face"
+require "board/use_cases/create_entity_for_team_use_case"
 
 module Board
   module UseCases
-    class CreateNewFaceUseCase
+    class CreateNewFaceUseCase < CreateEntityForTeamUseCase
       def initialize(team_id:, new_face_repo:, attributes:, observer:)
-        @team_id = team_id
-        @new_face_repo = new_face_repo
-        @attributes = attributes
-        @observer = observer
-      end
-
-      def execute
-        if valid?
-          persist
-          send_new_face_to_observer
-        else
-          send_errors_to_observer
-        end
-      end
-
-      private
-      attr_reader(
-        :new_face_repo,
-        :team_id,
-        :attributes,
-        :observer,
-      )
-
-      def send_errors_to_observer
-        observer.validation_failed(new_face.validation_errors)
-      end
-
-      def send_new_face_to_observer
-        observer.new_face_created(new_face)
-      end
-
-      def persist
-        new_face.team_id = team_id
-        new_face_repo.save(new_face)
-      end
-
-      def valid?
-        new_face.valid?
-      end
-
-      def new_face
-        @new_face ||= Entities::NewFace.new(@attributes)
+        super(
+          team_id: team_id,
+          repo: new_face_repo,
+          attributes: attributes,
+          observer: observer,
+          entity_class: Entities::NewFace,
+        )
       end
     end
   end
