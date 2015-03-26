@@ -1,8 +1,6 @@
 require "board"
 require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_team_repo"
-require "board_test_support/doubles/fake_new_face_repo"
-require "board_test_support/doubles/fake_help_repo"
+require "board_test_support/doubles/fake_repo_factory"
 require "board_test_support/test_attributes"
 
 module BoardTestDsl
@@ -11,15 +9,19 @@ module BoardTestDsl
   end
 
   def team_repo
-    @team_repo ||= FakeTeamRepo.new
+    repo_factory.team_repo
   end
 
   def help_repo
-    @help_repo ||= FakeHelpRepo.new
+    repo_factory.help_repo
   end
 
   def new_face_repo
-    @new_face_repo ||= FakeNewFaceRepo.new
+    repo_factory.new_face_repo
+  end
+
+  def repo_factory
+    @repo_factory ||= FakeRepoFactory.new
   end
 end
 
@@ -44,9 +46,8 @@ end
 When(/^I view my team's standup$/) do
   Board.present_standup(
     team_id: gui.spy_created_team.id,
-    new_face_repo: new_face_repo,
+    repo_factory: repo_factory,
     observer: gui,
-    help_repo: help_repo,
   ).execute
 end
 

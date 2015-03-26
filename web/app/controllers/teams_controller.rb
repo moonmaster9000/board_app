@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
     Board.present_standup(
       observer: self,
       team_id: params[:id],
-      new_face_repo: new_face_repo
+      repo_factory: repo_factory,
     ).execute
   end
 

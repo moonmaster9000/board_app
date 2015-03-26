@@ -1,34 +1,48 @@
 module Board
   module UseCases
     class PresentStandupUseCase
-      def initialize(team_id:, new_face_repo:, observer:, help_repo:)
+      PRESENT_ITEM_USE_CASES = []
+
+      def initialize(team_id:, observer:, repo_factory:)
+        @repo_factory = repo_factory
         @observer = observer
-        @new_face_repo = new_face_repo
         @team_id = team_id
-        @help_repo = help_repo
+        @items = {}
       end
 
       def execute
-        standup = Values::Standup.new(
-          new_faces: @new_face_repo.all_by_team_id(@team_id),
-          helps: @help_repo.all_by_team_id(@team_id),
-        )
+        PRESENT_ITEM_USE_CASES.each do |present_item|
+          present_item.call(repo_factory: @repo_factory, observer: self, team_id: @team_id)
+        end
+
+        standup = Values::Standup.new(@items)
+
         @observer.standup_presented(standup)
+      end
+
+      def present_items(item_name, items)
+        @items[item_name] = items
       end
 
       module Values
         class Standup
-          attr_reader(
-            :new_faces,
-            :helps,
-          )
+          def initialize(items)
+            @items = items
+          end
 
-          def initialize(new_faces:, helps:)
-            @new_faces = new_faces
-            @helps = helps
+          def method_missing(method_name, *args, &block)
+            if @items.has_key?(method_name)
+              @items[method_name]
+            else
+              super
+            end
           end
         end
       end
     end
   end
+end
+
+Dir[File.join(__dir__, "presents_items_use_cases", "**", "*.rb")].each do |file|
+  require file
 end

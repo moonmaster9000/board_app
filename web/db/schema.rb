@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306212026) do
+ActiveRecord::Schema.define(version: 20150326202156) do
+
+  create_table "persistence_helps", force: true do |t|
+    t.string   "team_id"
+    t.text     "description"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "persistence_new_faces", force: true do |t|
     t.string   "name"

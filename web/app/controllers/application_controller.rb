@@ -5,10 +5,14 @@ class ApplicationController < ActionController::Base
 
   private
   def team_repo
-    Rails.application.config.team_repo
+    repo_factory.team_repo
   end
 
   def new_face_repo
-    Rails.application.config.new_face_repo
+    repo_factory.new_face_repo
+  end
+
+  def repo_factory
+    Rails.application.config.repo_factory
   end
 end

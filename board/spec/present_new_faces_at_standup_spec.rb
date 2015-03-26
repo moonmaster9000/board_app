@@ -1,9 +1,7 @@
 require "board"
 require "board_test_support/test_attributes"
 require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_new_face_repo"
-require "board_test_support/doubles/fake_help_repo"
-require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_repo_factory"
 
 describe "USE CASE: Present New Faces at Standup" do
   context "Given there are new faces for my team and another team" do
@@ -29,9 +27,10 @@ describe "USE CASE: Present New Faces at Standup" do
       end
     end
 
-    let(:new_face_repo) { FakeNewFaceRepo.new }
-    let(:help_repo) { FakeHelpRepo.new }
-    let(:team_repo) { FakeTeamRepo.new }
+    let(:new_face_repo) { repo_factory.new_face_repo }
+    let(:help_repo) { repo_factory.help_repo }
+    let(:team_repo) { repo_factory.team_repo }
+    let(:repo_factory) { FakeRepoFactory.new }
 
     include TestAttributes
     
@@ -62,11 +61,10 @@ describe "USE CASE: Present New Faces at Standup" do
 
     def present_standup(team:)
       observer = GuiSpy.new
-      
+
       Board.present_standup(
         team_id: team.id,
-        new_face_repo: new_face_repo,
-        help_repo: help_repo,
+        repo_factory: repo_factory,
         observer: observer,
       ).execute
       
