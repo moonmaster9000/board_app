@@ -11,17 +11,24 @@ module Board
       end
 
       def execute
-        PRESENT_ITEM_USE_CASES.each do |present_item|
-          present_item.call(repo_factory: @repo_factory, observer: self, team_id: @team_id)
-        end
-
-        standup = Values::Standup.new(@items)
-
-        @observer.standup_presented(standup)
+        present_items_to_standup
+        present_standup
       end
 
       def present_items(item_name, items)
         @items[item_name] = items
+      end
+
+      private
+      def present_standup
+        standup = Values::Standup.new(@items)
+        @observer.standup_presented(standup)
+      end
+
+      def present_items_to_standup
+        PRESENT_ITEM_USE_CASES.each do |present_item|
+          present_item.call(repo_factory: @repo_factory, observer: self, team_id: @team_id)
+        end
       end
 
       module Values
