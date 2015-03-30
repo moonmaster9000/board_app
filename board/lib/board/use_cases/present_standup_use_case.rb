@@ -1,7 +1,15 @@
 module Board
   module UseCases
     class PresentStandupUseCase
-      PRESENT_ITEM_USE_CASES = []
+      class << self
+        def add_standup_item_collector(item_collector)
+          standup_item_collectors << item_collector
+        end
+
+        def standup_item_collectors
+          @standup_item_collectors ||= []
+        end
+      end
 
       def initialize(team_id:, observer:, repo_factory:)
         @repo_factory = repo_factory
@@ -11,11 +19,11 @@ module Board
       end
 
       def execute
-        present_items_to_standup
+        collect_standup_items
         present_standup
       end
 
-      def present_items(item_name, items)
+      def add_items(item_name, items)
         @items[item_name] = items
       end
 
@@ -25,14 +33,18 @@ module Board
         @observer.standup_presented(standup)
       end
 
-      def present_items_to_standup
-        PRESENT_ITEM_USE_CASES.each do |present_item|
-          present_item.call(repo_factory: @repo_factory, observer: self, team_id: @team_id)
+      def collect_standup_items
+        standup_item_collectors.each do |item_collector|
+          item_collector.call(repo_factory: @repo_factory, standup_use_case: self, team_id: @team_id)
         end
       end
 
+      def standup_item_collectors
+        self.class.standup_item_collectors
+      end
+
       module Values
-        class Standup
+        class PresentHashKeysAsMethods
           def initialize(items)
             @items = items
           end
@@ -45,11 +57,14 @@ module Board
             end
           end
         end
+
+        class Standup < PresentHashKeysAsMethods
+        end
       end
     end
   end
 end
 
-Dir[File.join(__dir__, "presents_items_use_cases", "**", "*.rb")].each do |file|
+Dir[File.join(__dir__, "standup_item_collectors", "**", "*.rb")].each do |file|
   require file
 end
