@@ -1,0 +1,5 @@
+= form_for :help, url: team_helps_path(@team_id) do |form|
+  = form.text_area :description
+  = form.date_field :date
+  br
+  = form.submit
