@@ -74,3 +74,22 @@ end
 Then(/^I should see those helps$/) do
   expect(gui.spy_presented_standup.helps).to include(gui.spy_created_help)
 end
+
+Given(/^there is a team$/) do
+  Board.create_team(
+      observer: gui,
+      attributes: valid_team_attributes,
+      team_repo: team_repo
+  ).execute
+end
+
+When(/^I view a list of teams$/) do
+  Board.present_list_of_teams(
+      observer: gui,
+      team_repo: team_repo
+  ).execute
+end
+
+Then(/^I should see that team$/) do
+  expect(gui.spy_presented_list_of_teams).to include(gui.spy_created_team)
+end
