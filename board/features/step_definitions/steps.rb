@@ -84,12 +84,12 @@ Given(/^there is a team$/) do
 end
 
 When(/^I view a list of teams$/) do
-  Board.present_list_of_teams(
+  Board.present_teams(
       observer: gui,
       team_repo: team_repo
   ).execute
 end
 
 Then(/^I should see that team$/) do
-  expect(gui.spy_presented_list_of_teams).to include(gui.spy_created_team)
+  expect(gui.spy_presented_teams).to include(gui.spy_created_team)
 end

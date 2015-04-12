@@ -3,7 +3,7 @@ require "board/use_cases/create_new_face_use_case"
 require "board/use_cases/create_team_use_case"
 require "board/use_cases/present_team_use_case"
 require "board/use_cases/create_help_use_case"
-require "board/use_cases/present_list_of_teams_use_case"
+require "board/use_cases/present_teams_use_case"
 
 module Board
   extend self
@@ -30,7 +30,7 @@ module Board
     CreateHelpUseCase.new(*args)
   end
 
-  def present_list_of_teams(*args)
-    PresentListOfTeamsUseCase.new(*args)
+  def present_teams(*args)
+    PresentTeamsUseCase.new(*args)
   end
 end

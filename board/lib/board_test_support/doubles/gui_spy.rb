@@ -19,10 +19,10 @@ class GuiSpy
   end
   attr_reader :spy_presented_team
 
-  def list_of_teams_presented(teams)
-    @spy_presented_list_of_teams = teams
+  def teams_presented(teams)
+    @spy_presented_teams = teams
   end
-  attr_reader :spy_presented_list_of_teams
+  attr_reader :spy_presented_teams
 
   def new_face_created(new_face)
     @spy_created_new_face = new_face

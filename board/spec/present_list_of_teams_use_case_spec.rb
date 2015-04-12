@@ -13,11 +13,11 @@ describe "USE CASE: Present a list of Teams" do
 
     context "When I execute the present_team use case with that team's id" do
       before do
-        present_list_of_teams
+        present_teams
       end
 
       specify "Then it sends a presentable team to the gui" do
-        expect(list_of_teams_presented_to_gui).to include(created_team)
+        expect(presented_teams).to include(created_team)
       end
     end
   end
@@ -25,7 +25,7 @@ describe "USE CASE: Present a list of Teams" do
   let(:gui) { GuiSpy.new }
   let(:team_repo) { FakeTeamRepo.new }
   let(:created_team) { gui.spy_created_team }
-  let(:list_of_teams_presented_to_gui) { gui.spy_presented_list_of_teams }
+  let(:presented_teams) { gui.spy_presented_teams }
 
   def create_team
     Board.create_team(
@@ -35,8 +35,8 @@ describe "USE CASE: Present a list of Teams" do
     ).execute
   end
 
-  def present_list_of_teams
-    Board.present_list_of_teams(
+  def present_teams
+    Board.present_teams(
         observer: gui,
         team_repo: team_repo
     ).execute

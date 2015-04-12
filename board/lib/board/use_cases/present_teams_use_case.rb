@@ -1,5 +1,5 @@
 module Board
-  class PresentListOfTeamsUseCase
+  class PresentTeamsUseCase
     def initialize(observer:,team_repo:)
       @observer = observer
       @team_repo = team_repo
@@ -7,7 +7,7 @@ module Board
 
     def execute
       teams = @team_repo.all
-      @observer.list_of_teams_presented(teams)
+      @observer.teams_presented(teams)
     end
   end
 end
