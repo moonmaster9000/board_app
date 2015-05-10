@@ -1,4 +1,4 @@
-def assert_works_like_an_entity_repo_that_belongs_to_team(entity_class:, entity_repo_factory: -> {})
+def assert_works_like_an_entity_repo_that_belongs_to_team(entity_class:, generate_repo_lambda:)
   describe "Repo For Entities That Belong To Teams" do
     context "Given entities for different teams" do
       before do
@@ -16,6 +16,6 @@ def assert_works_like_an_entity_repo_that_belongs_to_team(entity_class:, entity_
 
     let(:team_1_entity) { entity_class.new(team_id: 1) }
     let(:team_2_entity) { entity_class.new(team_id: 2) }
-    let(:entity_repo) { entity_repo_factory.call }
+    let(:entity_repo) { generate_repo_lambda.call }
   end
 end

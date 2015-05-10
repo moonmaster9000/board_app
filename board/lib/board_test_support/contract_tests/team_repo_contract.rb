@@ -1,10 +1,10 @@
 require "board/entities/team"
 require "board_test_support/contract_tests/entity_repo_contract"
 
-def assert_works_like_a_team_repo(team_repo_factory:)
+def assert_works_like_a_team_repo(repo_factory:)
   assert_works_like_an_entity_repo(
-    entity_repo_factory:  -> { team_repo_factory.call },
-    entity_factory:       -> { Board::Entities::Team.new },
+    generate_repo_lambda:  -> { repo_factory.team_repo },
+    entity_class:          Board::Entities::Team,
   )
 end
 

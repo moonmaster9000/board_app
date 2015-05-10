@@ -1,4 +1,4 @@
-def assert_works_like_an_entity_repo(entity_repo_factory:, entity_factory:)
+def assert_works_like_an_entity_repo(generate_repo_lambda:, entity_class:)
   describe "Entity Repo" do
     context "When I tell the repo to save some entities" do
       before do
@@ -19,11 +19,11 @@ def assert_works_like_an_entity_repo(entity_repo_factory:, entity_factory:)
       end
     end
 
-    let(:entity_repo) { entity_repo_factory.call }
-    let(:entity_factory) { entity_factory }
+    let(:entity_repo) { generate_repo_lambda.call }
+    let(:entity_klass) { entity_class }
 
     def create_new_entity
-      entity = entity_factory.call
+      entity = entity_klass.new
       entity_repo.save(entity)
       entity
     end
