@@ -4,6 +4,7 @@ require "board/use_cases/create_team_use_case"
 require "board/use_cases/present_team_use_case"
 require "board/use_cases/create_help_use_case"
 require "board/use_cases/present_teams_use_case"
+require "board/use_cases/create_interesting_use_case"
 
 module Board
   extend self
@@ -12,6 +13,10 @@ module Board
 
   def create_team(*args)
     CreateTeamUseCase.new(*args)
+  end
+
+  def create_interesting(*args)
+    CreateInterestingUseCase.new(*args)
   end
 
   def present_team(*args)

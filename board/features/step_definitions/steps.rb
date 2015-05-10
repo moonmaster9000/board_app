@@ -20,6 +20,10 @@ module BoardTestDsl
     repo_factory.new_face_repo
   end
 
+  def interesting_repo
+    repo_factory.interesting_repo
+  end
+
   def repo_factory
     @repo_factory ||= FakeRepoFactory.new
   end
@@ -92,4 +96,24 @@ end
 
 Then(/^I should see that team$/) do
   expect(gui.spy_presented_teams).to include(gui.spy_created_team)
+end
+
+
+Given(/^there are interestings for my team$/) do
+  Board.create_team(
+    observer: gui,
+    attributes: valid_team_attributes,
+    team_repo: team_repo
+  ).execute
+
+  Board.create_interesting(
+    team_id: gui.spy_created_team.id,
+    attributes: valid_interesting_attributes,
+    observer: gui,
+    interesting_repo: interesting_repo,
+  ).execute
+end
+
+Then(/^I should see those interestings$/) do
+  expect(gui.spy_presented_standup.interestings).to include(gui.spy_created_interesting)
 end
