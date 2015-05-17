@@ -117,3 +117,23 @@ end
 Then(/^I should see those interestings$/) do
   expect(gui.spy_presented_standup.interestings).to include(gui.spy_created_interesting)
 end
+
+
+Given(/^there are events for my team$/) do
+  Board.create_team(
+    observer: gui,
+    attributes: valid_team_attributes,
+    team_repo: team_repo
+  ).execute
+
+  Board.create_event(
+    team_id: gui.spy_created_team.id,
+    attributes: valid_event_attributes,
+    observer: gui,
+    event_repo: repo_factory.event_repo,
+  ).execute
+end
+
+Then(/^I should see those events$/) do
+  expect(gui.spy_presented_standup.events).to include(gui.spy_created_event)
+end

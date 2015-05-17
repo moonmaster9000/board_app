@@ -15,6 +15,10 @@ module TestAttributes
     { date: valid_date, title: "valid interesting title" }
   end
 
+  def valid_event_attributes
+    { date: valid_date, title: "valid event title" }
+  end
+
   def valid_date
     Date.new(2011, 4, 4)
   end

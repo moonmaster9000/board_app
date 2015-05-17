@@ -19,6 +19,11 @@ class GuiSpy
   end
   attr_reader :spy_created_interesting
 
+  def event_created(event)
+    @spy_created_event = event
+  end
+  attr_reader :spy_created_event
+
   def team_presented(team)
     @spy_presented_team = team
   end
