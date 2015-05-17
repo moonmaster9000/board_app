@@ -3,8 +3,8 @@ require "board_test_support/test_attributes"
 require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_repo_factory"
 
-describe "USE CASE: Present New Faces at Standup" do
-  context "Given there are new faces for my team and another team" do
+describe "USE CASE: Present Helps at Standup" do
+  context "Given there are helps for my team and another team" do
     before do
       @my_team = create_team
       @help_for_my_team= create_help(team: @my_team)
@@ -18,11 +18,11 @@ describe "USE CASE: Present New Faces at Standup" do
         @my_standup = present_standup(team: @my_team)
       end
 
-      specify "Then I should see the new faces for my team" do
+      specify "Then I should see the helps for my team" do
         expect(@my_standup.helps).to include(@help_for_my_team)
       end
 
-      specify "But I should not see new faces for other teams" do
+      specify "But I should not see helps for other teams" do
         expect(@my_standup.helps).not_to include(@help_for_different_team)
       end
     end
