@@ -14,10 +14,6 @@ module Board
       include Validations
       validate_field :name, :required
       validate_field :date, :required
-
-      def inspect
-        id
-      end
     end
   end
 end

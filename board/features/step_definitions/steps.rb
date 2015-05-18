@@ -27,6 +27,10 @@ module BoardTestDsl
   def repo_factory
     @repo_factory ||= FakeRepoFactory.new
   end
+
+  def today
+    @today ||= Date.today
+  end
 end
 
 World BoardTestDsl
@@ -43,7 +47,7 @@ Given(/^there are new faces for my team$/) do
     observer: gui,
     team_id: gui.spy_created_team.id,
     new_face_repo: new_face_repo,
-    attributes: valid_new_face_attributes,
+    attributes: valid_new_face_attributes.merge(date: today),
   ).execute
 end
 
@@ -52,6 +56,7 @@ When(/^I view my team's standup$/) do
     team_id: gui.spy_created_team.id,
     repo_factory: repo_factory,
     observer: gui,
+    date: today,
   ).execute
 end
 
@@ -69,7 +74,7 @@ Given(/^there are helps for my team$/) do
 
   Board.create_help(
     team_id: gui.spy_created_team.id,
-    attributes: valid_help_attributes,
+    attributes: valid_help_attributes.merge(date: today),
     observer: gui,
     help_repo: help_repo,
   ).execute
@@ -108,7 +113,7 @@ Given(/^there are interestings for my team$/) do
 
   Board.create_interesting(
     team_id: gui.spy_created_team.id,
-    attributes: valid_interesting_attributes,
+    attributes: valid_interesting_attributes.merge(date: today),
     observer: gui,
     interesting_repo: interesting_repo,
   ).execute
@@ -128,7 +133,7 @@ Given(/^there are events for my team$/) do
 
   Board.create_event(
     team_id: gui.spy_created_team.id,
-    attributes: valid_event_attributes,
+    attributes: valid_event_attributes.merge(date: today),
     observer: gui,
     event_repo: repo_factory.event_repo,
   ).execute
