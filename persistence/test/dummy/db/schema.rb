@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518003814) do
+ActiveRecord::Schema.define(version: 20150518004610) do
 
   create_table "persistence_events", force: true do |t|
     t.string   "title"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20150518003814) do
     t.integer  "team_id"
     t.text     "description"
     t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "persistence_interestings", force: true do |t|
+    t.string   "description"
+    t.string   "title"
+    t.date     "date"
+    t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

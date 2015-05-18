@@ -2,6 +2,7 @@ require "persistence/repos/new_face_repo"
 require "persistence/repos/team_repo"
 require "persistence/repos/help_repo"
 require "persistence/repos/event_repo"
+require "persistence/repos/interesting_repo"
 
 module Persistence
   module Repos
@@ -20,6 +21,10 @@ module Persistence
 
       def event_repo
         EventRepo.new
+      end
+
+      def interesting_repo
+        InterestingRepo.new
       end
     end
   end
