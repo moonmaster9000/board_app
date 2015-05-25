@@ -14,9 +14,7 @@ class FakeEntityBelongingToTeamRepo < FakeEntityRepo
   end
 
   def unarchived_by_team_id(team_id)
-    all_by_team_id(team_id).select do |entity|
-      !entity.archived?
-    end
+    all_by_team_id(team_id).select { |e| !e.archived? }
   end
 
   def all_by_team_id(team_id)
