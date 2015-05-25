@@ -12,7 +12,8 @@ module Board
       def execute
         @observer.whiteboard_presented(
           Board::Values::Whiteboard.new(
-            new_faces: @repo_factory.new_face_repo.unarchived_by_team_id(@team_id),
+            new_faces:  @repo_factory.new_face_repo.unarchived_by_team_id(@team_id),
+            helps:      @repo_factory.help_repo.unarchived_by_team_id(@team_id),
           )
         )
       end

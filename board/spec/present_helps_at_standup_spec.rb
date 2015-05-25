@@ -4,68 +4,89 @@ require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_repo_factory"
 
 describe "USE CASE: Present Helps at Standup" do
-  context "Given there are past, present, and future helps for my team" do
+  context "Given there are past, now, and future helps for my team" do
     before do
+      @now = Date.today
+      @past = @now.prev_day
+      @future = @now.next_day
+      
       @my_team = create_team
-      @present = Date.today
-      @past_help = create_help(team: @my_team, date: @present.prev_day)
-      @present_help = create_help(team: @my_team, date: @present)
-      @future_help = create_help(team: @my_team, date: @present.next_day)
-    end
-
-    context "When I present the standup for the present" do
-      before do
-        @present_standup = present_standup(team: @my_team, date: @present)
-      end
-
-      specify "Then I should see the present help" do
-        expect(@present_standup.helps).to include(@present_help)
-      end
-
-      specify "But I should not see past or future helps" do
-        helps = @present_standup.helps
-
-        expect(helps).not_to include(@past_help)
-        expect(helps).not_to include(@future_help)
-      end
-    end
-  end
-
-  context "Given there are helps for my team and another team" do
-    before do
-      @date = Date.today
-      @my_team = create_team
-      @help_for_my_team= create_help(team: @my_team, date: @date)
+      @past_help = create_help(team: @my_team, date: @past)
+      @now_help = create_help(team: @my_team, date: @now)
+      @future_help = create_help(team: @my_team, date: @future)
 
       @different_team = create_team
-      @help_for_different_team = create_help(team: @different_team, date: @date)
+      @help_for_different_team = create_help(team: @different_team, date: @now)
     end
-    
-    context "When I present the standup for my team" do
+
+    context "When I present the standup for the 'now'" do
       before do
-        @my_standup = present_standup(team: @my_team, date: @date)
+        @now_standup = present_standup(team: @my_team, date: @now)
       end
 
-      specify "Then I should see the helps for my team" do
-        expect(@my_standup.helps).to include(@help_for_my_team)
+      specify "Then I should see the past and 'now' helps" do
+        expect(@now_standup.helps).to include(@past_help, @now_help)
+      end
+
+      specify "But I should not see future helps" do
+        expect(@now_standup.helps).not_to include(@future_help)
+      end
+      
+      specify "And I should not see other team helps" do
+        expect(@now_standup.helps).not_to include @help_for_different_team
+      end
+    end
+
+    context "When I present the whiteboard" do
+      before do
+        @now_whiteboard = present_whiteboard(team: @my_team)
+      end
+
+      specify "Then I should see my team's past, 'now', and future helps" do
+        expect(@now_whiteboard.helps).to include(@now_help, @past_help, @future_help)
       end
 
       specify "But I should not see helps for other teams" do
-        expect(@my_standup.helps).not_to include(@help_for_different_team)
+        expect(@now_whiteboard.helps).not_to include(@help_for_different_team)
       end
     end
+
+    context "When I archive the 'now' standup" do
+      before do
+        archive_standup(@my_team.id, @now)
+      end
+
+      specify "Then I should not see the past or 'now' helps on the whiteboard" do
+        @now_whiteboard = present_whiteboard(team: @my_team)
+
+        expect(@now_whiteboard.helps).not_to include(@past_help, @now_help)
+        expect(@now_whiteboard.helps).to include(@future_help)
+      end
+
+      specify "Then I should not see any helps on the current standup" do
+        present_standup = present_standup(team: @my_team, date: @now)
+
+        expect(present_standup.helps).to be_empty
+      end
+
+      specify "But I should still new future helps on the future standup" do
+        future_standup = present_standup(team: @my_team, date: @future)
+
+        expect(future_standup.helps).to include(@future_help)
+      end
+    end
+    
   end
 
   let(:help_repo) { repo_factory.help_repo }
   let(:new_face_repo) { repo_factory.new_face_repo }
   let(:team_repo) { repo_factory.team_repo }
   let(:repo_factory) { FakeRepoFactory.new }
+  let(:observer) { GuiSpy.new }
 
   include TestAttributes
 
   def create_help(team:, date:)
-    observer = GuiSpy.new
-
     Board.create_help(
       observer: observer,
       attributes: valid_help_attributes.merge(date: date),
@@ -76,9 +97,16 @@ describe "USE CASE: Present Helps at Standup" do
     observer.spy_created_help
   end
 
-  def create_team
-    observer = GuiSpy.new
+  def archive_standup(team_id, date)
+    Board.archive_standup(
+      observer: observer,
+      repo_factory: repo_factory,
+      team_id: team_id,
+      date: date,
+    ).execute
+  end
 
+  def create_team
     Board.create_team(
       observer: observer,
       attributes: valid_team_attributes,
@@ -89,8 +117,6 @@ describe "USE CASE: Present Helps at Standup" do
   end
 
   def present_standup(team:, date:)
-    observer = GuiSpy.new
-
     Board.present_standup(
       team_id: team.id,
       repo_factory: repo_factory,
@@ -99,5 +125,15 @@ describe "USE CASE: Present Helps at Standup" do
     ).execute
 
     observer.spy_presented_standup
+  end
+
+  def present_whiteboard(team:)
+    Board.present_whiteboard(
+      team_id: team.id,
+      repo_factory: repo_factory,
+      observer: observer,
+    ).execute
+
+    observer.spy_presented_whiteboard
   end
 end
