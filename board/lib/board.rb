@@ -6,11 +6,17 @@ require "board/use_cases/create_help_use_case"
 require "board/use_cases/present_teams_use_case"
 require "board/use_cases/create_interesting_use_case"
 require "board/use_cases/create_event_use_case"
+require "board/use_cases/archive_standup_use_case"
+require "board/use_cases/present_whiteboard_use_case"
 
 module Board
   extend self
 
   include UseCases
+
+  def archive_standup(*args)
+    ArchiveStandupUseCase.new(*args)
+  end
 
   def create_team(*args)
     CreateTeamUseCase.new(*args)
@@ -42,5 +48,9 @@ module Board
 
   def present_teams(*args)
     PresentTeamsUseCase.new(*args)
+  end
+
+  def present_whiteboard(*args)
+    PresentWhiteboardUseCase.new(*args)
   end
 end

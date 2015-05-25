@@ -1,14 +1,15 @@
-require "board/entities/entity"
 require "board/entities/validations"
+require "board/entities/standup_item"
 
 module Board
   module Entities
-    class Help < Entity
-      set_attributes(
+    class Help
+      include StandupItem
+
+      add_attributes(
         :description,
         :date,
         :team_id,
-        :id,
       )
 
       include Validations

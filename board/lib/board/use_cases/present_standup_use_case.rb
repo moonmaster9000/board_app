@@ -1,3 +1,5 @@
+require "board/values/standup"
+
 module Board
   module UseCases
     class PresentStandupUseCase
@@ -30,7 +32,7 @@ module Board
 
       private
       def present_standup
-        standup = Values::Standup.new(@items)
+        standup = Board::Values::Standup.new(@items)
         @observer.standup_presented(standup)
       end
 
@@ -47,25 +49,6 @@ module Board
 
       def standup_item_collectors
         self.class.standup_item_collectors
-      end
-
-      module Values
-        class PresentHashKeysAsMethods
-          def initialize(items)
-            @items = items
-          end
-
-          def method_missing(method_name, *args, &block)
-            if @items.has_key?(method_name)
-              @items[method_name]
-            else
-              super
-            end
-          end
-        end
-
-        class Standup < PresentHashKeysAsMethods
-        end
       end
     end
   end

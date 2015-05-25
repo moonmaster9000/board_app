@@ -1,11 +1,12 @@
-require "board/entities/entity"
 require "board/entities/validations"
+require "board/entities/standup_item"
 
 module Board
   module Entities
-    class NewFace < Entity
-      set_attributes(
-        :id,
+    class NewFace
+      include StandupItem
+
+      add_attributes(
         :name,
         :date,
         :team_id,

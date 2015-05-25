@@ -6,7 +6,7 @@ class FakeEntityRepo
   end
 
   def save(entity)
-    entity.id = SecureRandom.uuid
+    entity.id = SecureRandom.uuid unless entity.id
     @entities[entity.id] = entity
   end
 

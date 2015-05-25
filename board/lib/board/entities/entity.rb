@@ -1,38 +1,51 @@
 module Board
   module Entities
-    class Entity
-      class << self
-        def set_attributes(*attrs)
-          @attributes = attrs
+    module Entity
+      module AttributeManagementClassMethods
+        def add_attributes(*attrs)
+          attributes.unshift *attrs
           attr_accessor *attrs
         end
 
-        attr_reader :attributes
-      end
-
-      def initialize(attributes={})
-        attribute_names.each do |attribute_name|
-          instance_variable_set(:"@#{attribute_name}", attributes[attribute_name])
+        def attributes
+          @attributes ||= []
         end
       end
 
-      def ==(other_entity)
-        other_entity.id == id
-      end
-
-      def attributes
-        attrs = {}
-
-        attribute_names.each do |attribute|
-          attrs[attribute] = send attribute
+      module AttributeManagementInstanceMethods
+        def initialize(attributes={})
+          attribute_names.each do |attribute_name|
+            instance_variable_set(:"@#{attribute_name}", attributes[attribute_name])
+          end
         end
 
-        attrs
+        def attributes
+          attrs = {}
+
+          attribute_names.each do |attribute|
+            attrs[attribute] = send attribute
+          end
+
+          attrs
+        end
+
+        private
+        def attribute_names
+          self.class.attributes
+        end
       end
 
-      private
-      def attribute_names
-        self.class.attributes
+      module EntityEquality
+        def ==(other_entity)
+          other_entity.id == id
+        end
+      end
+
+      def self.included(klass)
+        klass.extend AttributeManagementClassMethods
+        klass.send :include, AttributeManagementInstanceMethods
+        klass.send :include, EntityEquality
+        klass.add_attributes(:id)
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518004610) do
+ActiveRecord::Schema.define(version: 20150524231229) do
 
   create_table "persistence_events", force: true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150518004610) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived",    default: false, null: false
   end
 
   create_table "persistence_helps", force: true do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150518004610) do
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived",    default: false, null: false
   end
 
   create_table "persistence_interestings", force: true do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150518004610) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived",    default: false, null: false
   end
 
   create_table "persistence_new_faces", force: true do |t|
@@ -45,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150518004610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "team_id"
+    t.boolean  "archived",   default: false, null: false
   end
 
   create_table "persistence_teams", force: true do |t|

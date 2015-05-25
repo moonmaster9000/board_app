@@ -142,3 +142,38 @@ end
 Then(/^I should see those events$/) do
   expect(gui.spy_presented_standup.events).to include(gui.spy_created_event)
 end
+
+
+Given(/^I have posted many things to my team's standup today$/) do
+  Board.create_team(
+    observer: gui,
+    attributes: valid_team_attributes,
+    team_repo: team_repo
+  ).execute
+
+  Board.create_new_face(
+    team_id: gui.spy_created_team.id,
+    attributes: valid_new_face_attributes.merge(date: today),
+    observer: gui,
+    new_face_repo: repo_factory.new_face_repo,
+  ).execute
+end
+
+When(/^I archive my team's standup today$/) do
+  Board.archive_standup(
+    team_id: gui.spy_created_team.id,
+    observer: gui,
+    repo_factory: repo_factory,
+    date: today,
+  ).execute
+end
+
+Then(/^those items should no longer be on the whiteboard$/) do
+  Board.present_whiteboard(
+    team_id: gui.spy_created_team.id,
+    observer: gui,
+    repo_factory: repo_factory,
+  ).execute
+
+  expect(gui.spy_presented_whiteboard.new_faces).to be_empty
+end

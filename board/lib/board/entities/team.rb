@@ -4,11 +4,10 @@ require "board/entities/validations"
 
 module Board
   module Entities
-    class Team < Entity
-      set_attributes(
-        :name,
-        :id,
-      )
+    class Team
+      include Entity
+
+      add_attributes :name
 
       include Validations
       validate_field :name, :required
