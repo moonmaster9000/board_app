@@ -1,6 +1,16 @@
 module Board
   module UseCases
     class ArchiveStandupUseCase
+      class << self
+        def archivers
+          @archivers ||= []
+        end
+
+        def add_archiver(lambda)
+          archivers << lambda
+        end
+      end
+
       def initialize(team_id:, observer:, date:, repo_factory:)
         @repo_factory = repo_factory
         @observer = observer
@@ -9,20 +19,14 @@ module Board
       end
 
       def execute
-        new_face_repo = @repo_factory.new_face_repo
-
-        new_face_repo.unarchived_by_team_id_on_or_before_date(@team_id, @date).each do |new_face|
-          new_face.archive!
-          new_face_repo.save(new_face)
-        end
-        
-        help_repo = @repo_factory.help_repo
-
-        help_repo.unarchived_by_team_id_on_or_before_date(@team_id, @date).each do |help|
-          help.archive!
-          help_repo.save(help)
+        self.class.archivers.each do |archiver|
+          archiver.call(repo_factory: @repo_factory, team_id: @team_id, date: @date)
         end
       end
     end
   end
+end
+
+Dir[File.join(__dir__, "standup_item_archivers", "**", "*.rb")].each do |archiver|
+  require archiver
 end
