@@ -14,6 +14,7 @@ class TeamsController < ApplicationController
       observer: self,
       team_id: params[:id],
       repo_factory: repo_factory,
+      date: Date.today,
     ).execute
   end
 
