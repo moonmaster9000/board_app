@@ -17,29 +17,29 @@ ActiveRecord::Schema.define(version: 20150524231229) do
     t.string   "title"
     t.string   "description"
     t.date     "date"
-    t.integer  "team_id"
+    t.integer  "whiteboard_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "archived",    default: false, null: false
+    t.boolean  "archived",      default: false, null: false
   end
 
   create_table "persistence_helps", force: true do |t|
-    t.string   "team_id"
+    t.integer  "whiteboard_id"
     t.text     "description"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "archived",    default: false, null: false
+    t.boolean  "archived",      default: false, null: false
   end
 
   create_table "persistence_interestings", force: true do |t|
     t.string   "description"
     t.string   "title"
     t.date     "date"
-    t.integer  "team_id"
+    t.integer  "whiteboard_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "archived",    default: false, null: false
+    t.boolean  "archived",      default: false, null: false
   end
 
   create_table "persistence_new_faces", force: true do |t|
@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 20150524231229) do
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "team_id"
-    t.boolean  "archived",   default: false, null: false
+    t.integer  "whiteboard_id"
+    t.boolean  "archived",      default: false, null: false
   end
 
-  create_table "persistence_teams", force: true do |t|
+  create_table "persistence_whiteboards", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-  def team_repo
-    repo_factory.team_repo
+  def whiteboard_repo
+    repo_factory.whiteboard_repo
   end
 
   def new_face_repo

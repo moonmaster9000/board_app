@@ -1,19 +1,19 @@
 class HelpsController < ApplicationController
   def new
-    @team_id = params[:team_id]
+    @whiteboard_id = params[:whiteboard_id]
   end
 
   def create
    Board.create_help(
             observer: self,
-            team_id: params[:team_id],
+            whiteboard_id: params[:whiteboard_id],
             help_repo: help_repo,
             attributes: help_params
    ).execute
   end
 
   def help_created(help)
-    redirect_to team_path(params[:team_id])
+    redirect_to whiteboard_path(params[:whiteboard_id])
   end
 
   private
