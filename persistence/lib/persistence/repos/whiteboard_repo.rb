@@ -1,16 +1,16 @@
 require "board/entities/whiteboard"
-require "persistence/private/team"
+require "persistence/private/whiteboard"
 require "persistence/repos/entity_repo"
 
 module Persistence
   module Repos
-    class TeamRepo < EntityRepo
+    class WhiteboardRepo < EntityRepo
       def entity_class
-        Board::Entities::Team
+        Board::Entities::Whiteboard
       end
 
       def table_class
-        Private::Team
+        Private::Whiteboard
       end
     end
   end

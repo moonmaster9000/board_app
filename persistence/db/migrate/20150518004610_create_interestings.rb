@@ -4,7 +4,7 @@ class CreateInterestings < ActiveRecord::Migration
       t.string :description
       t.string :title
       t.date :date
-      t.integer :team_id
+      t.integer :whiteboard_id
 
       t.timestamps
     end

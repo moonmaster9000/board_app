@@ -1,12 +1,12 @@
 require "persistence/repos/entity_repo"
 require "persistence/private/event"
 require "board/entities/event"
-require "persistence/repos/lookup_by_team_and_date"
+require "persistence/repos/lookup_by_whiteboard_and_date"
 
 module Persistence
   module Repos
     class EventRepo < EntityRepo
-      include LookupByTeamAndDate
+      include LookupByWhiteboardAndDate
 
       def table_class
         Persistence::Private::Event

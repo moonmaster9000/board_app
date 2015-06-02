@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string  :title
       t.string  :description
       t.date    :date
-      t.integer :team_id
+      t.integer :whiteboard_id
 
       t.timestamps
     end

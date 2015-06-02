@@ -2,7 +2,7 @@ require "active_record"
 
 module Persistence
   module Private
-    class Team < ActiveRecord::Base
+    class Whiteboard < ActiveRecord::Base
     end
   end
 end
