@@ -2,7 +2,7 @@
 
 h1= t("new_faces.title")
 
-= @standup.new_faces.map(&:name)
+= @whiteboard.new_faces.map(&:name)
 
 br
 
@@ -10,7 +10,7 @@ br
 
 br
 
-= @standup.helps.map(&:description)
+= @whiteboard.helps.map(&:description)
 
 br
 

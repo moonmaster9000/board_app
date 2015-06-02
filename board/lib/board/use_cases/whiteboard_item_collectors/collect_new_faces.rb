@@ -3,4 +3,4 @@ collect_new_faces_for_whiteboard = -> (repo_factory:, team_id:, whiteboard_items
   whiteboard_items.add_items(:new_faces, unarchived_new_faces)
 end
 
-Board::UseCases::PresentWhiteboardUseCase.add_collector(collect_new_faces_for_whiteboard)
+Board::UseCases::PresentWhiteboardItemsUseCase.add_collector(collect_new_faces_for_whiteboard)

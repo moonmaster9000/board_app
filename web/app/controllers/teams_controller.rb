@@ -10,11 +10,10 @@ class TeamsController < ApplicationController
       team_repo: team_repo,
     ).execute
 
-    Board.present_standup(
+    Board.present_whiteboard_items(
       observer: self,
       team_id: params[:id],
       repo_factory: repo_factory,
-      date: Date.today,
     ).execute
   end
 
@@ -34,7 +33,7 @@ class TeamsController < ApplicationController
     @team = team
   end
 
-  def standup_presented(standup)
-    @standup = standup
+  def whiteboard_presented(whiteboard)
+    @whiteboard = whiteboard
   end
 end

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150524231229) do
   end
 
   create_table "persistence_helps", force: true do |t|
-    t.integer  "team_id"
+    t.string   "team_id"
     t.text     "description"
     t.date     "date"
     t.datetime "created_at"

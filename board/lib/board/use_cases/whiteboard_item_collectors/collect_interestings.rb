@@ -3,4 +3,4 @@ collect_interestings_for_whiteboard = -> (repo_factory:, team_id:, whiteboard_it
   whiteboard_items.add_items(:interestings, unarchived_interestings)
 end
 
-Board::UseCases::PresentWhiteboardUseCase.add_collector(collect_interestings_for_whiteboard)
+Board::UseCases::PresentWhiteboardItemsUseCase.add_collector(collect_interestings_for_whiteboard)

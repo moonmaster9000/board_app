@@ -2,7 +2,7 @@ require "board/values/whiteboard"
 
 module Board
   module UseCases
-    class PresentWhiteboardUseCase
+    class PresentWhiteboardItemsUseCase
       class << self
         def collectors
           @collector ||= []
@@ -29,7 +29,7 @@ module Board
           collector.call(repo_factory: @repo_factory, team_id: @team_id, whiteboard_items: self)
         end
 
-        @observer.whiteboard_presented(Board::Values::Whiteboard.new(@items))
+        @observer.whiteboard_items_presented(Board::Values::Whiteboard.new(@items))
       end
     end
   end

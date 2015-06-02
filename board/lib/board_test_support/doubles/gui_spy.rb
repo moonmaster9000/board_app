@@ -44,8 +44,8 @@ class GuiSpy
   end
   attr_reader :spy_presented_standup
 
-  def whiteboard_presented(whiteboard)
-    @spy_presented_whiteboard = whiteboard
+  def whiteboard_items_presented(items)
+    @spy_presented_whiteboard_items = items
   end
-  attr_reader :spy_presented_whiteboard
+  attr_reader :spy_presented_whiteboard_items
 end

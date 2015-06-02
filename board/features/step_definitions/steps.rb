@@ -169,11 +169,11 @@ When(/^I archive my team's standup today$/) do
 end
 
 Then(/^those items should no longer be on the whiteboard$/) do
-  Board.present_whiteboard(
+  Board.present_whiteboard_items(
     team_id: gui.spy_created_team.id,
     observer: gui,
     repo_factory: repo_factory,
   ).execute
 
-  expect(gui.spy_presented_whiteboard.new_faces).to be_empty
+  expect(gui.spy_presented_whiteboard_items.new_faces).to be_empty
 end

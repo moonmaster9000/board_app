@@ -119,13 +119,13 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
   end
 
   def present_whiteboard(team:)
-    Board.present_whiteboard(
+    Board.present_whiteboard_items(
       team_id: team.id,
       repo_factory: repo_factory,
       observer: observer,
     ).execute
 
-    observer.spy_presented_whiteboard
+    observer.spy_presented_whiteboard_items
   end
 
   def archive_standup(team_id, date)
