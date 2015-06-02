@@ -11,14 +11,14 @@ module Board
         :description,
         :title,
         :date,
-        :team_id,
+        :whiteboard_id,
       )
 
       include Validations
 
       validate_field :date, :required
       validate_field :title, :required
-      validate_field :team_id, :required
+      validate_field :whiteboard_id, :required
     end
   end
 end

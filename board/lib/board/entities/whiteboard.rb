@@ -3,7 +3,7 @@ require "board/entities/validations"
 
 module Board
   module Entities
-    class Team
+    class Whiteboard
       include Entity
 
       add_attributes :name

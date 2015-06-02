@@ -1,7 +1,7 @@
 require "board_test_support/doubles/fake_new_face_repo"
 require "board_test_support/doubles/fake_help_repo"
 require "board_test_support/doubles/fake_interesting_repo"
-require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_whiteboard_repo"
 require "board_test_support/doubles/fake_event_repo"
 
 class FakeRepoFactory
@@ -13,8 +13,8 @@ class FakeRepoFactory
     @help_repo ||= FakeHelpRepo.new
   end
 
-  def team_repo
-    @team_repo ||= FakeTeamRepo.new
+  def whiteboard_repo
+    @whiteboard_repo ||= FakeWhiteboardRepo.new
   end
 
   def event_repo

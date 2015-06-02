@@ -1,6 +1,6 @@
 Feature: Interestings
 
-  Scenario: Interesting created for a team
-    Given there are interestings for my team
-    When I view my team's standup
+  Scenario: Interesting created for a whiteboard
+    Given there are interestings for my whiteboard
+    When I view my whiteboard's standup
     Then I should see those interestings

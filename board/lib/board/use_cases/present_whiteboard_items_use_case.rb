@@ -13,10 +13,10 @@ module Board
         end
       end
 
-      def initialize(team_id:, observer:, repo_factory:)
+      def initialize(whiteboard_id:, observer:, repo_factory:)
         @repo_factory = repo_factory
         @observer = observer
-        @team_id = team_id
+        @whiteboard_id = whiteboard_id
         @items = {}
       end
       
@@ -26,7 +26,7 @@ module Board
 
       def execute
         self.class.collectors.each do |collector|
-          collector.call(repo_factory: @repo_factory, team_id: @team_id, whiteboard_items: self)
+          collector.call(repo_factory: @repo_factory, whiteboard_id: @whiteboard_id, whiteboard_items: self)
         end
 
         @observer.whiteboard_items_presented(Board::Values::Whiteboard.new(@items))

@@ -1,11 +1,11 @@
-require "board/entities/team"
+require "board/entities/whiteboard"
 
 module Board
   module UseCases
-    class CreateTeamUseCase
-      def initialize(observer:, attributes:, team_repo:)
+    class CreateWhiteboardUseCase
+      def initialize(observer:, attributes:, whiteboard_repo:)
         @observer = observer
-        @team_repo = team_repo
+        @whiteboard_repo = whiteboard_repo
         @attributes = attributes
       end
 
@@ -19,23 +19,23 @@ module Board
       end
 
       def notify_observer_of_success
-        @observer.team_created(team)
+        @observer.whiteboard_created(whiteboard)
       end
 
       def persist
-        @team_repo.save(team)
+        @whiteboard_repo.save(whiteboard)
       end
 
-      def team
-        @team ||= Entities::Team.new(@attributes)
+      def whiteboard
+        @whiteboard ||= Entities::Whiteboard.new(@attributes)
       end
 
       def notify_observer_of_failures
-        @observer.validation_failed(team.validation_errors)
+        @observer.validation_failed(whiteboard.validation_errors)
       end
 
       def valid?
-        team.valid?
+        whiteboard.valid?
       end
     end
   end

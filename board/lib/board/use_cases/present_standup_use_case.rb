@@ -13,10 +13,10 @@ module Board
         end
       end
 
-      def initialize(team_id:, observer:, date:, repo_factory:)
+      def initialize(whiteboard_id:, observer:, date:, repo_factory:)
         @repo_factory = repo_factory
         @observer = observer
-        @team_id = team_id
+        @whiteboard_id = whiteboard_id
         @date = date
         @items = {}
       end
@@ -41,7 +41,7 @@ module Board
           item_collector.call(
             repo_factory: @repo_factory,
             standup_use_case: self,
-            team_id: @team_id,
+            whiteboard_id: @whiteboard_id,
             date: @date,
           )
         end

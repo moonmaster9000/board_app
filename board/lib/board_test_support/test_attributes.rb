@@ -3,7 +3,7 @@ require "date"
 module TestAttributes
   extend self
 
-  def valid_team_attributes
+  def valid_whiteboard_attributes
     { name: "Valid Name" }
   end
 

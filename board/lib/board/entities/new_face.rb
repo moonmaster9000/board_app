@@ -9,7 +9,7 @@ module Board
       add_attributes(
         :name,
         :date,
-        :team_id,
+        :whiteboard_id,
       )
 
       include Validations

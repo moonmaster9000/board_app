@@ -9,14 +9,14 @@ module Board
       add_attributes(
         :description,
         :date,
-        :team_id,
+        :whiteboard_id,
       )
 
       include Validations
 
       validate_field :date, :required
       validate_field :description, :required
-      validate_field :team_id, :required
+      validate_field :whiteboard_id, :required
     end
   end
 end

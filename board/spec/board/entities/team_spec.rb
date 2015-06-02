@@ -1,12 +1,12 @@
-require "board/entities/team"
+require "board/entities/whiteboard"
 
-describe "team" do
-  specify "it equals another team entity with the same id" do
-    team1 = Board::Entities::Team.new id: "1"
-    another_team1 = Board::Entities::Team.new id: "1"
-    team2 = Board::Entities::Team.new id: "2"
+describe "whiteboard" do
+  specify "it equals another whiteboard entity with the same id" do
+    whiteboard1 = Board::Entities::Whiteboard.new id: "1"
+    another_whiteboard1 = Board::Entities::Whiteboard.new id: "1"
+    whiteboard2 = Board::Entities::Whiteboard.new id: "2"
 
-    expect(team1).to eq(another_team1)
-    expect(team1).not_to eq(team2)
+    expect(whiteboard1).to eq(another_whiteboard1)
+    expect(whiteboard1).not_to eq(whiteboard2)
   end
 end
