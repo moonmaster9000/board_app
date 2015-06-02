@@ -1,12 +1,12 @@
-require "board/use_cases/create_entity_for_team_use_case"
+require "board/use_cases/create_entity_for_whiteboard_use_case"
 require "board/entities/event"
 
 module Board
   module UseCases
-    class CreateEventUseCase < CreateEntityForTeamUseCase
-      def initialize(team_id:, event_repo:, attributes:, observer:)
+    class CreateEventUseCase < CreateEntityForWhiteboardUseCase
+      def initialize(whiteboard_id:, event_repo:, attributes:, observer:)
         super(
-          team_id: team_id,
+          whiteboard_id: whiteboard_id,
           repo: event_repo,
           attributes: attributes,
           observer: observer,

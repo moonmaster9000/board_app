@@ -1,5 +1,5 @@
 require "persistence/repos/new_face_repo"
-require "persistence/repos/team_repo"
+require "persistence/repos/whiteboard_repo"
 require "persistence/repos/help_repo"
 require "persistence/repos/event_repo"
 require "persistence/repos/interesting_repo"
@@ -11,8 +11,8 @@ module Persistence
         NewFaceRepo.new
       end
 
-      def team_repo
-        TeamRepo.new
+      def whiteboard_repo
+        WhiteboardRepo.new
       end
 
       def help_repo

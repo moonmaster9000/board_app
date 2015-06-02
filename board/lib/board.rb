@@ -1,13 +1,13 @@
 require "board/use_cases/present_standup_use_case"
 require "board/use_cases/create_new_face_use_case"
-require "board/use_cases/create_team_use_case"
-require "board/use_cases/present_team_use_case"
+require "board/use_cases/create_whiteboard_use_case"
+require "board/use_cases/present_whiteboard_use_case"
 require "board/use_cases/create_help_use_case"
-require "board/use_cases/present_teams_use_case"
+require "board/use_cases/present_whiteboards_use_case"
 require "board/use_cases/create_interesting_use_case"
 require "board/use_cases/create_event_use_case"
 require "board/use_cases/archive_standup_use_case"
-require "board/use_cases/present_whiteboard_use_case"
+require "board/use_cases/present_whiteboard_items_use_case"
 
 module Board
   extend self
@@ -18,8 +18,8 @@ module Board
     ArchiveStandupUseCase.new(*args)
   end
 
-  def create_team(*args)
-    CreateTeamUseCase.new(*args)
+  def create_whiteboard(*args)
+    CreateWhiteboardUseCase.new(*args)
   end
 
   def create_interesting(*args)
@@ -30,8 +30,8 @@ module Board
     CreateEventUseCase.new(*args)
   end
 
-  def present_team(*args)
-    PresentTeamUseCase.new(*args)
+  def present_whiteboard(*args)
+    PresentWhiteboardUseCase.new(*args)
   end
 
   def create_new_face(*args)
@@ -46,11 +46,11 @@ module Board
     CreateHelpUseCase.new(*args)
   end
 
-  def present_teams(*args)
-    PresentTeamsUseCase.new(*args)
+  def present_whiteboards(*args)
+    PresentWhiteboardsUseCase.new(*args)
   end
 
-  def present_whiteboard(*args)
-    PresentWhiteboardUseCase.new(*args)
+  def present_whiteboard_items(*args)
+    PresentWhiteboardItemsUseCase.new(*args)
   end
 end

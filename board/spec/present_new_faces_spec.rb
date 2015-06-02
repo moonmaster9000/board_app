@@ -4,21 +4,21 @@ require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_repo_factory"
 
 describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
-  context "Given there are past, now, and future new faces for my team and another team" do
+  context "Given there are past, now, and future new faces for my whiteboard and another whiteboard" do
     before do
-      @my_team = create_team
-      @another_team = create_team
+      @my_whiteboard = create_whiteboard
+      @another_whiteboard = create_whiteboard
       @now = Date.today
       @future = @now.next_day
-      @past_new_face = create_new_face(team: @my_team, date: @now.prev_day)
-      @now_new_face = create_new_face(team: @my_team, date: @now)
-      @future_new_face = create_new_face(team: @my_team, date: @future)
-      @other_teams_new_face = create_new_face(team: @another_team, date: @now)
+      @past_new_face = create_new_face(whiteboard: @my_whiteboard, date: @now.prev_day)
+      @now_new_face = create_new_face(whiteboard: @my_whiteboard, date: @now)
+      @future_new_face = create_new_face(whiteboard: @my_whiteboard, date: @future)
+      @other_whiteboards_new_face = create_new_face(whiteboard: @another_whiteboard, date: @now)
     end
 
     context "When I present the 'now' standup" do
       before do
-        @now_standup = present_standup(team: @my_team, date: @now)
+        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
       end
 
       specify "Then I should see the past and 'now' unarchived new faces" do
@@ -31,47 +31,47 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
         expect(new_faces).not_to include(@future_new_face)
       end
 
-      specify "And I should not see other team's new faces" do
+      specify "And I should not see other whiteboard's new faces" do
         new_faces = @now_standup.new_faces
 
-        expect(new_faces).not_to include(@other_teams_new_face)
+        expect(new_faces).not_to include(@other_whiteboards_new_face)
       end
     end
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(team: @my_team)
+        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
       end
 
-      specify "Then I should see my team's past, 'now', and future new faces" do
+      specify "Then I should see my whiteboard's past, 'now', and future new faces" do
         expect(@now_whiteboard.new_faces).to include(@now_new_face, @past_new_face, @future_new_face)
       end
       
-      specify "But I should not see new faces for other teams" do
-        expect(@now_whiteboard.new_faces).not_to include(@other_teams_new_face)
+      specify "But I should not see new faces for other whiteboards" do
+        expect(@now_whiteboard.new_faces).not_to include(@other_whiteboards_new_face)
       end
     end
 
     context "When I archive the 'now' standup" do
       before do
-        archive_standup(@my_team.id, @now)
+        archive_standup(@my_whiteboard.id, @now)
       end
 
       specify "Then I should not see the past or 'now' new faces on the whiteboard" do
-        @now_whiteboard = present_whiteboard(team: @my_team)
+        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
 
         expect(@now_whiteboard.new_faces).not_to include(@past_new_face, @now_new_face)
         expect(@now_whiteboard.new_faces).to include(@future_new_face)
       end
 
       specify "Then I should not see any new faces on the current standup" do
-        present_standup = present_standup(team: @my_team, date: @now)
+        present_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
 
         expect(present_standup.new_faces).to be_empty
       end
 
       specify "But I should still new future new faces on the future standup" do
-        future_standup = present_standup(team: @my_team, date: @future)
+        future_standup = present_standup(whiteboard: @my_whiteboard, date: @future)
 
         expect(future_standup.new_faces).to include(@future_new_face)
       end
@@ -80,36 +80,36 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
   
   let(:new_face_repo) { repo_factory.new_face_repo }
   let(:help_repo) { repo_factory.help_repo }
-  let(:team_repo) { repo_factory.team_repo }
+  let(:whiteboard_repo) { repo_factory.whiteboard_repo }
   let(:repo_factory) { FakeRepoFactory.new }
   let(:observer) { GuiSpy.new }
 
   include TestAttributes
 
-  def create_new_face(team:, date:)
+  def create_new_face(whiteboard:, date:)
     Board.create_new_face(
       observer: observer,
       attributes: valid_new_face_attributes.merge(date: date),
       new_face_repo: new_face_repo,
-      team_id: team.id,
+      whiteboard_id: whiteboard.id,
     ).execute
 
     observer.spy_created_new_face
   end
 
-  def create_team
-    Board.create_team(
+  def create_whiteboard
+    Board.create_whiteboard(
       observer: observer,
-      attributes: valid_team_attributes,
-      team_repo: team_repo,
+      attributes: valid_whiteboard_attributes,
+      whiteboard_repo: whiteboard_repo,
     ).execute
 
-    observer.spy_created_team
+    observer.spy_created_whiteboard
   end
 
-  def present_standup(team:, date:)
+  def present_standup(whiteboard:, date:)
     Board.present_standup(
-      team_id: team.id,
+      whiteboard_id: whiteboard.id,
       repo_factory: repo_factory,
       observer: observer,
       date: date,
@@ -118,19 +118,19 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
     observer.spy_presented_standup
   end
 
-  def present_whiteboard(team:)
-    Board.present_whiteboard(
-      team_id: team.id,
+  def present_whiteboard(whiteboard:)
+    Board.present_whiteboard_items(
+      whiteboard_id: whiteboard.id,
       repo_factory: repo_factory,
       observer: observer,
     ).execute
 
-    observer.spy_presented_whiteboard
+    observer.spy_presented_whiteboard_items
   end
 
-  def archive_standup(team_id, date)
+  def archive_standup(whiteboard_id, date)
     Board.archive_standup(
-      team_id: team_id,
+      whiteboard_id: whiteboard_id,
       date: date,
       repo_factory: repo_factory,
       observer: observer,

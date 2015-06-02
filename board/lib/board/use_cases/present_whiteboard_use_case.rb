@@ -1,41 +1,16 @@
-require "board/values/whiteboard"
-
 module Board
   module UseCases
     class PresentWhiteboardUseCase
-      class << self
-        def collectors
-          @collector ||= []
-        end
-
-        def add_collector(collector)
-          collectors << collector
-        end
-      end
-
-      def initialize(team_id:, observer:, repo_factory:)
-        @repo_factory = repo_factory
+      def initialize(observer:, whiteboard_id:, whiteboard_repo:)
+        @whiteboard_repo = whiteboard_repo
         @observer = observer
-        @team_id = team_id
-        @items = {}
-      end
-      
-      def add_items(item_name, items)
-        @items[item_name] = items
+        @whiteboard_id = whiteboard_id
       end
 
       def execute
-        self.class.collectors.each do |collector|
-          collector.call(repo_factory: @repo_factory, team_id: @team_id, whiteboard_items: self)
-        end
-
-        @observer.whiteboard_presented(Board::Values::Whiteboard.new(@items))
+        whiteboard = @whiteboard_repo.find(@whiteboard_id)
+        @observer.whiteboard_presented(whiteboard)
       end
     end
   end
-end
-
-
-Dir[File.join(__dir__, "whiteboard_item_collectors", "**", "*.rb")].each do |collector|
-  require collector
 end

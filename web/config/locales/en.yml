@@ -21,13 +21,13 @@
 
 en:
   hello: "Hello world"
-  teams:
-    new: "New Team"
+  whiteboards:
+    new: "New Whiteboard"
   new_faces:
     title: "New Faces"
     create: "Create New Face"
   helps:
     create: "Create New Help"
-  team:
+  whiteboard:
     attributes:
       name: "Name"

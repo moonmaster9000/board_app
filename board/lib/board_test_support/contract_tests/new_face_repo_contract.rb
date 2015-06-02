@@ -1,6 +1,6 @@
 require "board/entities/new_face"
 require "board_test_support/contract_tests/entity_repo_contract"
-require "board_test_support/contract_tests/entity_that_belongs_to_team_repo_contract"
+require "board_test_support/contract_tests/entity_that_belongs_to_whiteboard_repo_contract"
 
 def assert_works_like_a_new_face_repo(repo_factory:)
   new_face_repo_lambda = -> { repo_factory.new_face_repo }
@@ -11,7 +11,7 @@ def assert_works_like_a_new_face_repo(repo_factory:)
     entity_class: new_face_class,
   )
 
-  assert_works_like_an_entity_repo_that_belongs_to_team(
+  assert_works_like_an_entity_repo_that_belongs_to_whiteboard(
     generate_repo_lambda: new_face_repo_lambda,
     entity_class: new_face_class,
   )

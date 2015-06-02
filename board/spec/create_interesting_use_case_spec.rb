@@ -3,7 +3,7 @@ require "board"
 require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_interesting_repo"
 require "board_test_support/test_attributes"
-require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_whiteboard_repo"
 
 
 describe "USE CASE: creating a interesting" do
@@ -12,9 +12,9 @@ describe "USE CASE: creating a interesting" do
 
   let(:attributes) { valid_interesting_attributes }
 
-  context "Given a team exists" do
+  context "Given a whiteboard exists" do
     before do
-      @team_id = create_team.id
+      @whiteboard_id = create_whiteboard.id
     end
 
     context "when the attributes are invalid" do
@@ -22,7 +22,7 @@ describe "USE CASE: creating a interesting" do
         let(:attributes) { valid_interesting_attributes.merge(date: nil) }
 
         it "informs the observer that a date is required" do
-          create_interesting(@team_id)
+          create_interesting(@whiteboard_id)
           assert_gui_got_one_error(:date, :required)
         end
       end
@@ -31,17 +31,17 @@ describe "USE CASE: creating a interesting" do
         let(:attributes) { valid_interesting_attributes.merge(title: nil) }
 
         it "informs the observer that a description is required" do
-          create_interesting(@team_id)
+          create_interesting(@whiteboard_id)
           assert_gui_got_one_error(:title, :required)
         end
       end
 
-      context "because I don't give it a team_id" do
-        let(:team_id) { nil }
+      context "because I don't give it a whiteboard_id" do
+        let(:whiteboard_id) { nil }
 
-        it "informs the observer that a team_id is required" do
-          create_interesting(team_id)
-          assert_gui_got_one_error(:team_id, :required)
+        it "informs the observer that a whiteboard_id is required" do
+          create_interesting(whiteboard_id)
+          assert_gui_got_one_error(:whiteboard_id, :required)
         end
       end
     end
@@ -50,12 +50,12 @@ describe "USE CASE: creating a interesting" do
       let(:attributes) { valid_interesting_attributes }
 
       it "sends a interesting back to the gui with the requested attributes" do
-        create_interesting(@team_id)
+        create_interesting(@whiteboard_id)
         expect(gui.spy_created_interesting.attributes).to include(attributes)
       end
 
       it "doesn't send any validation errors" do
-        create_interesting(@team_id)
+        create_interesting(@whiteboard_id)
         expect(gui.spy_validation_errors).not_to be
       end
     end
@@ -63,25 +63,25 @@ describe "USE CASE: creating a interesting" do
 
   let(:gui) { GuiSpy.new }
   let(:fake_interesting_repo) { FakeInterestingRepo.new }
-  let(:fake_team_repo) { FakeTeamRepo.new }
-  let(:team_id) { @team_id }
+  let(:fake_whiteboard_repo) { FakeWhiteboardRepo.new }
+  let(:whiteboard_id) { @whiteboard_id }
 
-  def create_interesting(team_id)
+  def create_interesting(whiteboard_id)
     Board.create_interesting(
       observer: gui,
       attributes: attributes,
       interesting_repo: fake_interesting_repo,
-      team_id: team_id,
+      whiteboard_id: whiteboard_id,
     ).execute
   end
 
-  def create_team
-    Board.create_team(
+  def create_whiteboard
+    Board.create_whiteboard(
       observer: gui,
-      attributes: valid_team_attributes,
-      team_repo: fake_team_repo,
+      attributes: valid_whiteboard_attributes,
+      whiteboard_repo: fake_whiteboard_repo,
     ).execute
 
-    gui.spy_created_team
+    gui.spy_created_whiteboard
   end
 end

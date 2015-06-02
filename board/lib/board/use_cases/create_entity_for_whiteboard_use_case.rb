@@ -1,11 +1,11 @@
 module Board
   module UseCases
-    class CreateEntityForTeamUseCase
-      def initialize(attributes:, repo:, observer:, team_id:, entity_class:)
+    class CreateEntityForWhiteboardUseCase
+      def initialize(attributes:, repo:, observer:, whiteboard_id:, entity_class:)
         @observer = observer
         @repo = repo
         @attributes = attributes
-        @team_id = team_id
+        @whiteboard_id = whiteboard_id
         @entity_class = entity_class
       end
 
@@ -37,7 +37,7 @@ module Board
       end
 
       def entity
-        @entity ||= @entity_class.new(@attributes.merge(team_id: @team_id))
+        @entity ||= @entity_class.new(@attributes.merge(whiteboard_id: @whiteboard_id))
       end
 
       def creation_succeeded_method_name

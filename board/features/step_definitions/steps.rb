@@ -8,8 +8,8 @@ module BoardTestDsl
     @gui ||= GuiSpy.new
   end
 
-  def team_repo
-    repo_factory.team_repo
+  def whiteboard_repo
+    repo_factory.whiteboard_repo
   end
 
   def help_repo
@@ -36,24 +36,24 @@ end
 World BoardTestDsl
 World TestAttributes
 
-Given(/^there are new faces for my team$/) do
-  Board.create_team(
+Given(/^there are new faces for my whiteboard$/) do
+  Board.create_whiteboard(
     observer: gui,
-    attributes: valid_team_attributes,
-    team_repo: team_repo
+    attributes: valid_whiteboard_attributes,
+    whiteboard_repo: whiteboard_repo
   ).execute
 
   Board.create_new_face(
     observer: gui,
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     new_face_repo: new_face_repo,
     attributes: valid_new_face_attributes.merge(date: today),
   ).execute
 end
 
-When(/^I view my team's standup$/) do
+When(/^I view my whiteboard's standup$/) do
   Board.present_standup(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     repo_factory: repo_factory,
     observer: gui,
     date: today,
@@ -65,15 +65,15 @@ Then(/^I should see those new faces$/) do
 end
 
 
-Given(/^there are helps for my team$/) do
-  Board.create_team(
+Given(/^there are helps for my whiteboard$/) do
+  Board.create_whiteboard(
     observer: gui,
-    attributes: valid_team_attributes,
-    team_repo: team_repo
+    attributes: valid_whiteboard_attributes,
+    whiteboard_repo: whiteboard_repo
   ).execute
 
   Board.create_help(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_help_attributes.merge(date: today),
     observer: gui,
     help_repo: help_repo,
@@ -84,35 +84,35 @@ Then(/^I should see those helps$/) do
   expect(gui.spy_presented_standup.helps).to include(gui.spy_created_help)
 end
 
-Given(/^there is a team$/) do
-  Board.create_team(
+Given(/^there is a whiteboard$/) do
+  Board.create_whiteboard(
       observer: gui,
-      attributes: valid_team_attributes,
-      team_repo: team_repo
+      attributes: valid_whiteboard_attributes,
+      whiteboard_repo: whiteboard_repo
   ).execute
 end
 
-When(/^I view a list of teams$/) do
-  Board.present_teams(
+When(/^I view a list of whiteboards$/) do
+  Board.present_whiteboards(
       observer: gui,
-      team_repo: team_repo
+      whiteboard_repo: whiteboard_repo
   ).execute
 end
 
-Then(/^I should see that team$/) do
-  expect(gui.spy_presented_teams).to include(gui.spy_created_team)
+Then(/^I should see that whiteboard$/) do
+  expect(gui.spy_presented_whiteboards).to include(gui.spy_created_whiteboard)
 end
 
 
-Given(/^there are interestings for my team$/) do
-  Board.create_team(
+Given(/^there are interestings for my whiteboard$/) do
+  Board.create_whiteboard(
     observer: gui,
-    attributes: valid_team_attributes,
-    team_repo: team_repo
+    attributes: valid_whiteboard_attributes,
+    whiteboard_repo: whiteboard_repo
   ).execute
 
   Board.create_interesting(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_interesting_attributes.merge(date: today),
     observer: gui,
     interesting_repo: interesting_repo,
@@ -124,15 +124,15 @@ Then(/^I should see those interestings$/) do
 end
 
 
-Given(/^there are events for my team$/) do
-  Board.create_team(
+Given(/^there are events for my whiteboard$/) do
+  Board.create_whiteboard(
     observer: gui,
-    attributes: valid_team_attributes,
-    team_repo: team_repo
+    attributes: valid_whiteboard_attributes,
+    whiteboard_repo: whiteboard_repo
   ).execute
 
   Board.create_event(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_event_attributes.merge(date: today),
     observer: gui,
     event_repo: repo_factory.event_repo,
@@ -144,24 +144,24 @@ Then(/^I should see those events$/) do
 end
 
 
-Given(/^I have posted many things to my team's standup today$/) do
-  Board.create_team(
+Given(/^I have posted many things to my whiteboard's standup today$/) do
+  Board.create_whiteboard(
     observer: gui,
-    attributes: valid_team_attributes,
-    team_repo: team_repo
+    attributes: valid_whiteboard_attributes,
+    whiteboard_repo: whiteboard_repo
   ).execute
 
   Board.create_new_face(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_new_face_attributes.merge(date: today),
     observer: gui,
     new_face_repo: repo_factory.new_face_repo,
   ).execute
 end
 
-When(/^I archive my team's standup today$/) do
+When(/^I archive my whiteboard's standup today$/) do
   Board.archive_standup(
-    team_id: gui.spy_created_team.id,
+    whiteboard_id: gui.spy_created_whiteboard.id,
     observer: gui,
     repo_factory: repo_factory,
     date: today,
@@ -169,11 +169,11 @@ When(/^I archive my team's standup today$/) do
 end
 
 Then(/^those items should no longer be on the whiteboard$/) do
-  Board.present_whiteboard(
-    team_id: gui.spy_created_team.id,
+  Board.present_whiteboard_items(
+    whiteboard_id: gui.spy_created_whiteboard.id,
     observer: gui,
     repo_factory: repo_factory,
   ).execute
 
-  expect(gui.spy_presented_whiteboard.new_faces).to be_empty
+  expect(gui.spy_presented_whiteboard_items.new_faces).to be_empty
 end

@@ -1,21 +1,21 @@
 require "board"
 require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_whiteboard_repo"
 require "board_test_support/test_attributes"
 require "support/common_assertions"
 
-describe "USE CASE: Create Team" do
+describe "USE CASE: Create Whiteboard" do
   include TestAttributes
   include CommonAssertions
 
-  context "Given an empty team name" do
+  context "Given an empty whiteboard name" do
     let(:attributes) do
-      valid_team_attributes.merge(name: "")
+      valid_whiteboard_attributes.merge(name: "")
     end
 
-    context "When I use the create_team use case with that empty team name" do
+    context "When I use the create_whiteboard use case with that empty whiteboard name" do
       before do
-        create_team
+        create_whiteboard
       end
 
       specify "Then it should tell the observer that name is required" do
@@ -24,41 +24,41 @@ describe "USE CASE: Create Team" do
     end
   end
 
-  context "Given a valid team name" do
-    let(:attributes) { valid_team_attributes }
+  context "Given a valid whiteboard name" do
+    let(:attributes) { valid_whiteboard_attributes }
 
-    context "When I use the create_team use case with that valid team name" do
+    context "When I use the create_whiteboard use case with that valid whiteboard name" do
       before do
-        create_team
+        create_whiteboard
       end
 
-      specify "Then it should create a team with the requested attributes" do
-        expect(gui.spy_created_team.name).to eq(attributes[:name])
+      specify "Then it should create a whiteboard with the requested attributes" do
+        expect(gui.spy_created_whiteboard.name).to eq(attributes[:name])
       end
 
-      specify "Then it should save the team so that we can use it later" do
-        present_team
-        expect(gui.spy_presented_team).to eq(gui.spy_created_team)
+      specify "Then it should save the whiteboard so that we can use it later" do
+        present_whiteboard
+        expect(gui.spy_presented_whiteboard).to eq(gui.spy_created_whiteboard)
       end
     end
   end
 
   let(:gui) { GuiSpy.new }
-  let(:team_repo) { FakeTeamRepo.new }
+  let(:whiteboard_repo) { FakeWhiteboardRepo.new }
 
-  def create_team
-    Board.create_team(
+  def create_whiteboard
+    Board.create_whiteboard(
       attributes: attributes,
       observer: gui,
-      team_repo: team_repo
+      whiteboard_repo: whiteboard_repo
     ).execute
   end
 
-  def present_team
-    Board.present_team(
+  def present_whiteboard
+    Board.present_whiteboard(
       observer: gui,
-      team_id: gui.spy_created_team.id,
-      team_repo: team_repo
+      whiteboard_id: gui.spy_created_whiteboard.id,
+      whiteboard_repo: whiteboard_repo
     ).execute
   end
 end

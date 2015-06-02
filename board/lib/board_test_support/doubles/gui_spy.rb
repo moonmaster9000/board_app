@@ -4,10 +4,10 @@ class GuiSpy
   end
   attr_reader :spy_validation_errors
 
-  def team_created(team)
-    @spy_created_team = team
+  def whiteboard_created(whiteboard)
+    @spy_created_whiteboard = whiteboard
   end
-  attr_reader :spy_created_team
+  attr_reader :spy_created_whiteboard
 
   def help_created(help)
     @spy_created_help = help
@@ -24,15 +24,15 @@ class GuiSpy
   end
   attr_reader :spy_created_event
 
-  def team_presented(team)
-    @spy_presented_team = team
+  def whiteboard_presented(whiteboard)
+    @spy_presented_whiteboard = whiteboard
   end
-  attr_reader :spy_presented_team
+  attr_reader :spy_presented_whiteboard
 
-  def teams_presented(teams)
-    @spy_presented_teams = teams
+  def whiteboards_presented(whiteboards)
+    @spy_presented_whiteboards = whiteboards
   end
-  attr_reader :spy_presented_teams
+  attr_reader :spy_presented_whiteboards
 
   def new_face_created(new_face)
     @spy_created_new_face = new_face
@@ -44,8 +44,8 @@ class GuiSpy
   end
   attr_reader :spy_presented_standup
 
-  def whiteboard_presented(whiteboard)
-    @spy_presented_whiteboard = whiteboard
+  def whiteboard_items_presented(items)
+    @spy_presented_whiteboard_items = items
   end
-  attr_reader :spy_presented_whiteboard
+  attr_reader :spy_presented_whiteboard_items
 end

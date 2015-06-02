@@ -1,44 +1,44 @@
 require "board"
 require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_team_repo"
+require "board_test_support/doubles/fake_whiteboard_repo"
 require "board_test_support/test_attributes"
 
-describe "USE CASE: Present a list of Teams" do
+describe "USE CASE: Present a list of Whiteboards" do
   include TestAttributes
 
-  context "Given a valid team" do
+  context "Given a valid whiteboard" do
     before do
-      create_team
+      create_whiteboard
     end
 
-    context "When I execute the present_team use case with that team's id" do
+    context "When I execute the present_whiteboard use case with that whiteboard's id" do
       before do
-        present_teams
+        present_whiteboards
       end
 
-      specify "Then it sends a presentable team to the gui" do
-        expect(presented_teams).to include(created_team)
+      specify "Then it sends a presentable whiteboard to the gui" do
+        expect(presented_whiteboards).to include(created_whiteboard)
       end
     end
   end
 
   let(:gui) { GuiSpy.new }
-  let(:team_repo) { FakeTeamRepo.new }
-  let(:created_team) { gui.spy_created_team }
-  let(:presented_teams) { gui.spy_presented_teams }
+  let(:whiteboard_repo) { FakeWhiteboardRepo.new }
+  let(:created_whiteboard) { gui.spy_created_whiteboard }
+  let(:presented_whiteboards) { gui.spy_presented_whiteboards }
 
-  def create_team
-    Board.create_team(
-        attributes: valid_team_attributes,
+  def create_whiteboard
+    Board.create_whiteboard(
+        attributes: valid_whiteboard_attributes,
         observer: gui,
-        team_repo: team_repo
+        whiteboard_repo: whiteboard_repo
     ).execute
   end
 
-  def present_teams
-    Board.present_teams(
+  def present_whiteboards
+    Board.present_whiteboards(
         observer: gui,
-        team_repo: team_repo
+        whiteboard_repo: whiteboard_repo
     ).execute
   end
 end
