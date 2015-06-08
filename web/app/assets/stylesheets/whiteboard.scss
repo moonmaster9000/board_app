@@ -1,0 +1,24 @@
+.whiteboard {
+  .header {
+    background-color: #f9f9f9;
+    padding: 5px;
+    background-image: linear-gradient(to bottom, #ffffff,#f2f2f2);
+    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+    border-width: 0 0 1px;
+    border-radius: 0;
+    border: 1px solid #d4d4d4;
+    margin-left: -10px;
+    margin-right: -20px;
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
+
+  h1 {
+    color: #777777;
+    text-shadow: 0 1px 0 white;
+    font-size: 20px;
+    font-weight: 200;
+    text-transform: capitalize;
+    margin-left: 5px;
+  }
+}

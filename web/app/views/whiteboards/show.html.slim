@@ -1,17 +1,18 @@
-= @whiteboard.name
+.whiteboard
+  .header
+    h1 #{@whiteboard.name} Whiteboard
 
-h1= t("new_faces.title")
+  .new_faces
+    h2= t("new_faces.title")
+    = @whiteboard_items.new_faces.map(&:name)
+    = link_to t("new_faces.create"), new_whiteboard_new_face_path(@whiteboard.id)
 
-= @whiteboard_items.new_faces.map(&:name)
 
-br
+  .helps
+    h2= t("helps.title")
 
-= link_to t("new_faces.create"), new_whiteboard_new_face_path(@whiteboard.id)
+    ul
+      - @whiteboard_items.helps.each do |help|
+        li= help.description
 
-br
-
-= @whiteboard_items.helps.map(&:description)
-
-br
-
-= link_to t("helps.create"), new_whiteboard_help_path(@whiteboard.id)
+    = link_to t("helps.create"), new_whiteboard_help_path(@whiteboard.id)

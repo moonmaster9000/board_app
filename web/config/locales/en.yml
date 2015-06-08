@@ -23,11 +23,13 @@ en:
   hello: "Hello world"
   whiteboards:
     new: "New Whiteboard"
+    list_title: "Choose a Whiteboard"
   new_faces:
     title: "New Faces"
     create: "Create New Face"
   helps:
     create: "Create New Help"
+    title: "Helps"
   whiteboard:
     attributes:
       name: "Name"
