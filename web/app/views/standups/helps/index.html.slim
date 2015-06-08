@@ -1,0 +1,9 @@
+h1
+  = t("helps.title")
+hr
+ul
+  - @standup.helps.each do |help|
+    li= help.description
+
+= next_items(whiteboard_standup_interestings_path(params[:whiteboard_id], params[:standup_id]))
+= previous_items(whiteboard_standup_new_faces_path(params[:whiteboard_id], params[:standup_id]))

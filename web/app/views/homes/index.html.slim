@@ -1,1 +1,12 @@
-= link_to t("whiteboards.new"), new_whiteboard_path
+.whiteboards
+  h1= t("whiteboards.list_title")
+  hr
+
+  ul
+  - @whiteboards.each do |whiteboard|
+    li
+      strong
+        = link_to whiteboard.name, whiteboard_path(whiteboard.id)
+
+  br
+  = link_to t("whiteboards.new"), new_whiteboard_path

@@ -1,0 +1,8 @@
+h2
+  = t("#{category}.title")
+
+p
+  = link_to t("#{category}.create"), url_for(controller: category, action: :new, whiteboard_id: @whiteboard.id)
+
+ul
+  = render partial: "whiteboards/shared/#{category}_item_list"

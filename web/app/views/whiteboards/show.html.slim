@@ -1,17 +1,17 @@
-= @whiteboard.name
+.header
+  h1 #{@whiteboard.name} Whiteboard
 
-h1= t("new_faces.title")
+ul.item-categories
+  li
+    = render_item_category(:new_faces)
 
-= @whiteboard_items.new_faces.map(&:name)
+  li
+    = render_item_category(:helps)
 
-br
+  li
+    = render_item_category(:interestings)
 
-= link_to t("new_faces.create"), new_whiteboard_new_face_path(@whiteboard.id)
+  li
+    = render_item_category(:events)
 
-br
-
-= @whiteboard_items.helps.map(&:description)
-
-br
-
-= link_to t("helps.create"), new_whiteboard_help_path(@whiteboard.id)
+= link_to "Present Standup", whiteboard_standup_path(@whiteboard.id, Date.today.to_s)

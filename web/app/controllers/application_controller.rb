@@ -12,8 +12,16 @@ class ApplicationController < ActionController::Base
     repo_factory.new_face_repo
   end
 
+  def event_repo
+    repo_factory.event_repo
+  end
+
   def help_repo
     repo_factory.help_repo
+  end
+
+  def interesting_repo
+    repo_factory.interesting_repo
   end
 
   def repo_factory

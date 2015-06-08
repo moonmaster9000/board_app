@@ -1,18 +1,18 @@
-class HelpsController < ApplicationController
+class EventsController < ApplicationController
   def new
     @whiteboard_id = params[:whiteboard_id]
   end
 
   def create
-    Board.create_help(
+    Board.create_event(
       observer: self,
       whiteboard_id: params[:whiteboard_id],
-      help_repo: help_repo,
-      attributes: params[:help],
+      event_repo: event_repo,
+      attributes: params[:event].symbolize_keys,
     ).execute
   end
 
-  def help_created(help)
+  def event_created(event)
     redirect_to whiteboard_path(params[:whiteboard_id])
   end
 end

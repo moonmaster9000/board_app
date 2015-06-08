@@ -1,0 +1,14 @@
+= form_for :interesting, url: whiteboard_interestings_path(@whiteboard_id) do |form|
+  = form.label(:interesting, :title)
+  = form.text_field :title
+
+  br
+  = form.label(:interesting, :description)
+  = form.text_area :description
+
+  br
+  = form.label(:interesting, :date)
+  = form.date_field :date
+
+  br
+  = form.submit
