@@ -3,16 +3,41 @@
     h1 #{@whiteboard.name} Whiteboard
 
   .new_faces
-    h2= t("new_faces.title")
-    = @whiteboard_items.new_faces.map(&:name)
-    = link_to t("new_faces.create"), new_whiteboard_new_face_path(@whiteboard.id)
+    h2
+      = t("new_faces.title")
+      = link_to new_whiteboard_new_face_path(@whiteboard.id) do
+        | +
+    ul
+      - @whiteboard_items.new_faces.each do |new_face|
+        li= new_face.name
 
 
   .helps
-    h2= t("helps.title")
+    h2
+      = t("helps.title")
+      = link_to new_whiteboard_help_path(@whiteboard.id)
+        | +
 
     ul
       - @whiteboard_items.helps.each do |help|
         li= help.description
 
-    = link_to t("helps.create"), new_whiteboard_help_path(@whiteboard.id)
+
+  .interestings
+    h2
+    = t("new_faces.interestings")
+    = link_to new_whiteboard_interestings_path(@whiteboard.id) do
+    | +
+    ul
+      - @whiteboard_items.interestings.each do |interestings|
+        li= interestings.name
+        
+        
+  .events
+    h2
+      = t("new_faces.events")
+      = link_to new_whiteboard_event_path(@whiteboard.id) do
+      | +
+      ul
+        - @whiteboard_items.events.each do |event|
+          li= event.name
