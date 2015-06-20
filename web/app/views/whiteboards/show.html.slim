@@ -15,7 +15,7 @@
   .helps
     h2
       = t("helps.title")
-      = link_to new_whiteboard_help_path(@whiteboard.id)
+      = link_to new_whiteboard_help_path(@whiteboard.id) do
         | +
 
     ul
@@ -25,19 +25,23 @@
 
   .interestings
     h2
-    = t("new_faces.interestings")
-    = link_to new_whiteboard_interestings_path(@whiteboard.id) do
-    | +
+      = t("new_faces.interestings")
+      = link_to new_whiteboard_interesting_path(@whiteboard.id) do
+        | +
+
     ul
       - @whiteboard_items.interestings.each do |interestings|
-        li= interestings.name
+        li= interestings.title
         
         
   .events
     h2
       = t("new_faces.events")
       = link_to new_whiteboard_event_path(@whiteboard.id) do
-      | +
-      ul
-        - @whiteboard_items.events.each do |event|
-          li= event.name
+        | +
+    ul
+      - @whiteboard_items.events.each do |event|
+        li= event.name
+
+
+= link_to "Present Standup", standup_path(@whiteboard.id, date: Date.today)

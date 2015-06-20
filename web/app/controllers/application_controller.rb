@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     repo_factory.help_repo
   end
 
+  def interesting_repo
+    repo_factory.interesting_repo
+  end
+
   def repo_factory
     Rails.application.config.repo_factory
   end
