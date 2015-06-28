@@ -2,8 +2,14 @@ module Persistence
   module Repos
     class EntityRepo
       def save(entity)
-        entity_record = table_class.new(entity.attributes)
-        entity_record.save
+        if entity.id
+          entity_record = table_class.find(entity.id)
+          entity_record.update_attributes(entity.attributes)
+        else
+          entity_record = table_class.new(entity.attributes)
+          entity_record.save
+        end
+
         entity.id = entity_record.id
       end
 

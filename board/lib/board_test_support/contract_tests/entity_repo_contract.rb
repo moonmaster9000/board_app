@@ -1,6 +1,6 @@
 def assert_works_like_an_entity_repo(generate_repo_lambda:, entity_class:)
   describe "Entity Repo" do
-    context "When I tell the repo to save some entities" do
+    context "When I tell the repo to save some new entities" do
       before do
         @entity_1 = create_new_entity
         @entity_2 = create_new_entity
@@ -16,6 +16,18 @@ def assert_works_like_an_entity_repo(generate_repo_lambda:, entity_class:)
 
       specify "And it should return the entity when you ask for all entities" do
         expect(entity_repo.all).to include(@entity_1)
+      end
+    end
+
+    context "Given an existing saved entity" do
+      before do
+        @entity = create_new_entity
+      end
+
+      specify "Then I should be able to successfully save it again" do
+        expect {
+          entity_repo.save(@entity)
+        }.not_to raise_exception
       end
     end
 
