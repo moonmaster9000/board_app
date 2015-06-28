@@ -14,42 +14,33 @@ describe "USE CASE: Present Helps at Standup" do
       @past_help = create_help(whiteboard: @my_whiteboard, date: @past)
       @now_help = create_help(whiteboard: @my_whiteboard, date: @now)
       @future_help = create_help(whiteboard: @my_whiteboard, date: @future)
-
-      @different_whiteboard = create_whiteboard
-      @help_for_different_whiteboard = create_help(whiteboard: @different_whiteboard, date: @now)
     end
 
-    context "When I present the standup for the 'now'" do
+    context "When I archive the 'now' standup" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        archive_standup(@my_whiteboard.id, @now)
       end
 
-      specify "Then I should see the past and 'now' helps" do
-        expect(@now_standup.helps).to include(@past_help, @now_help)
-      end
-
-      specify "But I should not see future helps" do
-        expect(@now_standup.helps).not_to include(@future_help)
-      end
-      
-      specify "And I should not see other whiteboard helps" do
-        expect(@now_standup.helps).not_to include @help_for_different_whiteboard
-      end
-    end
-
-    context "When I present the whiteboard" do
-      before do
+      specify "Then I should not see the past or 'now' helps on the whiteboard" do
         @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+
+        expect(@now_whiteboard.helps).not_to include(@past_help, @now_help)
+        expect(@now_whiteboard.helps).to include(@future_help)
       end
 
-      specify "Then I should see my whiteboard's past, 'now', and future helps" do
-        expect(@now_whiteboard.helps).to include(@now_help, @past_help, @future_help)
+      specify "Then I should not see any helps on the current standup" do
+        present_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+
+        expect(present_standup.helps).to be_empty
       end
 
-      specify "But I should not see helps for other whiteboards" do
-        expect(@now_whiteboard.helps).not_to include(@help_for_different_whiteboard)
+      specify "But I should still new future helps on the future standup" do
+        future_standup = present_standup(whiteboard: @my_whiteboard, date: @future)
+
+        expect(future_standup.helps).to include(@future_help)
       end
     end
+    
   end
 
   let(:help_repo) { repo_factory.help_repo }

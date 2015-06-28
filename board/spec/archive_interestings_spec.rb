@@ -14,42 +14,33 @@ describe "USE CASE: Present Interestings at Standup" do
       @past_interesting = create_interesting(whiteboard: @my_whiteboard, date: @past)
       @now_interesting = create_interesting(whiteboard: @my_whiteboard, date: @now)
       @future_interesting = create_interesting(whiteboard: @my_whiteboard, date: @future)
-
-      @different_whiteboard = create_whiteboard
-      @interesting_for_different_whiteboard = create_interesting(whiteboard: @different_whiteboard, date: @now)
     end
 
-    context "When I present the standup for the 'now'" do
+    context "When I archive the 'now' standup" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        archive_standup(@my_whiteboard.id, @now)
       end
 
-      specify "Then I should see the past and 'now' interestings" do
-        expect(@now_standup.interestings).to include(@past_interesting, @now_interesting)
-      end
-
-      specify "But I should not see future interestings" do
-        expect(@now_standup.interestings).not_to include(@future_interesting)
-      end
-      
-      specify "And I should not see other whiteboard interestings" do
-        expect(@now_standup.interestings).not_to include @interesting_for_different_whiteboard
-      end
-    end
-
-    context "When I present the whiteboard" do
-      before do
+      specify "Then I should not see the past or 'now' interestings on the whiteboard" do
         @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+
+        expect(@now_whiteboard.interestings).not_to include(@past_interesting, @now_interesting)
+        expect(@now_whiteboard.interestings).to include(@future_interesting)
       end
 
-      specify "Then I should see my whiteboard's past, 'now', and future interestings" do
-        expect(@now_whiteboard.interestings).to include(@now_interesting, @past_interesting, @future_interesting)
+      specify "Then I should not see any interestings on the current standup" do
+        present_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+
+        expect(present_standup.interestings).to be_empty
       end
 
-      specify "But I should not see interestings for other whiteboards" do
-        expect(@now_whiteboard.interestings).not_to include(@interesting_for_different_whiteboard)
+      specify "But I should still new future interestings on the future standup" do
+        future_standup = present_standup(whiteboard: @my_whiteboard, date: @future)
+
+        expect(future_standup.interestings).to include(@future_interesting)
       end
     end
+    
   end
 
   let(:interesting_repo) { repo_factory.interesting_repo }
