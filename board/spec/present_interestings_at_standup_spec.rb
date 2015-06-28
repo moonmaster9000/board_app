@@ -2,8 +2,11 @@ require "board"
 require "board_test_support/test_attributes"
 require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_repo_factory"
+require "support/board_dsl"
 
 describe "USE CASE: Present Interestings at Standup" do
+  include BoardDSL
+
   context "Given there are past, now, and future interestings for my whiteboard" do
     before do
       @now = Date.today
@@ -50,64 +53,5 @@ describe "USE CASE: Present Interestings at Standup" do
         expect(@now_whiteboard.interestings).not_to include(@interesting_for_different_whiteboard)
       end
     end
-  end
-
-  let(:interesting_repo) { repo_factory.interesting_repo }
-  let(:new_face_repo) { repo_factory.new_face_repo }
-  let(:whiteboard_repo) { repo_factory.whiteboard_repo }
-  let(:repo_factory) { FakeRepoFactory.new }
-  let(:observer) { GuiSpy.new }
-
-  include TestAttributes
-
-  def create_interesting(whiteboard:, date:)
-    Board.create_interesting(
-      observer: observer,
-      attributes: valid_interesting_attributes.merge(date: date),
-      interesting_repo: interesting_repo,
-      whiteboard_id: whiteboard.id,
-    ).execute
-
-    observer.spy_created_interesting
-  end
-
-  def archive_standup(whiteboard_id, date)
-    Board.archive_standup(
-      observer: observer,
-      repo_factory: repo_factory,
-      whiteboard_id: whiteboard_id,
-      date: date,
-    ).execute
-  end
-
-  def create_whiteboard
-    Board.create_whiteboard(
-      observer: observer,
-      attributes: valid_whiteboard_attributes,
-      whiteboard_repo: whiteboard_repo,
-    ).execute
-
-    observer.spy_created_whiteboard
-  end
-
-  def present_standup(whiteboard:, date:)
-    Board.present_standup(
-      whiteboard_id: whiteboard.id,
-      repo_factory: repo_factory,
-      date: date,
-      observer: observer,
-    ).execute
-
-    observer.spy_presented_standup
-  end
-
-  def present_whiteboard(whiteboard:)
-    Board.present_whiteboard_items(
-      whiteboard_id: whiteboard.id,
-      repo_factory: repo_factory,
-      observer: observer,
-    ).execute
-
-    observer.spy_presented_whiteboard_items
   end
 end
