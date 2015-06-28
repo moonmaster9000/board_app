@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :helps
       resources :interestings
       resources :events
+      resources :archives
     end
   end
 

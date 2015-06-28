@@ -34,6 +34,11 @@ class GuiSpy
   end
   attr_reader :spy_presented_whiteboards
 
+  def standup_archived
+    @spy_standup_archived = true
+  end
+  attr_reader :spy_standup_archived
+
   def new_face_created(new_face)
     @spy_created_new_face = new_face
   end

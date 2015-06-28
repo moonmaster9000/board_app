@@ -15,3 +15,5 @@ ul.item-categories
     = render_item_category(:events)
 
 = link_to "Present Standup", whiteboard_standup_path(@whiteboard.id, Date.today.to_s)
+br
+= link_to "Archive Standup", whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post

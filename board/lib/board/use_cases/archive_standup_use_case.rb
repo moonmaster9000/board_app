@@ -19,9 +19,20 @@ module Board
       end
 
       def execute
+        run_archivers
+        notify_observer
+      end
+
+      private
+
+      def run_archivers
         self.class.archivers.each do |archiver|
           archiver.call(repo_factory: @repo_factory, whiteboard_id: @whiteboard_id, date: @date)
         end
+      end
+
+      def notify_observer
+        @observer.standup_archived
       end
     end
   end
