@@ -14,17 +14,17 @@ describe "USE CASE: Present Events at Standup" do
       @future = @now.next_day
       
       @my_whiteboard = create_whiteboard
-      @past_event = create_event(whiteboard: @my_whiteboard, date: @past)
-      @now_event = create_event(whiteboard: @my_whiteboard, date: @now)
-      @future_event = create_event(whiteboard: @my_whiteboard, date: @future)
+      @past_event = create_event(whiteboard_id: @my_whiteboard.id, date: @past)
+      @now_event = create_event(whiteboard_id: @my_whiteboard.id, date: @now)
+      @future_event = create_event(whiteboard_id: @my_whiteboard.id, date: @future)
 
       @different_whiteboard = create_whiteboard
-      @event_for_different_whiteboard = create_event(whiteboard: @different_whiteboard, date: @now)
+      @event_for_different_whiteboard = create_event(whiteboard_id: @different_whiteboard.id, date: @now)
     end
 
     context "When I present the standup for the 'now'" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
       end
 
       specify "Then I should see my whiteboard's past, 'now', and future events" do
@@ -38,7 +38,7 @@ describe "USE CASE: Present Events at Standup" do
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
       specify "Then I should see my whiteboard's past, 'now', and future events" do

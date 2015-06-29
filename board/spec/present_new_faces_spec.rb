@@ -13,15 +13,15 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
       @another_whiteboard = create_whiteboard
       @now = Date.today
       @future = @now.next_day
-      @past_new_face = create_new_face(whiteboard: @my_whiteboard, date: @now.prev_day)
-      @now_new_face = create_new_face(whiteboard: @my_whiteboard, date: @now)
-      @future_new_face = create_new_face(whiteboard: @my_whiteboard, date: @future)
-      @other_whiteboards_new_face = create_new_face(whiteboard: @another_whiteboard, date: @now)
+      @past_new_face = create_new_face(whiteboard_id: @my_whiteboard.id, date: @now.prev_day)
+      @now_new_face = create_new_face(whiteboard_id: @my_whiteboard.id, date: @now)
+      @future_new_face = create_new_face(whiteboard_id: @my_whiteboard.id, date: @future)
+      @other_whiteboards_new_face = create_new_face(whiteboard_id: @another_whiteboard.id, date: @now)
     end
 
     context "When I present the 'now' standup" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
       end
 
       specify "Then I should see the past and 'now' unarchived new faces" do
@@ -43,7 +43,7 @@ describe "USE CASE: Present New Faces at Standup and on Whiteboard" do
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
       specify "Then I should see my whiteboard's past, 'now', and future new faces" do

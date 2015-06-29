@@ -14,17 +14,17 @@ describe "USE CASE: Present Helps at Standup" do
       @future = @now.next_day
       
       @my_whiteboard = create_whiteboard
-      @past_help = create_help(whiteboard: @my_whiteboard, date: @past)
-      @now_help = create_help(whiteboard: @my_whiteboard, date: @now)
-      @future_help = create_help(whiteboard: @my_whiteboard, date: @future)
+      @past_help = create_help(whiteboard_id: @my_whiteboard.id, date: @past)
+      @now_help = create_help(whiteboard_id: @my_whiteboard.id, date: @now)
+      @future_help = create_help(whiteboard_id: @my_whiteboard.id, date: @future)
 
       @different_whiteboard = create_whiteboard
-      @help_for_different_whiteboard = create_help(whiteboard: @different_whiteboard, date: @now)
+      @help_for_different_whiteboard = create_help(whiteboard_id: @different_whiteboard.id, date: @now)
     end
 
     context "When I present the standup for the 'now'" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
       end
 
       specify "Then I should see the past and 'now' helps" do
@@ -42,7 +42,7 @@ describe "USE CASE: Present Helps at Standup" do
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
       specify "Then I should see my whiteboard's past, 'now', and future helps" do

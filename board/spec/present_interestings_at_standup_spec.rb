@@ -14,17 +14,17 @@ describe "USE CASE: Present Interestings at Standup" do
       @future = @now.next_day
       
       @my_whiteboard = create_whiteboard
-      @past_interesting = create_interesting(whiteboard: @my_whiteboard, date: @past)
-      @now_interesting = create_interesting(whiteboard: @my_whiteboard, date: @now)
-      @future_interesting = create_interesting(whiteboard: @my_whiteboard, date: @future)
+      @past_interesting = create_interesting(whiteboard_id: @my_whiteboard.id, date: @past)
+      @now_interesting = create_interesting(whiteboard_id: @my_whiteboard.id, date: @now)
+      @future_interesting = create_interesting(whiteboard_id: @my_whiteboard.id, date: @future)
 
       @different_whiteboard = create_whiteboard
-      @interesting_for_different_whiteboard = create_interesting(whiteboard: @different_whiteboard, date: @now)
+      @interesting_for_different_whiteboard = create_interesting(whiteboard_id: @different_whiteboard.id, date: @now)
     end
 
     context "When I present the standup for the 'now'" do
       before do
-        @now_standup = present_standup(whiteboard: @my_whiteboard, date: @now)
+        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
       end
 
       specify "Then I should see the past and 'now' interestings" do
@@ -42,7 +42,7 @@ describe "USE CASE: Present Interestings at Standup" do
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard: @my_whiteboard)
+        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
       specify "Then I should see my whiteboard's past, 'now', and future interestings" do

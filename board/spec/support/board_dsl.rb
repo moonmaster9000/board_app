@@ -1,3 +1,7 @@
+require "board_test_support/test_attributes"
+require "board_test_support/doubles/fake_repo_factory"
+require "board_test_support/doubles/gui_spy"
+
 module BoardDSL
   include TestAttributes
 
@@ -29,45 +33,53 @@ module BoardDSL
     @observer ||= GuiSpy.new
   end
 
-  def create_interesting(whiteboard:, date:)
+  def create_interesting(whiteboard_id:, observer: nil, **interesting_attributes)
+    observer ||= self.observer
+
     Board.create_interesting(
       observer: observer,
-      attributes: valid_interesting_attributes.merge(date: date),
+      attributes: valid_interesting_attributes.merge(interesting_attributes),
       interesting_repo: interesting_repo,
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
     ).execute
 
     observer.spy_created_interesting
   end
 
-  def create_help(whiteboard:, date:)
+  def create_help(whiteboard_id:, observer: nil, **help_attributes)
+    observer ||= self.observer
+
     Board.create_help(
       observer: observer,
-      attributes: valid_help_attributes.merge(date: date),
+      attributes: valid_help_attributes.merge(help_attributes),
       help_repo: help_repo,
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
     ).execute
 
     observer.spy_created_help
   end
 
-  def create_event(whiteboard:, date:)
+  def create_event(whiteboard_id:, observer: nil, **event_attributes)
+    observer ||= self.observer
+
     Board.create_event(
       observer: observer,
-      attributes: valid_event_attributes.merge(date: date),
+      attributes: valid_event_attributes.merge(event_attributes),
       event_repo: event_repo,
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
     ).execute
 
     observer.spy_created_event
   end
 
-  def create_new_face(whiteboard:, date:)
+  def create_new_face(whiteboard_id:, observer: nil, **new_face_attributes)
+    observer ||= self.observer
+
     Board.create_new_face(
       observer: observer,
-      attributes: valid_new_face_attributes.merge(date: date),
+      attributes: valid_new_face_attributes.merge(new_face_attributes),
       new_face_repo: new_face_repo,
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
     ).execute
 
     observer.spy_created_new_face
@@ -92,9 +104,9 @@ module BoardDSL
     observer.spy_created_whiteboard
   end
 
-  def present_standup(whiteboard:, date:)
+  def present_standup(whiteboard_id:, date:)
     Board.present_standup(
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
       repo_factory: repo_factory,
       date: date,
       observer: observer,
@@ -103,9 +115,9 @@ module BoardDSL
     observer.spy_presented_standup
   end
 
-  def present_whiteboard(whiteboard:)
+  def present_whiteboard(whiteboard_id:)
     Board.present_whiteboard_items(
-      whiteboard_id: whiteboard.id,
+      whiteboard_id: whiteboard_id,
       repo_factory: repo_factory,
       observer: observer,
     ).execute
