@@ -2,7 +2,7 @@ require "board_test_support/test_attributes"
 require "board_test_support/doubles/fake_repo_factory"
 require "board_test_support/doubles/gui_spy"
 
-module BoardDSL
+module BoardTestDSL
   include TestAttributes
 
   def event_repo

@@ -2,10 +2,10 @@ require "board"
 require "board_test_support/test_attributes"
 require "board_test_support/doubles/gui_spy"
 require "board_test_support/doubles/fake_repo_factory"
-require "support/board_dsl"
+require "support/board_test_dsl"
 
 describe "USE CASE: Present Helps at Standup" do
-  include BoardDSL
+  include BoardTestDSL
 
   context "Given there are past, current, and future helps for my whiteboard" do
     before do

@@ -1,8 +1,8 @@
 require "board"
-require "support/board_dsl"
+require "support/board_test_dsl"
 
 describe "USE CASE: Present Interestings at Standup" do
-  include BoardDSL
+  include BoardTestDSL
 
   context "Given there are past, current, and future interestings for my whiteboard" do
     before do

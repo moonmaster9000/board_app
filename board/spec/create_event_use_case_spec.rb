@@ -1,12 +1,12 @@
 require "board"
 require "board_test_support/doubles/gui_spy"
-require "support/board_dsl"
+require "support/board_test_dsl"
 require "support/common_assertions"
 
 
 describe "USE CASE: creating a event" do
   include CommonAssertions
-  include BoardDSL
+  include BoardTestDSL
 
   context "Given a whiteboard exists" do
     before do
