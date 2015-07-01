@@ -7,46 +7,46 @@ require "support/board_dsl"
 describe "USE CASE: Present Events at Standup" do
   include BoardDSL
 
-  context "Given there are past, now, and future events for my whiteboard" do
+  context "Given there are past, current, and future events for my whiteboard" do
     before do
-      @now = Date.today
-      @past = @now.prev_day
-      @future = @now.next_day
+      @current = Date.today
+      @past = @current.prev_day
+      @future = @current.next_day
       
       @my_whiteboard = create_whiteboard
       @past_event = create_event(whiteboard_id: @my_whiteboard.id, date: @past)
-      @now_event = create_event(whiteboard_id: @my_whiteboard.id, date: @now)
+      @current_event = create_event(whiteboard_id: @my_whiteboard.id, date: @current)
       @future_event = create_event(whiteboard_id: @my_whiteboard.id, date: @future)
 
       @different_whiteboard = create_whiteboard
-      @event_for_different_whiteboard = create_event(whiteboard_id: @different_whiteboard.id, date: @now)
+      @event_for_different_whiteboard = create_event(whiteboard_id: @different_whiteboard.id, date: @current)
     end
 
-    context "When I present the standup for the 'now'" do
+    context "When I present the standup for the current" do
       before do
-        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
+        @current_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @current)
       end
 
-      specify "Then I should see my whiteboard's past, 'now', and future events" do
-        expect(@now_standup.events).to include(@past_event, @now_event, @future_event)
+      specify "Then I should see my whiteboard's past, current, and future events" do
+        expect(@current_standup.events).to include(@past_event, @current_event, @future_event)
       end
 
       specify "But I should not see other whiteboard events" do
-        expect(@now_standup.events).not_to include @event_for_different_whiteboard
+        expect(@current_standup.events).not_to include @event_for_different_whiteboard
       end
     end
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
+        @current_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
-      specify "Then I should see my whiteboard's past, 'now', and future events" do
-        expect(@now_whiteboard.events).to include(@now_event, @past_event, @future_event)
+      specify "Then I should see my whiteboard's past, current, and future events" do
+        expect(@current_whiteboard.events).to include(@current_event, @past_event, @future_event)
       end
 
       specify "But I should not see events for other whiteboards" do
-        expect(@now_whiteboard.events).not_to include(@event_for_different_whiteboard)
+        expect(@current_whiteboard.events).not_to include(@event_for_different_whiteboard)
       end
     end
   end

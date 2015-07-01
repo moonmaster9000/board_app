@@ -4,34 +4,34 @@ require "support/board_dsl"
 describe "USE CASE: Present Helps at Standup" do
   include BoardDSL
 
-  context "Given there are past, now, and future helps for my whiteboard" do
+  context "Given there are past, current, and future helps for my whiteboard" do
     before do
-      @now = Date.today
-      @past = @now.prev_day
-      @future = @now.next_day
+      @current = Date.today
+      @past = @current.prev_day
+      @future = @current.next_day
       
       @my_whiteboard = create_whiteboard
       @past_help = create_help(whiteboard_id: @my_whiteboard.id, date: @past)
-      @now_help = create_help(whiteboard_id: @my_whiteboard.id, date: @now)
+      @current_help = create_help(whiteboard_id: @my_whiteboard.id, date: @current)
       @future_help = create_help(whiteboard_id: @my_whiteboard.id, date: @future)
     end
 
-    context "When I archive the 'now' standup" do
+    context "When I archive the current standup" do
       before do
-        archive_standup(@my_whiteboard.id, @now)
+        archive_standup(@my_whiteboard.id, @current)
       end
 
-      specify "Then I should not see the past or 'now' helps on the whiteboard" do
-        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
+      specify "Then I should not see the past or current helps on the whiteboard" do
+        @current_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
 
-        expect(@now_whiteboard.helps).not_to include(@past_help, @now_help)
-        expect(@now_whiteboard.helps).to include(@future_help)
+        expect(@current_whiteboard.helps).not_to include(@past_help, @current_help)
+        expect(@current_whiteboard.helps).to include(@future_help)
       end
 
       specify "Then I should not see any helps on the current standup" do
-        present_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
+        current_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @current)
 
-        expect(present_standup.helps).to be_empty
+        expect(current_standup.helps).to be_empty
       end
 
       specify "But I should still new future helps on the future standup" do

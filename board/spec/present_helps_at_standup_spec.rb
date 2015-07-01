@@ -7,50 +7,50 @@ require "support/board_dsl"
 describe "USE CASE: Present Helps at Standup" do
   include BoardDSL
 
-  context "Given there are past, now, and future helps for my whiteboard" do
+  context "Given there are past, current, and future helps for my whiteboard" do
     before do
-      @now = Date.today
-      @past = @now.prev_day
-      @future = @now.next_day
+      @current = Date.today
+      @past = @current.prev_day
+      @future = @current.next_day
       
       @my_whiteboard = create_whiteboard
       @past_help = create_help(whiteboard_id: @my_whiteboard.id, date: @past)
-      @now_help = create_help(whiteboard_id: @my_whiteboard.id, date: @now)
+      @current_help = create_help(whiteboard_id: @my_whiteboard.id, date: @current)
       @future_help = create_help(whiteboard_id: @my_whiteboard.id, date: @future)
 
       @different_whiteboard = create_whiteboard
-      @help_for_different_whiteboard = create_help(whiteboard_id: @different_whiteboard.id, date: @now)
+      @help_for_different_whiteboard = create_help(whiteboard_id: @different_whiteboard.id, date: @current)
     end
 
-    context "When I present the standup for the 'now'" do
+    context "When I present the standup for the current" do
       before do
-        @now_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @now)
+        @current_standup = present_standup(whiteboard_id: @my_whiteboard.id, date: @current)
       end
 
-      specify "Then I should see the past and 'now' helps" do
-        expect(@now_standup.helps).to include(@past_help, @now_help)
+      specify "Then I should see the past and current helps" do
+        expect(@current_standup.helps).to include(@past_help, @current_help)
       end
 
       specify "But I should not see future helps" do
-        expect(@now_standup.helps).not_to include(@future_help)
+        expect(@current_standup.helps).not_to include(@future_help)
       end
       
       specify "And I should not see other whiteboard helps" do
-        expect(@now_standup.helps).not_to include @help_for_different_whiteboard
+        expect(@current_standup.helps).not_to include @help_for_different_whiteboard
       end
     end
 
     context "When I present the whiteboard" do
       before do
-        @now_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
+        @current_whiteboard = present_whiteboard(whiteboard_id: @my_whiteboard.id)
       end
 
-      specify "Then I should see my whiteboard's past, 'now', and future helps" do
-        expect(@now_whiteboard.helps).to include(@now_help, @past_help, @future_help)
+      specify "Then I should see my whiteboard's past, current, and future helps" do
+        expect(@current_whiteboard.helps).to include(@current_help, @past_help, @future_help)
       end
 
       specify "But I should not see helps for other whiteboards" do
-        expect(@now_whiteboard.helps).not_to include(@help_for_different_whiteboard)
+        expect(@current_whiteboard.helps).not_to include(@help_for_different_whiteboard)
       end
     end
   end
