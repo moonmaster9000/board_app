@@ -17,14 +17,14 @@ describe "USE CASE: creating a new_face" do
       context "because the date is blank" do
         it "informs the observer that a date is required" do
           create_new_face(whiteboard_id: @whiteboard_id, observer: gui, date: nil)
-          assert_gui_got_one_error(gui, :date, :required)
+          assert_observer_got_one_error(gui, :date, :required)
         end
       end
 
       context "because the name is blank" do
         it "informs the observer that a name is required" do
           create_new_face(whiteboard_id: @whiteboard_id, observer: gui, name: nil)
-          assert_gui_got_one_error(gui, :name, :required)
+          assert_observer_got_one_error(gui, :name, :required)
         end
       end
     end

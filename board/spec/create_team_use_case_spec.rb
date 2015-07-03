@@ -19,7 +19,7 @@ describe "USE CASE: Create Whiteboard" do
       end
 
       specify "Then it should tell the observer that name is required" do
-        assert_gui_got_one_error(gui, :name, :required)
+        assert_observer_got_one_error(gui, :name, :required)
       end
     end
   end
