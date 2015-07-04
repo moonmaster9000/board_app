@@ -13,6 +13,10 @@ module Board
         :from_address,
         :subject_prefix,
       )
+
+      validate_field :from_address, :required
+      validate_field :to_address, :required
+      validate_field :whiteboard_id, :required
     end
   end
 end

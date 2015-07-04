@@ -107,7 +107,9 @@ module BoardTestDSL
     ).execute
   end
 
-  def create_standup_email_config(whiteboard_id:, **custom_email_config_attributes)
+  def create_standup_email_config(whiteboard_id:, observer: nil, **custom_email_config_attributes)
+    observer ||= self.observer
+
     Board.create_standup_email_config(
       whiteboard_id: whiteboard_id,
       attributes: valid_standup_email_config_attributes.merge(custom_email_config_attributes),

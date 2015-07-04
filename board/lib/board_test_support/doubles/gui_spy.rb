@@ -49,6 +49,11 @@ class GuiSpy
   end
   attr_reader :spy_created_standup_email_config
 
+  def standup_email_config_already_exists
+    @spy_standup_email_config_already_exists = true
+  end
+  attr_reader :spy_standup_email_config_already_exists
+
   def email_sent(email)
     @spy_email_sent = email
   end

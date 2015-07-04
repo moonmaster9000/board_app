@@ -83,7 +83,6 @@ describe "USE CASE: Email Standup" do
     attr_reader :spy_sent_email
   end
 
-
   class StandupEmailFormatterStub
     def initialize(email_stub)
       @email_stub = email_stub
