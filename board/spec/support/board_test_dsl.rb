@@ -1,3 +1,4 @@
+require "board"
 require "board_test_support/test_attributes"
 require "board_test_support/doubles/fake_repo_factory"
 require "board_test_support/doubles/gui_spy"
@@ -31,6 +32,18 @@ module BoardTestDSL
 
   def observer
     @observer ||= GuiSpy.new
+  end
+
+  def email_standup(email_client:, observer:, standup_email_formatter:, whiteboard_id:, date:, attributes: {})
+    Board.email_standup_use_case(
+      whiteboard_id: whiteboard_id,
+      date: date,
+      email_client: email_client,
+      standup_email_formatter: standup_email_formatter,
+      observer: observer,
+      repo_factory: repo_factory,
+      attributes: attributes,
+    ).execute
   end
 
   def create_interesting(whiteboard_id:, observer: nil, **interesting_attributes)
@@ -92,6 +105,17 @@ module BoardTestDSL
       whiteboard_id: whiteboard_id,
       date: date,
     ).execute
+  end
+
+  def create_standup_email_config(whiteboard_id:, **custom_email_config_attributes)
+    Board.create_standup_email_config(
+      whiteboard_id: whiteboard_id,
+      attributes: valid_standup_email_config_attributes.merge(custom_email_config_attributes),
+      observer: observer,
+      repo_factory: repo_factory,
+    ).execute
+
+    observer.spy_created_standup_email_config
   end
 
   def create_whiteboard

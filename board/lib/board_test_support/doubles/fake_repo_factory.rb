@@ -3,6 +3,7 @@ require "board_test_support/doubles/fake_help_repo"
 require "board_test_support/doubles/fake_interesting_repo"
 require "board_test_support/doubles/fake_whiteboard_repo"
 require "board_test_support/doubles/fake_event_repo"
+require "board_test_support/doubles/fake_standup_email_config_repo"
 
 class FakeRepoFactory
   def new_face_repo
@@ -15,6 +16,10 @@ class FakeRepoFactory
 
   def whiteboard_repo
     @whiteboard_repo ||= FakeWhiteboardRepo.new
+  end
+
+  def standup_email_config_repo
+    @standup_email_config_repo ||= FakeStandupEmailConfigRepo.new
   end
 
   def event_repo

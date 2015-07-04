@@ -8,6 +8,8 @@ require "board/use_cases/create_interesting_use_case"
 require "board/use_cases/create_event_use_case"
 require "board/use_cases/archive_standup_use_case"
 require "board/use_cases/present_whiteboard_items_use_case"
+require "board/use_cases/email_standup_use_case"
+require "board/use_cases/create_standup_email_config_use_case"
 
 module Board
   extend self
@@ -16,6 +18,14 @@ module Board
 
   def archive_standup(*args)
     ArchiveStandupUseCase.new(*args)
+  end
+
+  def email_standup_use_case(*args)
+    EmailStandupUseCase.new(*args)
+  end
+
+  def create_standup_email_config(*args)
+    CreateStandupEmailConfigUseCase.new(*args)
   end
 
   def create_whiteboard(*args)

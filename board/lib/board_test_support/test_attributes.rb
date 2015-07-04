@@ -7,6 +7,14 @@ module TestAttributes
     { name: "Valid Name" }
   end
 
+  def valid_standup_email_config_attributes
+    {
+      to_address: "to@address.com",
+      from_address: "from@address.com",
+      subject_prefix: "[fake subject prefix]",
+    }
+  end
+
   def valid_new_face_attributes
     { name: "Valid New Face Name", date: valid_date}
   end

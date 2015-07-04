@@ -44,6 +44,21 @@ class GuiSpy
   end
   attr_reader :spy_created_new_face
 
+  def standup_email_config_created(standup_email_config)
+    @spy_created_standup_email_config = standup_email_config
+  end
+  attr_reader :spy_created_standup_email_config
+
+  def email_sent(email)
+    @spy_email_sent = email
+  end
+  attr_reader :spy_email_sent
+
+  def email_not_configured
+    @spy_email_not_configured = true
+  end
+  attr_reader :spy_email_not_configured
+
   def standup_presented(standup)
     @spy_presented_standup = standup
   end
