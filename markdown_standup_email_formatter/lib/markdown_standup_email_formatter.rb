@@ -3,32 +3,28 @@ require "pathname"
 
 class MarkdownStandupEmailFormatter
   def format_email(standup)
-    template = File.read(File.join(__dir__, "email.markdown.erb"))
-    items = ItemsCollection.new(standup.items)
+    template = File.read(File.join(__dir__, "email.erb"))
+    item_categories = ItemCategories.new(standup.items)
     ERB.new(template).result binding
   end
 
-  class ItemsCollection
-    def initialize(items_hash)
-      @items_hash = items_hash
+  class ItemCategories
+    def initialize(categories)
+      @categories = categories
     end
 
     def each
-      @items_hash.each do |key, values|
-        if values.empty?
+      @categories.each do |category, items|
+        if items.empty?
           yield NullItems.new
         else
-          yield Items.new(key, values)
+          yield Items.new(category, items)
         end
       end
     end
 
     class NullItems
-      def heading
-        ""
-      end
-
-      def body
+      def render
         ""
       end
     end
@@ -41,16 +37,19 @@ class MarkdownStandupEmailFormatter
         @values = items_values
       end
 
-      def heading
-        ERB.new(File.read(File.join(__dir__, "heading.markdown.erb"))).result binding
-      end
-
-      def body
-        path = Pathname.new(File.join(__dir__, "#{name}_body.markdown.erb"))
+      def render
+        path = Pathname.new(File.join(__dir__, "#{name}.erb"))
 
         if path.file?
           ERB.new(File.read(path)).result binding
         end
+      end
+
+      private
+
+      def markdown_to_html(text)
+        require "github/markdown"
+        GitHub::Markdown.render_gfm(text)
       end
     end
   end

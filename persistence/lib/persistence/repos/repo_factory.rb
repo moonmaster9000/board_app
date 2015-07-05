@@ -3,6 +3,7 @@ require "persistence/repos/whiteboard_repo"
 require "persistence/repos/help_repo"
 require "persistence/repos/event_repo"
 require "persistence/repos/interesting_repo"
+require "persistence/repos/standup_email_config_repo"
 
 module Persistence
   module Repos
@@ -25,6 +26,10 @@ module Persistence
 
       def interesting_repo
         InterestingRepo.new
+      end
+
+      def standup_email_config_repo
+        StandupEmailConfigRepo.new
       end
     end
   end

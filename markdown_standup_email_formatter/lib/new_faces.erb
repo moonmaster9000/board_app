@@ -1,0 +1,8 @@
+<h2>New Faces</h2>
+
+<% values.each do |new_face| %>
+  <article>
+    <time><%= new_face.date %></time>
+    <p><%= new_face.name %></p>
+  </article>
+<% end %>

@@ -7,4 +7,5 @@ Gem::Specification.new do |gem|
   gem.files = Dir[File.join(__dir__, "lib", "**", "*.rb")]
 
   gem.add_development_dependency("rspec")
+  gem.add_dependency("github-markdown")
 end

@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'slim-rails'
 gem 'board', path: '../board'
 gem 'persistence', path: '../persistence'
+gem 'markdown_standup_email_formatter', path: '../markdown_standup_email_formatter'
 gem 'sqlite3'
 
 gem 'jquery-rails'

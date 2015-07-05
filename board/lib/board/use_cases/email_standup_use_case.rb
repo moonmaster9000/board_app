@@ -3,7 +3,7 @@ require "board/values/email"
 module Board
   module UseCases
     class EmailStandupUseCase
-      def initialize(email_client:, observer:, standup_email_formatter:, whiteboard_id:, date:, repo_factory:, attributes:)
+      def initialize(email_client:, observer:, standup_email_formatter:, whiteboard_id:, date:, repo_factory:, attributes: {})
         @email_client = email_client
         @observer = observer
         @standup_email_formatter = standup_email_formatter

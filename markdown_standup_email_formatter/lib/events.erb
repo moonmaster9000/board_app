@@ -1,0 +1,9 @@
+<h2>Events</h2>
+
+<% values.each do |event| %>
+  <article>
+    <h3><%= event.title %></h3>
+    <time><%= event.date %></time>
+    <p><%= markdown_to_html event.description %></p>
+  </article>
+<% end %>

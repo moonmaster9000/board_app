@@ -2,11 +2,13 @@ PATH
   remote: .
   specs:
     markdown_standup_email_formatter (0.0.0)
+      github-markdown
 
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
+    github-markdown (0.6.8)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)

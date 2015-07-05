@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :interestings
       resources :events
       resources :archives
+      resources :emails
     end
   end
 
