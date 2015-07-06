@@ -85,6 +85,7 @@ module Board
             to_address:     email_config.to_address,
             body:           email_body,
             subject:        subject(email_config),
+            content_type:   standup_email_formatter.content_type,
           )
         end
 

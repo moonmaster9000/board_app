@@ -62,6 +62,10 @@ describe "USE CASE: Email Standup" do
           expect(email_client.spy_sent_email.body).to eq(stubbed_standup_email_content)
         end
 
+        specify "And the email_client should send that email with the content_type specified by the standup_email_formatter" do
+          expect(email_client.spy_sent_email.content_type).to eq(stubbed_standup_email_content_type)
+        end
+
         specify "And it should notify the observer of success with the sent email" do
           expect(observer.spy_email_sent).to eq(email_client.spy_sent_email)
         end
@@ -72,8 +76,9 @@ describe "USE CASE: Email Standup" do
   let(:email_client) { EmailClientSpy.new }
   let(:observer) { GuiSpy.new }
   let(:some_date) { Date.today }
-  let(:standup_email_formatter) { StandupEmailFormatterStub.new(stubbed_standup_email_content) }
+  let(:standup_email_formatter) { StandupEmailFormatterStub.new(stubbed_standup_email_content, stubbed_standup_email_content_type) }
   let(:stubbed_standup_email_content) { "stubbed standup email body" }
+  let(:stubbed_standup_email_content_type) { "stubbed_content_type" }
   let(:custom_subject) { "custom subject" }
 
   class EmailClientSpy
@@ -84,12 +89,17 @@ describe "USE CASE: Email Standup" do
   end
 
   class StandupEmailFormatterStub
-    def initialize(email_stub)
+    def initialize(email_stub, content_type)
       @email_stub = email_stub
+      @content_type = content_type
     end
 
     def format_email(standup)
       @email_stub
+    end
+
+    def content_type
+      @content_type
     end
   end
 end

@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     repo_factory.whiteboard_repo
   end
 
+  def email_client
+    @email_client = EmailClient.new(Rails.configuration.email_client_delivery_method_config)
+  end
+
   def new_face_repo
     repo_factory.new_face_repo
   end

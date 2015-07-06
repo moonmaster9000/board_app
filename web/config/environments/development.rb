@@ -31,4 +31,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.email_client_delivery_method_config = [
+    LetterOpener::DeliveryMethod,
+    { :location => File.expand_path(File.join(__dir__, "..", "..", "tmp", "letter_opener")) }
+  ]
 end

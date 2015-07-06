@@ -8,7 +8,12 @@ gem 'slim-rails'
 gem 'board', path: '../board'
 gem 'persistence', path: '../persistence'
 gem 'markdown_standup_email_formatter', path: '../markdown_standup_email_formatter'
+gem 'email_client', path: '../email_client'
 gem 'sqlite3'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+
+group :development do
+  gem 'letter_opener'
+end

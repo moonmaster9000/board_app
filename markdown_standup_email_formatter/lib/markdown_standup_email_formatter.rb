@@ -8,6 +8,10 @@ class MarkdownStandupEmailFormatter
     ERB.new(template).result binding
   end
 
+  def content_type
+    "text/html"
+  end
+
   class ItemCategories
     def initialize(categories)
       @categories = categories
@@ -40,9 +44,7 @@ class MarkdownStandupEmailFormatter
       def render
         path = Pathname.new(File.join(__dir__, "#{name}.erb"))
 
-        if path.file?
-          ERB.new(File.read(path)).result binding
-        end
+        ERB.new(File.read(path)).result binding
       end
 
       private
