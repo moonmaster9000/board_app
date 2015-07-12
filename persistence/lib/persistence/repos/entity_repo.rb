@@ -26,6 +26,8 @@ module Persistence
       private
 
       def entity_from_record(entity_record)
+        return nil if entity_record.nil?
+
         entity_record_attributes = entity_record.attributes.symbolize_keys.slice(
           *entity_class.attributes
         )
