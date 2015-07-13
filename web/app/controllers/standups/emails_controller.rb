@@ -14,5 +14,9 @@ module Standups
     def email_sent(email)
       @email = email
     end
+
+    def email_not_configured
+      redirect_to new_whiteboard_standup_email_config_path(params[:whiteboard_id])
+    end
   end
 end

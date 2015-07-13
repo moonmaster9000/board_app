@@ -28,7 +28,7 @@ describe "USE CASE: Email Standup" do
 
     context "And the whiteboard has been configured for email" do
       before do
-        @standup_email_config = create_standup_email_config(whiteboard_id: @whiteboard.id)
+        @standup_email_config = set_standup_email_config(whiteboard_id: @whiteboard.id)
       end
 
       context "When I execute the email_standup_use_case for that whiteboard id" do

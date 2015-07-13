@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :new_faces
     resources :interestings
     resources :events
+    resources :standup_email_configs
 
     resources :standups, module: :standups do
       resources :new_faces

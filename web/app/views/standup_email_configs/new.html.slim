@@ -1,0 +1,18 @@
+ul
+  - @validation_errors.each do |error|
+    li #{error.field_name} - #{error.error}
+
+= form_for :standup_email_config, url: whiteboard_standup_email_configs_path(params[:whiteboard_id]) do |form|
+  = form.label(:standup_email_config, :from_address)
+  = form.text_field :from_address
+  br
+
+  = form.label(:standup_email_config, :to_address)
+  = form.text_field :to_address
+  br
+
+  = form.label(:standup_email_config, :subject_prefix)
+  = form.text_field :subject_prefix
+  br
+
+  = form.submit
