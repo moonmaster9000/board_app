@@ -15,16 +15,16 @@ module Board
 
       def execute
         if email_configured?
-          present_standup
+          format_and_send_standup_email
         else
           @observer.email_not_configured
         end
       end
 
-      def present_standup
+      def format_and_send_standup_email
         Board.present_standup(
           whiteboard_id: @whiteboard_id,
-          observer: present_standup_observer,
+          observer: emails_standup_observer,
           date: @date,
           repo_factory: @repo_factory
         ).execute
@@ -40,8 +40,8 @@ module Board
         @repo_factory.standup_email_config_repo.find_by_whiteboard_id(@whiteboard_id)
       end
 
-      def present_standup_observer
-        PresentStandupObserver.new(
+      def emails_standup_observer
+        EmailsStandupObserver.new(
           email_config: email_config,
           standup_email_formatter: @standup_email_formatter,
           email_client: @email_client,
@@ -52,7 +52,7 @@ module Board
         )
       end
 
-      class PresentStandupObserver
+      class EmailsStandupObserver
         def initialize(standup_email_formatter:, email_client:, whiteboard_id:, observer:, attributes:, email_config:)
           @standup_email_formatter = standup_email_formatter
           @email_client = email_client
