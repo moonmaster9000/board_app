@@ -26,6 +26,10 @@ module BoardTestDSL
     @whiteboard_repo ||= repo_factory.whiteboard_repo
   end
 
+  def session_repo
+    @session_repo ||= repo_factory.session_repo
+  end
+
   def repo_factory
     @repo_factory ||= FakeRepoFactory.new
   end
