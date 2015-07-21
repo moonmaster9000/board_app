@@ -44,7 +44,10 @@ describe "USE CASE: Authenticate" do
     specify "Then the Authenticate use case should forward those errors to the observer" do
       authenticate(authentication_strategy: authentication_strategy)
 
-      expect(observer.spy_authentication_errors).to include({error_name => error_code})
+      observed_error = observer.spy_authentication_errors.first
+
+      expect(observed_error.name).to eq(error_name)
+      expect(observed_error.code).to eq(error_code)
     end
 
     let(:error_name) { "error_name" }
@@ -63,7 +66,6 @@ describe "USE CASE: Authenticate" do
       observer: observer,
     ).execute
   end
-
 
   class AlwaysSucceedsAuthStrategyStub
     def initialize(returns_user:)

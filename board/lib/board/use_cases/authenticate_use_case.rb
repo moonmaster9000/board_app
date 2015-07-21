@@ -23,7 +23,11 @@ module Board
       end
 
       def authentication_failed(errors)
-        @observer.authentication_failed(errors)
+        @observer.authentication_failed(convert_errors_hash_to_errors(errors))
+      end
+
+      def convert_errors_hash_to_errors(errors)
+        errors.map { |name, code| Error.new(name, code) }
       end
 
       private
@@ -38,6 +42,9 @@ module Board
 
       def execute_strategy_and_listen_for_results
         @authentication_strategy.execute(observer: self)
+      end
+
+      class Error < Struct.new(:name, :code)
       end
     end
   end
