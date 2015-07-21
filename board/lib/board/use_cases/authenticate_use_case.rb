@@ -10,16 +10,34 @@ module Board
       end
 
       def execute
-        if @repo_factory.session_repo.logged_in?
-          @observer.already_authenticated
+        if already_authenticated?
+          notify_already_authenticated
         else
-          @authentication_strategy.execute(observer: self)
+          execute_strategy_and_listen_for_results
         end
       end
 
       def authentication_succeeded(user)
         @repo_factory.session_repo.log_in(user)
         @observer.authentication_succeeded
+      end
+
+      def authentication_failed(errors)
+        @observer.authentication_failed(errors)
+      end
+
+      private
+
+      def notify_already_authenticated
+        @observer.already_authenticated
+      end
+
+      def already_authenticated?
+        @repo_factory.session_repo.logged_in?
+      end
+
+      def execute_strategy_and_listen_for_results
+        @authentication_strategy.execute(observer: self)
       end
     end
   end

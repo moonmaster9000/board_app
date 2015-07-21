@@ -50,6 +50,11 @@ class GuiSpy
   end
   attr_reader :spy_authentication_succeeded
 
+  def authentication_failed(errors)
+    @spy_authentication_errors = errors
+  end
+  attr_reader :spy_authentication_errors
+
   def already_authenticated
     @spy_already_authenticated = true
   end
