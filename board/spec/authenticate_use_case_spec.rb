@@ -41,7 +41,7 @@ describe "USE CASE: Authenticate" do
   context "When the authentication strategy fails and returns errors" do
     let(:authentication_strategy) { AlwaysFailsAuthStrategyStub.new(error_name, error_code) }
 
-    specify "Then the authenticate use case should forward those errors to the observer" do
+    specify "Then the Authenticate use case should forward those errors to the observer" do
       authenticate(authentication_strategy: authentication_strategy)
 
       expect(observer.spy_authentication_errors).to include({error_name => error_code})
@@ -67,7 +67,7 @@ describe "USE CASE: Authenticate" do
 
   class AlwaysSucceedsAuthStrategyStub
     def initialize(returns_user:)
-    @returns_user = returns_user
+      @returns_user = returns_user
     end
 
     def execute(observer:)
