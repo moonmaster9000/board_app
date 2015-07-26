@@ -60,7 +60,7 @@ describe "USE CASE: Authenticate" do
   let(:session_repo) { repo_factory.session_repo }
 
   def authenticate(authentication_strategy:)
-    Board.authenticate(
+    Board::UseCaseFactory.new.authenticate(
       authentication_strategy: authentication_strategy,
       repo_factory: repo_factory,
       observer: observer,

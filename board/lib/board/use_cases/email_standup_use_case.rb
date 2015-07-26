@@ -1,4 +1,5 @@
 require "board/values/email"
+require "board/use_case_factory"
 
 module Board
   module UseCases
@@ -22,7 +23,7 @@ module Board
       end
 
       def format_and_send_standup_email
-        Board.present_standup(
+        Board::UseCaseFactory.new.present_standup(
           whiteboard_id: @whiteboard_id,
           observer: emails_standup_observer,
           date: @date,

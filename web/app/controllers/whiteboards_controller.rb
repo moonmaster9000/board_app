@@ -4,13 +4,13 @@ class WhiteboardsController < ApplicationController
   end
 
   def show
-    Board.present_whiteboard(
+    use_case_factory.present_whiteboard(
       observer: self,
       whiteboard_id: params[:id],
       whiteboard_repo: whiteboard_repo,
     ).execute
 
-    Board.present_whiteboard_items(
+    use_case_factory.present_whiteboard_items(
       observer: self,
       whiteboard_id: params[:id],
       repo_factory: repo_factory,
@@ -18,7 +18,7 @@ class WhiteboardsController < ApplicationController
   end
 
   def create
-    Board.create_whiteboard(
+    use_case_factory.create_whiteboard(
       observer: self,
       attributes: params[:whiteboard].symbolize_keys,
       whiteboard_repo: whiteboard_repo,

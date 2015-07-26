@@ -4,7 +4,7 @@ class HelpsController < ApplicationController
   end
 
   def create
-    Board.create_help(
+    use_case_factory.create_help(
       observer: self,
       whiteboard_id: params[:whiteboard_id],
       help_repo: help_repo,

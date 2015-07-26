@@ -38,8 +38,12 @@ module BoardTestDSL
     @observer ||= GuiSpy.new
   end
 
+  def use_case_factory
+    @use_cases ||= Board::UseCaseFactory.new
+  end
+
   def email_standup(email_client:, observer:, standup_email_formatter:, whiteboard_id:, date:, attributes: {})
-    Board.email_standup_use_case(
+    use_case_factory.email_standup(
       whiteboard_id: whiteboard_id,
       date: date,
       email_client: email_client,
@@ -53,7 +57,7 @@ module BoardTestDSL
   def create_interesting(whiteboard_id:, observer: nil, **interesting_attributes)
     observer ||= self.observer
 
-    Board.create_interesting(
+    use_case_factory.create_interesting(
       observer: observer,
       attributes: valid_interesting_attributes.merge(interesting_attributes),
       interesting_repo: interesting_repo,
@@ -66,7 +70,7 @@ module BoardTestDSL
   def create_help(whiteboard_id:, observer: nil, **help_attributes)
     observer ||= self.observer
 
-    Board.create_help(
+    use_case_factory.create_help(
       observer: observer,
       attributes: valid_help_attributes.merge(help_attributes),
       help_repo: help_repo,
@@ -79,7 +83,7 @@ module BoardTestDSL
   def create_event(whiteboard_id:, observer: nil, **event_attributes)
     observer ||= self.observer
 
-    Board.create_event(
+    use_case_factory.create_event(
       observer: observer,
       attributes: valid_event_attributes.merge(event_attributes),
       event_repo: event_repo,
@@ -92,7 +96,7 @@ module BoardTestDSL
   def create_new_face(whiteboard_id:, observer: nil, **new_face_attributes)
     observer ||= self.observer
 
-    Board.create_new_face(
+    use_case_factory.create_new_face(
       observer: observer,
       attributes: valid_new_face_attributes.merge(new_face_attributes),
       new_face_repo: new_face_repo,
@@ -103,7 +107,7 @@ module BoardTestDSL
   end
 
   def archive_standup(whiteboard_id, date)
-    Board.archive_standup(
+    use_case_factory.archive_standup(
       observer: observer,
       repo_factory: repo_factory,
       whiteboard_id: whiteboard_id,
@@ -114,7 +118,7 @@ module BoardTestDSL
   def set_standup_email_config(whiteboard_id:, observer: nil, **custom_email_config_attributes)
     observer ||= self.observer
 
-    Board.create_standup_email_config(
+    use_case_factory.create_standup_email_config(
       whiteboard_id: whiteboard_id,
       attributes: valid_standup_email_config_attributes.merge(custom_email_config_attributes),
       observer: observer,
@@ -125,7 +129,7 @@ module BoardTestDSL
   end
 
   def create_whiteboard
-    Board.create_whiteboard(
+    use_case_factory.create_whiteboard(
       observer: observer,
       attributes: valid_whiteboard_attributes,
       whiteboard_repo: whiteboard_repo,
@@ -135,7 +139,7 @@ module BoardTestDSL
   end
 
   def present_standup(whiteboard_id:, date:)
-    Board.present_standup(
+    use_case_factory.present_standup(
       whiteboard_id: whiteboard_id,
       repo_factory: repo_factory,
       date: date,
@@ -146,7 +150,7 @@ module BoardTestDSL
   end
 
   def present_whiteboard(whiteboard_id:)
-    Board.present_whiteboard_items(
+    use_case_factory.present_whiteboard_items(
       whiteboard_id: whiteboard_id,
       repo_factory: repo_factory,
       observer: observer,

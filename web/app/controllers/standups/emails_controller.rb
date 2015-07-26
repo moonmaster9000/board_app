@@ -1,7 +1,7 @@
 module Standups
   class EmailsController < ApplicationController
     def create
-      Board.email_standup_use_case(
+      use_case_factory.email_standup(
         email_client: email_client,
         observer: self,
         standup_email_formatter: MarkdownStandupEmailFormatter.new,

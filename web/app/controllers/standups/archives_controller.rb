@@ -1,7 +1,7 @@
 module Standups
   class ArchivesController < ApplicationController
     def create
-      Board.archive_standup(
+      use_case_factory.archive_standup(
         whiteboard_id: params[:whiteboard_id],
         repo_factory: repo_factory,
         date: params[:standup_id],

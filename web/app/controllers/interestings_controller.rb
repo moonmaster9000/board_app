@@ -4,7 +4,7 @@ class InterestingsController < ApplicationController
   end
 
   def create
-    Board.create_interesting(
+    use_case_factory.create_interesting(
       whiteboard_id: params[:whiteboard_id],
       interesting_repo: interesting_repo,
       attributes: params[:interesting].symbolize_keys,

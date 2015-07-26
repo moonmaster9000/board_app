@@ -1,7 +1,7 @@
 module Standups
   class PresentStandupItemsController < ApplicationController
     def index
-      Board.present_standup(
+      use_case_factory.present_standup(
         whiteboard_id: params[:whiteboard_id],
         observer: self,
         date: Date.parse(params[:standup_id]),

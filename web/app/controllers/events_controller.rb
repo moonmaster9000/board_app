@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    Board.create_event(
+    use_case_factory.create_event(
       observer: self,
       whiteboard_id: params[:whiteboard_id],
       event_repo: event_repo,

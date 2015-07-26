@@ -4,7 +4,7 @@ class StandupEmailConfigsController < ApplicationController
   end
 
   def create
-    Board.create_standup_email_config(
+    use_case_factory.create_standup_email_config(
       whiteboard_id: params[:whiteboard_id],
       repo_factory: repo_factory,
       attributes: params[:standup_email_config],

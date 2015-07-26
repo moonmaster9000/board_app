@@ -28,7 +28,7 @@ describe "USE CASE: Present Whiteboard" do
   let(:whiteboard_presented_to_gui) { gui.spy_presented_whiteboard }
 
   def create_whiteboard
-    Board.create_whiteboard(
+    Board::UseCaseFactory.new.create_whiteboard(
       attributes: valid_whiteboard_attributes,
       observer: gui,
       whiteboard_repo: whiteboard_repo
@@ -36,7 +36,7 @@ describe "USE CASE: Present Whiteboard" do
   end
 
   def present_whiteboard(created_whiteboard_id)
-    Board.present_whiteboard(
+    Board::UseCaseFactory.new.present_whiteboard(
       observer: gui,
       whiteboard_id: created_whiteboard_id,
       whiteboard_repo: whiteboard_repo

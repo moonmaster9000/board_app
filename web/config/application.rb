@@ -21,5 +21,6 @@ module Web
     # config.i18n.default_locale = :de
 
     config.repo_factory = Persistence::Repos::RepoFactory.new
+    config.use_case_factory = Board::UseCaseFactory.new
   end
 end

@@ -4,7 +4,7 @@ class NewFacesController < ApplicationController
   end
 
   def create
-    Board.create_new_face(
+    use_case_factory.create_new_face(
       observer: self,
       new_face_repo: new_face_repo,
       whiteboard_id: params[:whiteboard_id],

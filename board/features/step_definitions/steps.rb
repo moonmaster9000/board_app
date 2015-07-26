@@ -31,19 +31,23 @@ module BoardTestDsl
   def today
     @today ||= Date.today
   end
+
+  def use_case_factory
+    @use_cases = Board::UseCaseFactory.new
+  end
 end
 
 World BoardTestDsl
 World TestAttributes
 
 Given(/^there are new faces for my whiteboard$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
     observer: gui,
     attributes: valid_whiteboard_attributes,
     whiteboard_repo: whiteboard_repo
   ).execute
 
-  Board.create_new_face(
+  use_case_factory.create_new_face(
     observer: gui,
     whiteboard_id: gui.spy_created_whiteboard.id,
     new_face_repo: new_face_repo,
@@ -52,7 +56,7 @@ Given(/^there are new faces for my whiteboard$/) do
 end
 
 When(/^I view my whiteboard's standup$/) do
-  Board.present_standup(
+  use_case_factory.present_standup(
     whiteboard_id: gui.spy_created_whiteboard.id,
     repo_factory: repo_factory,
     observer: gui,
@@ -66,13 +70,13 @@ end
 
 
 Given(/^there are helps for my whiteboard$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
     observer: gui,
     attributes: valid_whiteboard_attributes,
     whiteboard_repo: whiteboard_repo
   ).execute
 
-  Board.create_help(
+  use_case_factory.create_help(
     whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_help_attributes.merge(date: today),
     observer: gui,
@@ -85,7 +89,7 @@ Then(/^I should see those helps$/) do
 end
 
 Given(/^there is a whiteboard$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
       observer: gui,
       attributes: valid_whiteboard_attributes,
       whiteboard_repo: whiteboard_repo
@@ -93,7 +97,7 @@ Given(/^there is a whiteboard$/) do
 end
 
 When(/^I view a list of whiteboards$/) do
-  Board.present_whiteboards(
+  use_case_factory.present_whiteboards(
       observer: gui,
       whiteboard_repo: whiteboard_repo
   ).execute
@@ -105,13 +109,13 @@ end
 
 
 Given(/^there are interestings for my whiteboard$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
     observer: gui,
     attributes: valid_whiteboard_attributes,
     whiteboard_repo: whiteboard_repo
   ).execute
 
-  Board.create_interesting(
+  use_case_factory.create_interesting(
     whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_interesting_attributes.merge(date: today),
     observer: gui,
@@ -125,13 +129,13 @@ end
 
 
 Given(/^there are events for my whiteboard$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
     observer: gui,
     attributes: valid_whiteboard_attributes,
     whiteboard_repo: whiteboard_repo
   ).execute
 
-  Board.create_event(
+  use_case_factory.create_event(
     whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_event_attributes.merge(date: today),
     observer: gui,
@@ -145,13 +149,13 @@ end
 
 
 Given(/^I have posted many things to my whiteboard's standup today$/) do
-  Board.create_whiteboard(
+  use_case_factory.create_whiteboard(
     observer: gui,
     attributes: valid_whiteboard_attributes,
     whiteboard_repo: whiteboard_repo
   ).execute
 
-  Board.create_new_face(
+  use_case_factory.create_new_face(
     whiteboard_id: gui.spy_created_whiteboard.id,
     attributes: valid_new_face_attributes.merge(date: today),
     observer: gui,
@@ -160,7 +164,7 @@ Given(/^I have posted many things to my whiteboard's standup today$/) do
 end
 
 When(/^I archive my whiteboard's standup today$/) do
-  Board.archive_standup(
+  use_case_factory.archive_standup(
     whiteboard_id: gui.spy_created_whiteboard.id,
     observer: gui,
     repo_factory: repo_factory,
@@ -169,7 +173,7 @@ When(/^I archive my whiteboard's standup today$/) do
 end
 
 Then(/^those items should no longer be on the whiteboard$/) do
-  Board.present_whiteboard_items(
+  use_case_factory.present_whiteboard_items(
     whiteboard_id: gui.spy_created_whiteboard.id,
     observer: gui,
     repo_factory: repo_factory,

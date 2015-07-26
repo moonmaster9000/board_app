@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    Board.present_whiteboards(
+    use_case_factory.present_whiteboards(
       observer: self,
       whiteboard_repo: whiteboard_repo,
     ).execute
