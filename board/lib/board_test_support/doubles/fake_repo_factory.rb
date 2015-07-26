@@ -4,7 +4,6 @@ require "board_test_support/doubles/fake_interesting_repo"
 require "board_test_support/doubles/fake_whiteboard_repo"
 require "board_test_support/doubles/fake_event_repo"
 require "board_test_support/doubles/fake_standup_email_config_repo"
-require "board_test_support/doubles/fake_session_repo"
 
 class FakeRepoFactory
   def new_face_repo
@@ -29,10 +28,6 @@ class FakeRepoFactory
 
   def interesting_repo
     @interesting_repo ||= FakeInterestingRepo.new
-  end
-
-  def session_repo
-    @session_repo ||= FakeSessionRepo.new
   end
 end
 

@@ -1,6 +1,5 @@
-require "support/board_test_dsl"
-require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_repo_factory"
+require "authenticated_board"
+require "doubles/fake_session"
 
 describe "USE CASE: Authenticate" do
   context "Given the session is not already authenticated" do
@@ -10,7 +9,7 @@ describe "USE CASE: Authenticate" do
       specify "Then the Authenticate use case saves the stubbed_user in the session" do
         authenticate(authentication_strategy: authentication_strategy)
 
-        expect(session_repo.logged_in_user).to eq(stubbed_user)
+        expect(session.logged_in_user).to eq(stubbed_user)
       end
 
       specify "It notifies the observer that authentication succeeded" do
@@ -55,16 +54,32 @@ describe "USE CASE: Authenticate" do
   end
 
   let(:stubbed_user) { double :user }
-  let(:observer) { GuiSpy.new }
-  let(:repo_factory) { FakeRepoFactory.new }
-  let(:session_repo) { repo_factory.session_repo }
+  let(:observer) { AuthenticateObserverSpy.new }
+  let(:session) { FakeSession.new }
 
   def authenticate(authentication_strategy:)
-    Board::UseCaseFactory.new.authenticate(
+    AuthenticatedBoard::UseCaseFactory.new.authenticate(
       authentication_strategy: authentication_strategy,
-      repo_factory: repo_factory,
+      session: session,
       observer: observer,
     ).execute
+  end
+
+  class AuthenticateObserverSpy
+    def authentication_succeeded
+      @spy_authentication_succeeded = true
+    end
+    attr_reader :spy_authentication_succeeded
+
+    def authentication_failed(errors)
+      @spy_authentication_errors = errors
+    end
+    attr_reader :spy_authentication_errors
+
+    def already_authenticated
+      @spy_already_authenticated = true
+    end
+    attr_reader :spy_already_authenticated
   end
 
   class AlwaysSucceedsAuthStrategyStub

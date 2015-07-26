@@ -44,22 +44,6 @@ class GuiSpy
   end
   attr_reader :spy_created_new_face
 
-
-  def authentication_succeeded
-    @spy_authentication_succeeded = true
-  end
-  attr_reader :spy_authentication_succeeded
-
-  def authentication_failed(errors)
-    @spy_authentication_errors = errors
-  end
-  attr_reader :spy_authentication_errors
-
-  def already_authenticated
-    @spy_already_authenticated = true
-  end
-  attr_reader :spy_already_authenticated
-
   def standup_email_config_created(standup_email_config)
     @spy_created_standup_email_config = standup_email_config
   end

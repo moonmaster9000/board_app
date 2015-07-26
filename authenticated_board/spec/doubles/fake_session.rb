@@ -1,4 +1,4 @@
-class FakeSessionRepo
+class FakeSession
   attr_reader :logged_in_user
 
   def log_in(user)

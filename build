@@ -1,2 +1,4 @@
-pushd board; bundle exec cucumber $1 $2; bundle exec rspec --color --format=doc; popd
+pushd board; cucumber $1 $2; rspec --color --format=doc; popd
+pushd authenticated_board; rspec --color --format=doc; popd
 pushd persistence; bundle exec rspec --color --format=doc; popd
+

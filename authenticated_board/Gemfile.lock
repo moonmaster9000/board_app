@@ -1,0 +1,36 @@
+PATH
+  remote: .
+  specs:
+    authenticated_board (0.0.0)
+      board
+
+PATH
+  remote: ../
+  specs:
+    board (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  authenticated_board!
+  board!
+  rspec
