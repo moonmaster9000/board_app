@@ -4,12 +4,12 @@ require "doubles/fake_session"
 describe "USE CASE: Authenticate" do
   context "Given the session is not already authenticated" do
     context "When the authentication strategy succeeds and returns a user" do
-      let(:authentication_strategy) { AlwaysSucceedsAuthStrategyStub.new(returns_user: stubbed_user) }
+      let(:authentication_strategy) { AlwaysSucceedsAuthStrategyStub.new }
 
       specify "Then the Authenticate use case saves the stubbed_user in the session" do
         authenticate(authentication_strategy: authentication_strategy)
 
-        expect(session.logged_in_user).to eq(stubbed_user)
+        expect(session.logged_in?).to be(true)
       end
 
       specify "It notifies the observer that authentication succeeded" do
@@ -22,7 +22,7 @@ describe "USE CASE: Authenticate" do
 
   context "Given the session is already authenticated" do
     before do
-      @authentication_strategy = AlwaysSucceedsAuthStrategyStub.new(returns_user: stubbed_user)
+      @authentication_strategy = AlwaysSucceedsAuthStrategyStub.new
       authenticate(authentication_strategy: @authentication_strategy)
     end
 
@@ -53,7 +53,6 @@ describe "USE CASE: Authenticate" do
     let(:error_code) { "error_code" }
   end
 
-  let(:stubbed_user) { double :user }
   let(:observer) { AuthenticateObserverSpy.new }
   let(:session) { FakeSession.new }
 
@@ -83,12 +82,8 @@ describe "USE CASE: Authenticate" do
   end
 
   class AlwaysSucceedsAuthStrategyStub
-    def initialize(returns_user:)
-      @returns_user = returns_user
-    end
-
     def execute(observer:)
-      observer.authentication_succeeded(@returns_user)
+      observer.authentication_succeeded
     end
   end
 

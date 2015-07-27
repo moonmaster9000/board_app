@@ -13,7 +13,7 @@ describe "use cases require authentication" do
 
   context "When the session is logged in" do
     before do
-      session.log_in("user stub")
+      session.log_in
     end
 
     specify "then the authentication_board use case factory allows the underlying use cases to be executed" do

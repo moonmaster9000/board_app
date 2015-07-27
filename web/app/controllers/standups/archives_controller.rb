@@ -6,6 +6,7 @@ module Standups
         repo_factory: repo_factory,
         date: params[:standup_id],
         observer: self,
+        session: app_session,
       ).execute
     end
 

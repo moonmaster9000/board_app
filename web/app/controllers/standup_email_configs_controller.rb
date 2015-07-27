@@ -9,6 +9,7 @@ class StandupEmailConfigsController < ApplicationController
       repo_factory: repo_factory,
       attributes: params[:standup_email_config],
       observer: self,
+      session: app_session,
     ).execute
   end
 

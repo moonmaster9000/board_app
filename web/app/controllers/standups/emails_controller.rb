@@ -4,6 +4,7 @@ module Standups
       use_case_factory.email_standup(
         email_client: email_client,
         observer: self,
+        session: app_session,
         standup_email_formatter: MarkdownStandupEmailFormatter.new,
         whiteboard_id: params[:whiteboard_id],
         date: params[:standup_id],

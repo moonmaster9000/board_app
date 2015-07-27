@@ -36,4 +36,6 @@ Rails.application.configure do
     LetterOpener::DeliveryMethod,
     { :location => File.expand_path(File.join(__dir__, "..", "..", "tmp", "letter_opener")) }
   ]
+
+  config.ip_authentication_whitelist = ["127.0.0.1"]
 end

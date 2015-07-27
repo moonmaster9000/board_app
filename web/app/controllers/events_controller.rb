@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def create
     use_case_factory.create_event(
       observer: self,
+      session: app_session,
       whiteboard_id: params[:whiteboard_id],
       event_repo: event_repo,
       attributes: params[:event].symbolize_keys,

@@ -1,6 +1,8 @@
+require "board"
+
 module AuthenticatedBoard
   class UseCaseFactory
-    def initialize(board_use_case_factory: nil)
+    def initialize(board_use_case_factory: Board::UseCaseFactory.new)
       @board_use_case_factory = board_use_case_factory
     end
 
@@ -9,8 +11,14 @@ module AuthenticatedBoard
     end
 
     def method_missing(use_case_name, session:, observer:, **args, &block)
-      board_use_case = @board_use_case_factory.send(use_case_name, {observer: observer}.merge(args), &block)
-      RequiresAuthenticationDecorator.new(session: session, observer: observer, use_case: board_use_case)
+      board_use_case_args = {observer: observer}.merge(args)
+      board_use_case = @board_use_case_factory.send(use_case_name, board_use_case_args, &block)
+
+      RequiresAuthenticationDecorator.new(
+        session: session,
+        observer: observer,
+        use_case: board_use_case
+      )
     end
 
     class RequiresAuthenticationDecorator
@@ -28,7 +36,6 @@ module AuthenticatedBoard
         end
       end
     end
-
   end
 
   class AuthenticateUseCase
@@ -46,8 +53,8 @@ module AuthenticatedBoard
       end
     end
 
-    def authentication_succeeded(user)
-      @session.log_in(user)
+    def authentication_succeeded
+      @session.log_in
       @observer.authentication_succeeded
     end
 

@@ -1,11 +1,9 @@
 class FakeSession
-  attr_reader :logged_in_user
-
-  def log_in(user)
-    @logged_in_user = user
+  def log_in
+    @logged_in = true
   end
 
   def logged_in?
-    !!@logged_in_user
+    !!@logged_in
   end
 end

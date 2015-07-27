@@ -9,6 +9,7 @@ class InterestingsController < ApplicationController
       interesting_repo: interesting_repo,
       attributes: params[:interesting].symbolize_keys,
       observer: self,
+      session: app_session,
     ).execute
   end
 

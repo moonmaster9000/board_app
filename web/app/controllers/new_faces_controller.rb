@@ -6,6 +6,7 @@ class NewFacesController < ApplicationController
   def create
     use_case_factory.create_new_face(
       observer: self,
+      session: app_session,
       new_face_repo: new_face_repo,
       whiteboard_id: params[:whiteboard_id],
       attributes: params[:new_face],
