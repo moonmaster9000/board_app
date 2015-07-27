@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def app_session
-    Rails.application.config.app_session
+    require "web/cookie_session"
+    @app_session ||= Web::CookieSession.new(cookies)
   end
 
   def whiteboard_repo

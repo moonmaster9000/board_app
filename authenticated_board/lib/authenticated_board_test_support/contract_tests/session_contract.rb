@@ -1,7 +1,7 @@
-def assert_works_like_session_repo(session_repo_factory:)
+def assert_works_like_session(session_factory:)
   describe "Session Repo" do
     specify "it keeps track of whether or not a user is logged in" do
-      repo = session_repo_factory.call
+      repo = session_factory.call
 
       expect(repo).not_to be_logged_in
 

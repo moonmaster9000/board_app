@@ -22,7 +22,5 @@ module Web
 
     config.repo_factory = Persistence::Repos::RepoFactory.new
     config.use_case_factory = AuthenticatedBoard::UseCaseFactory.new
-    require_relative "../../authenticated_board/spec/doubles/fake_session"
-    config.app_session = FakeSession.new
   end
 end
