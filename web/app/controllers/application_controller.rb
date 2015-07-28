@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   def already_authenticated(*)
   end
 
+  def authentication_failed
+    raise "authentication failed :-("
+  end
+
   private
   def authenticate
     require "web/ip_authentication_strategy"

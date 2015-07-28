@@ -38,19 +38,13 @@ describe "USE CASE: Authenticate" do
   end
 
   context "When the authentication strategy fails and returns errors" do
-    let(:authentication_strategy) { AlwaysFailsAuthStrategyStub.new(error_name, error_code) }
+    let(:authentication_strategy) { AlwaysFailsAuthStrategyStub.new }
 
     specify "Then the Authenticate use case should forward those errors to the observer" do
       authenticate(authentication_strategy: authentication_strategy)
 
-      observed_error = observer.spy_authentication_errors.first
-
-      expect(observed_error.name).to eq(error_name)
-      expect(observed_error.code).to eq(error_code)
+      expect(observer.spy_authentication_failed).to be(true)
     end
-
-    let(:error_name) { "error_name" }
-    let(:error_code) { "error_code" }
   end
 
   let(:observer) { AuthenticateObserverSpy.new }
@@ -70,10 +64,10 @@ describe "USE CASE: Authenticate" do
     end
     attr_reader :spy_authentication_succeeded
 
-    def authentication_failed(errors)
-      @spy_authentication_errors = errors
+    def authentication_failed
+      @spy_authentication_failed = true
     end
-    attr_reader :spy_authentication_errors
+    attr_reader :spy_authentication_failed
 
     def already_authenticated
       @spy_already_authenticated = true
@@ -88,13 +82,8 @@ describe "USE CASE: Authenticate" do
   end
 
   class AlwaysFailsAuthStrategyStub
-    def initialize(error_name, error_code)
-      @error_name = error_name
-      @error_code = error_code
-    end
-
     def execute(observer:)
-      observer.authentication_failed({@error_name => @error_code})
+      observer.authentication_failed
     end
   end
 end

@@ -31,12 +31,12 @@ describe Web::IpAuthenticationStrategy do
   let(:observer) { AuthenticationStrategyObserverSpy.new }
 
   class AuthenticationStrategyObserverSpy
-    def authentication_succeeded(*)
+    def authentication_succeeded
       @spy_authentication_succeeded = true
     end
     attr_reader :spy_authentication_succeeded
 
-    def authentication_failed(*)
+    def authentication_failed
       @spy_authentication_failed = true
     end
     attr_reader :spy_authentication_failed
