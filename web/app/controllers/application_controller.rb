@@ -3,30 +3,37 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :authenticate
+  before_filter :authenticate_by_ip
 
-  def authentication_succeeded(*)
-  end
-
-  def already_authenticated(*)
-  end
-
-  def authentication_failed
-    raise "authentication failed :-("
-  end
 
   private
-  def authenticate
+  def authenticate_by_ip
     require "web/ip_authentication_strategy"
 
     use_case_factory.authenticate(
-      observer: self,
+      observer: IpAuthenticationObserver.new(self),
       session: app_session,
       authentication_strategy: Web::IpAuthenticationStrategy.new(
         whitelist: Rails.application.config.ip_authentication_whitelist,
         user_ip: request.remote_ip,
       ),
     ).execute
+  end
+
+  class IpAuthenticationObserver
+    def initialize(browser)
+      @browser = browser
+    end
+
+    def authentication_succeeded(*)
+    end
+
+    def already_authenticated(*)
+    end
+
+    def authentication_failed
+      @browser.redirect_to "/login"
+    end
   end
 
   def app_session

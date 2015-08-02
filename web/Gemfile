@@ -14,6 +14,7 @@ gem 'sqlite3'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'omniauth-google-oauth2'
 
 group :development do
   gem 'letter_opener'

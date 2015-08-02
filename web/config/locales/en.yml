@@ -39,3 +39,4 @@ en:
   whiteboard:
     attributes:
       name: "Name"
+  login: "Login with Okta"

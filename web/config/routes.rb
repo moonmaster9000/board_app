@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: "homes#index"
 
+  get "/login", to: "okta_login#index"
+
+  get "/auth/google_oauth2/callback", to: "okta_login#login"
+
   resources :whiteboards do
     resources :helps
     resources :new_faces
