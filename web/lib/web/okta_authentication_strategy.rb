@@ -5,7 +5,21 @@ module Web
     end
 
     def execute(observer:)
-      observer.authentication_succeeded
+      if (email.end_with?("pivotal.io"))
+        observer.authentication_succeeded
+      else
+        observer.authentication_failed
+      end
+    end
+
+    private
+
+    def email
+      info["email"] || ""
+    end
+
+    def info
+      @auth_hash["info"] || {}
     end
   end
 end
