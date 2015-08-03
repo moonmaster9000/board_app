@@ -13,7 +13,7 @@ module Board
       end
 
       def execute
-        if @repo_factory.post_repo.find_by_standup_date_and_whiteboard_id(@standup_date, @whiteboard_id)
+        if @repo_factory.post_repo.find_by_whiteboard_id_and_standup_date(@whiteboard_id, @standup_date)
           @observer.standup_already_posted
         else
           Board::UseCaseFactory.new.present_standup(
