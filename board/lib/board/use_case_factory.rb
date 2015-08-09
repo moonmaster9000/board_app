@@ -10,10 +10,15 @@ require "board/use_cases/archive_standup_use_case"
 require "board/use_cases/present_whiteboard_items_use_case"
 require "board/use_cases/email_standup_use_case"
 require "board/use_cases/set_standup_email_config_use_case"
+require "board/use_cases/post_standup_to_blog_use_case"
 
 module Board
   class UseCaseFactory
     include UseCases
+
+    def post_standup_to_blog(*args)
+      PostStandupToBlogUseCase.new(*args)
+    end
 
     def archive_standup(*args)
       ArchiveStandupUseCase.new(*args)
