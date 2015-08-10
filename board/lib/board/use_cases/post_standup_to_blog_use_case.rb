@@ -28,22 +28,24 @@ module Board
       def post_standup
         Board::UseCaseFactory.new.present_standup(
           whiteboard_id: @whiteboard_id,
-          observer: PostStandupToBlogObserver.new(blog_client: @blog_client, post_repo: post_repo, post: post),
+          observer: PostStandupToBlogObserver.new(blog_client: @blog_client, post_repo: post_repo, post: post, observer: @observer),
           date: @standup_date,
           repo_factory: @repo_factory,
         ).execute
       end
 
       class PostStandupToBlogObserver
-        def initialize(blog_client:, post_repo:, post:)
+        def initialize(blog_client:, post_repo:, post:, observer:)
           @blog_client = blog_client
           @post_repo = post_repo
           @post = post
+          @observer = observer
         end
 
         def standup_presented(standup)
-          @blog_client.post(title: @title, standup: standup)
+          @blog_client.post(title: @post.title, standup: standup)
           @post_repo.save(@post)
+          @observer.post_succeeded
         end
       end
 

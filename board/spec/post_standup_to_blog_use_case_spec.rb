@@ -21,6 +21,12 @@ describe "USE CASE: Post Standup To Blog" do
 
           expect(blog_client.posted?).to be(true)
         end
+
+        specify "Then the use case will notify the observer of success" do
+          post_standup(title: title, whiteboard_id: @whiteboard_id, standup_date: standup_date, blog_client: blog_client, observer: post_standup_observer)
+
+          expect(post_standup_observer.spy_post_succeeded).to be(true)
+        end
       end
 
       context "Given an empty title" do
@@ -96,5 +102,10 @@ describe "USE CASE: Post Standup To Blog" do
       @spy_standup_already_posted = true
     end
     attr_reader :spy_standup_already_posted
+
+    def post_succeeded
+      @spy_post_succeeded = true
+    end
+    attr_reader :spy_post_succeeded
   end
 end

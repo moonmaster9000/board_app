@@ -10,6 +10,7 @@ gem 'authenticated_board', path: '../authenticated_board'
 gem 'persistence', path: '../persistence'
 gem 'markdown_standup_email_formatter', path: '../markdown_standup_email_formatter'
 gem 'email_client', path: '../email_client'
+gem 'wordpress_client', path: '../wordpress_client'
 gem 'sqlite3'
 
 gem 'jquery-rails'

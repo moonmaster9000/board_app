@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    wordpress_client (0.0.0)
+      rubypress
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    retryable-rb (1.1.0)
+    rubypress (1.1.1)
+      retryable-rb
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  wordpress_client!
