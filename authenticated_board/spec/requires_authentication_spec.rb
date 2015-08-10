@@ -16,7 +16,7 @@ describe "use cases require authentication" do
       session.log_in
     end
 
-    specify "then the authentication_board use case factory allows the underlying use cases to be executed" do
+    specify "then the authenticated_board use case factory allows the underlying use cases to be executed" do
       use_case_factory.stub_use_case(session: session, observer: observer).execute
 
       expect(use_case_spy.execute_was_called?).to be(true)

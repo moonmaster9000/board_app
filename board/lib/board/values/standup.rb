@@ -6,6 +6,12 @@ module Board
       def items
         @hash
       end
+
+      def available_items
+        @hash.reject do |_, value|
+          value.empty?
+        end
+      end
     end
   end
 end
