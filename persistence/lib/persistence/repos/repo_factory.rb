@@ -4,10 +4,16 @@ require "persistence/repos/help_repo"
 require "persistence/repos/event_repo"
 require "persistence/repos/interesting_repo"
 require "persistence/repos/standup_email_config_repo"
+require "persistence/repos/post_repo"
+
 
 module Persistence
   module Repos
     class RepoFactory
+      def post_repo
+        PostRepo.new
+      end
+
       def new_face_repo
         NewFaceRepo.new
       end

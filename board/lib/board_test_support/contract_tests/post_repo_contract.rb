@@ -7,7 +7,7 @@ def assert_works_like_a_post_repo(repo_factory:)
     assert_works_like_an_entity_repo(generate_repo_lambda: -> { repo_factory.post_repo }, entity_class: Board::Entities::Post)
 
     it "allows fetching by whiteboard id and standup date" do
-      post_repo = FakePostRepo.new
+      post_repo = repo_factory.post_repo
       standup_date = Date.today
       whiteboard_id = 1
 
