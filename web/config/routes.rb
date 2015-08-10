@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :events
       resources :archives
       resources :emails
+      resources :posts
     end
   end
 

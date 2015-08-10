@@ -19,3 +19,5 @@ br
 = link_to "Archive Standup", whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
 br
 = link_to "Email Standup", whiteboard_standup_emails_path(@whiteboard.id, Date.today.to_s), method: :post
+br
+= link_to "Post Standup To Blog", whiteboard_standup_posts_path(@whiteboard.id, Date.today.to_s), method: :post
