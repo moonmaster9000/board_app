@@ -1,5 +1,5 @@
-<% item_categories.each do |item_category| %>
+<% standup.available_items.each do |item_name, item_values| %>
   <section>
-    <%= item_category.render %>
+    <%= render_items(item_name, item_values) %>
   </section>
 <% end %>
