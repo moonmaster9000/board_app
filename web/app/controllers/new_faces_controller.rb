@@ -1,6 +1,8 @@
 class NewFacesController < ApplicationController
+  before_filter :set_new_face_attributes
+
   def new
-    @whiteboard_id = params[:whiteboard_id]
+    @errors = {}
   end
 
   def create
@@ -15,5 +17,15 @@ class NewFacesController < ApplicationController
 
   def new_face_created(new_face)
     redirect_to whiteboard_path(params[:whiteboard_id])
+  end
+
+  def validation_failed(errors)
+    @errors = errors
+    render action: :new
+  end
+
+  private
+  def set_new_face_attributes
+    @new_face_attributes = params[:new_face] || {}
   end
 end
