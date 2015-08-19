@@ -3,7 +3,9 @@ class NewFacesController < ApplicationController
 
   def new
     @errors = {}
+    @new_face = NewFace.new
   end
+
 
   def create
     use_case_factory.create_new_face(
@@ -21,11 +23,16 @@ class NewFacesController < ApplicationController
 
   def validation_failed(errors)
     @errors = errors
+    @new_face = NewFace.new(params[:new_face])
     render action: :new
   end
 
   private
   def set_new_face_attributes
-    @new_face_attributes = params[:new_face] || {}
   end
+end
+
+class NewFace
+  attr_accessor :name, :date
+  include ActiveModel::Model
 end
