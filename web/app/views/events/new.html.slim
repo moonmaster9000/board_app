@@ -1,4 +1,6 @@
-= form_for :event, url: whiteboard_events_path(@whiteboard_id) do |form|
+= render partial: "shared/errors", locals: { errors: @errors }
+
+= form_for @event, url: whiteboard_events_path(params[:whiteboard_id]) do |form|
   = form.text_field :title
   = form.text_area :description
   = form.date_field :date

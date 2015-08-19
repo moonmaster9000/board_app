@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def new
-    @whiteboard_id = params[:whiteboard_id]
+    @errors = {}
+    @event = Event.new
   end
 
   def create
@@ -16,4 +17,15 @@ class EventsController < ApplicationController
   def event_created(event)
     redirect_to whiteboard_path(params[:whiteboard_id])
   end
+
+  def validation_failed(errors)
+    @errors = errors
+    @event = Event.new(params[:event])
+    render action: :new
+  end
+end
+
+class Event
+  attr_accessor :title, :description, :date
+  include ActiveModel::Model
 end
