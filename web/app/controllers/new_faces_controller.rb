@@ -32,6 +32,9 @@ class NewFacesController < ApplicationController
 end
 
 class NewFace
-  attr_accessor :name, :date
   include ActiveModel::Model
+  include Virtus.model
+
+  attribute :name, String
+  attribute :date, Date
 end

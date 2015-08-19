@@ -12,6 +12,7 @@ gem 'markdown_standup_email_formatter', path: '../markdown_standup_email_formatt
 gem 'email_client', path: '../email_client'
 gem 'wordpress_client', path: '../wordpress_client'
 gem 'sqlite3'
+gem 'virtus'
 
 gem 'jquery-rails'
 gem 'turbolinks'

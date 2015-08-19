@@ -27,5 +27,8 @@ end
 
 class Help
   include ActiveModel::Model
-  attr_accessor :description, :date
+  include Virtus.model
+
+  attribute :description, String
+  attribute :date, Date
 end

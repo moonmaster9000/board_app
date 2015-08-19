@@ -26,6 +26,10 @@ class EventsController < ApplicationController
 end
 
 class Event
-  attr_accessor :title, :description, :date
   include ActiveModel::Model
+  include Virtus.model
+
+  attribute :title, String
+  attribute :description, String
+  attribute :date, Date
 end
