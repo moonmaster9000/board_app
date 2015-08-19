@@ -1,6 +1,7 @@
 class HelpsController < ApplicationController
   def new
-    @whiteboard_id = params[:whiteboard_id]
+    @errors = {}
+    @help = Help.new
   end
 
   def create
@@ -13,7 +14,18 @@ class HelpsController < ApplicationController
     ).execute
   end
 
+  def validation_failed(errors)
+    @errors = errors
+    @help = Help.new(params[:help])
+    render action: :new
+  end
+
   def help_created(help)
     redirect_to whiteboard_path(params[:whiteboard_id])
   end
+end
+
+class Help
+  include ActiveModel::Model
+  attr_accessor :description, :date
 end
