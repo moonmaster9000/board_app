@@ -1,6 +1,7 @@
 class InterestingsController < ApplicationController
   def new
-    @whiteboard_id = params[:whiteboard_id]
+    @interesting = Interesting.new
+    @errors = {}
   end
 
   def create
@@ -17,7 +18,14 @@ class InterestingsController < ApplicationController
     redirect_to whiteboard_path(params[:whiteboard_id])
   end
 
-  def validation_failed(validation_errors)
-    raise validation_errors.inspect
+  def validation_failed(errors)
+    @errors = errors
+    @interesting = Interesting.new(params[:interesting])
+    render action: :new
   end
+end
+
+class Interesting
+  attr_accessor :title, :description, :date
+  include ActiveModel::Model
 end

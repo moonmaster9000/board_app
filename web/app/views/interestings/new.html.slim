@@ -1,4 +1,6 @@
-= form_for :interesting, url: whiteboard_interestings_path(@whiteboard_id) do |form|
+= render partial: "shared/errors", locals: {errors: @errors}
+
+= form_for @interesting, url: whiteboard_interestings_path(params[:whiteboard_id]) do |form|
   = form.label(:interesting, :title)
   = form.text_field :title
 
