@@ -1,0 +1,3 @@
+ul
+  - errors.each do |error|
+    li= I18n.t("whiteboard_items.error_codes.#{error.error}", field_name: error.field_name)

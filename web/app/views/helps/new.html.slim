@@ -1,6 +1,4 @@
-ul
-  - @errors.each do |error|
-    li= I18n.t("whiteboard_items.error_codes.#{error.error}", field_name: error.field_name)
+= render partial: "shared/errors", locals: {errors: @errors}
 
 = form_for @help, url: whiteboard_helps_path(params[:whiteboard_id]) do |form|
   = form.text_area :description
