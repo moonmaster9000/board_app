@@ -6,7 +6,6 @@ class NewFacesController < ApplicationController
     @new_face = NewFace.new
   end
 
-
   def create
     use_case_factory.create_new_face(
       observer: self,
