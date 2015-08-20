@@ -8,6 +8,16 @@ class GuiSpy
   end
   attr_reader :spy_created_whiteboard
 
+  def event_updated(event)
+    @spy_updated_event = event
+  end
+  attr_reader :spy_updated_event
+
+  def entity_not_found
+    @spy_entity_not_found = true
+  end
+  attr_reader :spy_entity_not_found
+
   def help_created(help)
     @spy_created_help = help
   end

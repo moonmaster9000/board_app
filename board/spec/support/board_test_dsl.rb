@@ -89,6 +89,19 @@ module BoardTestDSL
     observer.spy_created_event
   end
 
+  def update_event(event_id:, observer: nil, **event_attributes)
+    observer ||= self.observer
+
+    use_case_factory.update_event(
+      observer: observer,
+      attributes: event_attributes,
+      repo_factory: repo_factory,
+      event_id: event_id,
+    ).execute
+
+    observer.spy_updated_event
+  end
+
   def create_new_face(whiteboard_id:, observer: nil, **new_face_attributes)
     observer ||= self.observer
 
