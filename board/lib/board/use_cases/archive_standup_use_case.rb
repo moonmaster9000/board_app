@@ -38,6 +38,6 @@ module Board
   end
 end
 
-Dir[File.join(__dir__, "standup_item_archivers", "**", "*.rb")].each do |archiver|
+Dir[File.join(__dir__, "**", "standup_item_archivers", "*.rb")].each do |archiver|
   require archiver
 end

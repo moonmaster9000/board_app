@@ -1,16 +1,17 @@
 require "board/use_cases/present_standup_use_case"
-require "board/use_cases/create_new_face_use_case"
 require "board/use_cases/create_whiteboard_use_case"
 require "board/use_cases/present_whiteboard_use_case"
-require "board/use_cases/create_help_use_case"
 require "board/use_cases/present_whiteboards_use_case"
-require "board/use_cases/create_interesting_use_case"
-require "board/use_cases/create_event_use_case"
 require "board/use_cases/archive_standup_use_case"
 require "board/use_cases/present_whiteboard_items_use_case"
 require "board/use_cases/email_standup_use_case"
 require "board/use_cases/set_standup_email_config_use_case"
 require "board/use_cases/post_standup_to_blog_use_case"
+
+require "board/use_cases/events/create_event_use_case"
+require "board/use_cases/helps/create_help_use_case"
+require "board/use_cases/interestings/create_interesting_use_case"
+require "board/use_cases/new_faces/create_new_face_use_case"
 
 module Board
   class UseCaseFactory

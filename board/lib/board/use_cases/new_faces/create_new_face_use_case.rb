@@ -1,4 +1,4 @@
-require "board/entities/new_face"
+require "board/use_cases/new_faces/entities/new_face"
 require "board/use_cases/create_entity_for_whiteboard_use_case"
 
 module Board

@@ -1,5 +1,5 @@
 require "board/use_cases/create_entity_for_whiteboard_use_case"
-require "board/entities/interesting"
+require "board/use_cases/interestings/entities/interesting"
 
 module Board
   module UseCases

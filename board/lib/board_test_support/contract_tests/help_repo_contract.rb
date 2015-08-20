@@ -1,4 +1,4 @@
-require "board/entities/help"
+require "board/use_cases/helps/entities/help"
 require "board_test_support/contract_tests/entity_that_belongs_to_whiteboard_repo_contract"
 require "board_test_support/contract_tests/entity_repo_contract"
 

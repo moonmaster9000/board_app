@@ -1,4 +1,4 @@
-require "board/entities/help"
+require "board/use_cases/helps/entities/help"
 require "persistence/private/help"
 require "persistence/repos/entity_repo"
 require "persistence/repos/lookup_by_whiteboard_and_date"

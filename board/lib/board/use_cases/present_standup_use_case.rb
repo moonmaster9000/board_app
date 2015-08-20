@@ -54,6 +54,6 @@ module Board
   end
 end
 
-Dir[File.join(__dir__, "standup_item_collectors", "**", "*.rb")].each do |file|
+Dir[File.join(__dir__, "**", "standup_item_collectors", "*.rb")].each do |file|
   require file
 end

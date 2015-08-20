@@ -36,6 +36,6 @@ module Board
 end
 
 
-Dir[File.join(__dir__, "whiteboard_item_collectors", "**", "*.rb")].each do |collector|
+Dir[File.join(__dir__, "**", "whiteboard_item_collectors", "*.rb")].each do |collector|
   require collector
 end
