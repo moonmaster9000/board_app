@@ -16,3 +16,13 @@ module Board
     end
   end
 end
+
+require "board/use_case_factory"
+
+module Board
+  class UseCaseFactory
+    def create_event(*args)
+      CreateEventUseCase.new(*args)
+    end
+  end
+end
