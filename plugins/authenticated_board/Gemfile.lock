@@ -5,7 +5,7 @@ PATH
       board
 
 PATH
-  remote: ../
+  remote: ../../
   specs:
     board (0.0.1)
 

@@ -1,0 +1,5 @@
+# Logfile created on 2015-08-19 21:42:37 -0400 by logger.rb/44203
+I, [2015-08-19T21:42:37.833729 #15870]  INFO -- : 0:  bundler (1.5.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2015-08-19T21:42:39.070285 #15872]  INFO -- : 2:  mime-types (2.6.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/mime-types-2.6.1.gemspec
+I, [2015-08-19T21:42:39.092794 #15871]  INFO -- : 1:  mail (2.6.3) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/mail-2.6.3.gemspec
+I, [2015-08-19T21:42:39.111476 #15870]  INFO -- : 0:  email_client (0.0.0) from /Users/moonmaster9000/code/board_app/plugins/email_client/email_client.gemspec

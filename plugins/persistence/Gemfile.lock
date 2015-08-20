@@ -5,7 +5,7 @@ PATH
       rails (~> 4.1.9)
 
 PATH
-  remote: ../board
+  remote: ../../board
   specs:
     board (0.0.1)
 

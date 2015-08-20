@@ -1,0 +1,5 @@
+# Logfile created on 2015-08-19 21:42:39 -0400 by logger.rb/44203
+I, [2015-08-19T21:42:39.934078 #15874]  INFO -- : 0:  bundler (1.5.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2015-08-19T21:42:39.934776 #15876]  INFO -- : 2:  retryable-rb (1.1.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/retryable-rb-1.1.0.gemspec
+I, [2015-08-19T21:42:39.946863 #15875]  INFO -- : 1:  rubypress (1.1.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rubypress-1.1.1.gemspec
+I, [2015-08-19T21:42:40.012522 #15874]  INFO -- : 0:  wordpress_client (0.0.0) from /Users/moonmaster9000/code/board_app/plugins/wordpress_client/wordpress_client.gemspec

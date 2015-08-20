@@ -1,0 +1,10 @@
+# Logfile created on 2015-08-19 21:42:31 -0400 by logger.rb/44203
+I, [2015-08-19T21:42:31.578519 #15863]  INFO -- : 1:  rspec-support (3.2.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-support-3.2.1.gemspec
+I, [2015-08-19T21:42:31.578872 #15864]  INFO -- : 2:  diff-lcs (1.2.5) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/diff-lcs-1.2.5.gemspec
+I, [2015-08-19T21:42:31.580032 #15863]  INFO -- : 1:  bundler (1.5.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2015-08-19T21:42:31.581013 #15864]  INFO -- : 2:  rspec-core (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-core-3.2.0.gemspec
+I, [2015-08-19T21:42:31.580940 #15862]  INFO -- : 0:  github-markdown (0.6.8) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/github-markdown-0.6.8.gemspec
+I, [2015-08-19T21:42:31.581803 #15863]  INFO -- : 1:  rspec-expectations (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-expectations-3.2.0.gemspec
+I, [2015-08-19T21:42:31.582274 #15864]  INFO -- : 2:  rspec-mocks (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-mocks-3.2.0.gemspec
+I, [2015-08-19T21:42:31.583648 #15863]  INFO -- : 1:  rspec (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-3.2.0.gemspec
+I, [2015-08-19T21:42:31.646556 #15862]  INFO -- : 0:  markdown_standup_email_formatter (0.0.0) from /Users/moonmaster9000/code/board_app/plugins/markdown_standup_email_formatter/markdown_standup_email_formatter.gemspec

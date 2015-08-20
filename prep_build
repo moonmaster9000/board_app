@@ -1,7 +1,10 @@
 pushd board; bundle install; popd
+
+pushd plugins;
 pushd persistence; bundle install; bundle exec rake app:db:drop; bundle exec rake app:db:create; bundle exec rake app:db:migrate; bundle exec rake app:db:test:prepare; popd
 pushd markdown_standup_email_formatter; bundle install; popd
 pushd authenticated_board; bundle install; popd
 pushd email_client; bundle install; popd
 pushd wordpress_client; bundle install; popd
 pushd web; bundle install; bundle exec rake db:migrate; popd
+popd;

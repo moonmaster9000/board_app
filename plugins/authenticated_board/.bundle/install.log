@@ -1,0 +1,10 @@
+# Logfile created on 2015-08-19 21:42:32 -0400 by logger.rb/44203
+I, [2015-08-19T21:42:32.453509 #15867]  INFO -- : 1:  rspec-support (3.2.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-support-3.2.1.gemspec
+I, [2015-08-19T21:42:32.453983 #15866]  INFO -- : 0:  diff-lcs (1.2.5) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/diff-lcs-1.2.5.gemspec
+I, [2015-08-19T21:42:32.454932 #15867]  INFO -- : 1:  bundler (1.5.1) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2015-08-19T21:42:32.456379 #15866]  INFO -- : 0:  rspec-core (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-core-3.2.0.gemspec
+I, [2015-08-19T21:42:32.456636 #15867]  INFO -- : 1:  rspec-expectations (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-expectations-3.2.0.gemspec
+I, [2015-08-19T21:42:32.457719 #15867]  INFO -- : 1:  rspec-mocks (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-mocks-3.2.0.gemspec
+I, [2015-08-19T21:42:32.458757 #15866]  INFO -- : 0:  rspec (3.2.0) from /Users/moonmaster9000/.rvm/gems/ruby-2.1.0/specifications/rspec-3.2.0.gemspec
+I, [2015-08-19T21:42:32.571692 #15868]  INFO -- : 2:  board (0.0.1) from /Users/moonmaster9000/code/board_app/board/board.gemspec
+I, [2015-08-19T21:42:32.635007 #15867]  INFO -- : 1:  authenticated_board (0.0.0) from /Users/moonmaster9000/code/board_app/plugins/authenticated_board/authenticated_board.gemspec

@@ -1,13 +1,13 @@
 PATH
+  remote: ../../board
+  specs:
+    board (0.0.1)
+
+PATH
   remote: ../authenticated_board
   specs:
     authenticated_board (0.0.0)
       board
-
-PATH
-  remote: ../board
-  specs:
-    board (0.0.1)
 
 PATH
   remote: ../email_client
