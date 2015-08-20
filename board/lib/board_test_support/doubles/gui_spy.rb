@@ -18,6 +18,11 @@ class GuiSpy
   end
   attr_reader :spy_updated_interesting
 
+  def help_updated(help)
+    @spy_updated_help = help
+  end
+  attr_reader :spy_updated_help
+
   def entity_not_found
     @spy_entity_not_found = true
   end

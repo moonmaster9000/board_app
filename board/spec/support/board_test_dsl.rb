@@ -115,6 +115,19 @@ module BoardTestDSL
     observer.spy_updated_interesting
   end
 
+  def update_help(help_id:, observer: nil, **help_attributes)
+    observer ||= self.observer
+
+    use_case_factory.update_help(
+      observer: observer,
+      attributes: help_attributes,
+      repo_factory: repo_factory,
+      help_id: help_id,
+    ).execute
+
+    observer.spy_updated_help
+  end
+
   def create_new_face(whiteboard_id:, observer: nil, **new_face_attributes)
     observer ||= self.observer
 
