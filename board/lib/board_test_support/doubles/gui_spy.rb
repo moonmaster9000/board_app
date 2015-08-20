@@ -23,6 +23,11 @@ class GuiSpy
   end
   attr_reader :spy_updated_help
 
+  def new_face_updated(new_face)
+    @spy_updated_new_face = new_face
+  end
+  attr_reader :spy_updated_new_face
+
   def entity_not_found
     @spy_entity_not_found = true
   end

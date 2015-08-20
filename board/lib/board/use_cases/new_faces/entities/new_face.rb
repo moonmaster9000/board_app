@@ -15,6 +15,7 @@ module Board
       include Validations
       validate_field :name, :required
       validate_field :date, :required
+      validate_field :whiteboard_id, :required
     end
   end
 end
