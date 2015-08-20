@@ -13,6 +13,11 @@ class GuiSpy
   end
   attr_reader :spy_updated_event
 
+  def interesting_updated(interesting)
+    @spy_updated_interesting = interesting
+  end
+  attr_reader :spy_updated_interesting
+
   def entity_not_found
     @spy_entity_not_found = true
   end

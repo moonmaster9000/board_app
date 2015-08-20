@@ -101,6 +101,19 @@ module BoardTestDSL
 
     observer.spy_updated_event
   end
+  
+  def update_interesting(interesting_id:, observer: nil, **interesting_attributes)
+    observer ||= self.observer
+
+    use_case_factory.update_interesting(
+      observer: observer,
+      attributes: interesting_attributes,
+      repo_factory: repo_factory,
+      interesting_id: interesting_id,
+    ).execute
+
+    observer.spy_updated_interesting
+  end
 
   def create_new_face(whiteboard_id:, observer: nil, **new_face_attributes)
     observer ||= self.observer
