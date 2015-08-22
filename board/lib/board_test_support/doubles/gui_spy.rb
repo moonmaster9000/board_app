@@ -68,6 +68,16 @@ class GuiSpy
   end
   attr_reader :spy_help_not_found
 
+  def interesting_read(interesting)
+    @spy_read_interesting = interesting
+  end
+  attr_reader :spy_read_interesting
+
+  def interesting_not_found
+    @spy_interesting_not_found = true
+  end
+  attr_reader :spy_interesting_not_found
+
   def whiteboard_presented(whiteboard)
     @spy_presented_whiteboard = whiteboard
   end

@@ -112,6 +112,18 @@ module BoardTestDSL
 
     observer.spy_read_help
   end
+  
+  def read_interesting(interesting_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.read_interesting(
+      observer: observer,
+      repo_factory: repo_factory,
+      interesting_id: interesting_id,
+    ).execute
+
+    observer.spy_read_interesting
+  end
 
   def update_event(event_id:, observer: nil, **event_attributes)
     observer ||= self.observer
