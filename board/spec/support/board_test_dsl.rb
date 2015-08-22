@@ -88,6 +88,30 @@ module BoardTestDSL
 
     observer.spy_created_event
   end
+  
+  def read_event(event_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.read_event(
+      observer: observer,
+      repo_factory: repo_factory,
+      event_id: event_id,
+    ).execute
+
+    observer.spy_read_event
+  end
+  
+  def read_help(help_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.read_help(
+      observer: observer,
+      repo_factory: repo_factory,
+      help_id: help_id,
+    ).execute
+
+    observer.spy_read_help
+  end
 
   def update_event(event_id:, observer: nil, **event_attributes)
     observer ||= self.observer

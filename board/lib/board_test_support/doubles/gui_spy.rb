@@ -48,6 +48,26 @@ class GuiSpy
   end
   attr_reader :spy_created_event
 
+  def event_read(event)
+    @spy_read_event = event
+  end
+  attr_reader :spy_read_event
+
+  def event_not_found
+    @spy_event_not_found = true
+  end
+  attr_reader :spy_event_not_found
+
+  def help_read(help)
+    @spy_read_help = help
+  end
+  attr_reader :spy_read_help
+
+  def help_not_found
+    @spy_help_not_found = true
+  end
+  attr_reader :spy_help_not_found
+
   def whiteboard_presented(whiteboard)
     @spy_presented_whiteboard = whiteboard
   end
