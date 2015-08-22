@@ -49,7 +49,6 @@ module Board
           whiteboard_id: @whiteboard_id,
           observer: @observer,
           attributes: @attributes,
-          email_config: email_config,
         )
       end
 
