@@ -68,6 +68,16 @@ class GuiSpy
   end
   attr_reader :spy_help_not_found
 
+  def new_face_read(new_face)
+    @spy_read_new_face = new_face
+  end
+  attr_reader :spy_read_new_face
+
+  def new_face_not_found
+    @spy_new_face_not_found = true
+  end
+  attr_reader :spy_new_face_not_found
+
   def interesting_read(interesting)
     @spy_read_interesting = interesting
   end

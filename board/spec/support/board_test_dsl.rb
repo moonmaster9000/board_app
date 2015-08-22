@@ -101,6 +101,18 @@ module BoardTestDSL
     observer.spy_read_event
   end
   
+  def read_new_face(new_face_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.read_new_face(
+      observer: observer,
+      repo_factory: repo_factory,
+      new_face_id: new_face_id,
+    ).execute
+
+    observer.spy_read_new_face
+  end
+  
   def read_help(help_id:, observer: nil)
     observer ||= self.observer
 
