@@ -1,0 +1,6 @@
+= form_for event, url: url, method: http_method do |form|
+  = form.text_field :title
+  = form.text_area :description
+  = form.date_field :date
+  br
+  = form.submit submit_text
