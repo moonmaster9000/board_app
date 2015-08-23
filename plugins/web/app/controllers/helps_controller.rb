@@ -1,12 +1,33 @@
+require "delegate"
+
 class HelpsController < ApplicationController
   def new
-    @errors = {}
-    @help = Help.new
+    blank_out_errors
+    set_help(Help.new)
+  end
+
+  def edit
+    use_case_factory.read_help(
+      observer: EditObserver.new(self),
+      session: app_session,
+      help_id: params[:id],
+      repo_factory: repo_factory,
+    ).execute
+  end
+
+  def update
+    use_case_factory.update_help(
+      observer: UpdateObserver.new(self),
+      session: app_session,
+      help_id: params[:id],
+      attributes: params[:help].symbolize_keys,
+      repo_factory: repo_factory,
+    ).execute
   end
 
   def create
     use_case_factory.create_help(
-      observer: self,
+      observer: CreateObserver.new(self),
       session: app_session,
       whiteboard_id: params[:whiteboard_id],
       help_repo: help_repo,
@@ -14,14 +35,54 @@ class HelpsController < ApplicationController
     ).execute
   end
 
-  def validation_failed(errors)
-    @errors = errors
-    @help = Help.new(params[:help])
-    render action: :new
+  def set_help(help)
+    @help = help
   end
 
-  def help_created(help)
-    redirect_to whiteboard_path(params[:whiteboard_id])
+  def set_errors(errors)
+    @errors = errors
+  end
+
+  def blank_out_errors
+    @errors = {}
+  end
+
+  class CreateObserver < SimpleDelegator
+    def validation_failed(errors)
+      set_errors(errors)
+      set_help(Help.new(params[:help]))
+
+      render action: :new
+    end
+
+    def help_created(help)
+      flash[:notice] = t('helps.create_success_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+  end
+
+  class UpdateObserver < SimpleDelegator
+    def help_updated(help)
+      flash[:notice] = t('helps.update_success_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+
+    def validation_failed(errors)
+      set_errors(errors)
+      set_help(Help.new(params[:help]))
+
+      render action: :edit
+    end
+  end
+
+  class EditObserver < SimpleDelegator
+    def help_read(help)
+      set_help(Help.new(help.attributes))
+      blank_out_errors
+
+      render action: :edit
+    end
   end
 end
 

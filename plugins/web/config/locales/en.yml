@@ -1,5 +1,4 @@
 en:
-  hello: "Hello world"
   whiteboard_items:
     error_codes:
       required: "'%{field_name}' is required"
@@ -10,8 +9,12 @@ en:
     title: "New Faces"
     create: "Create New Face"
   helps:
-    create: "Create New Help"
+    create_button: "Create"
+    edit_button: "Update"
+    edit_link: "Edit"
     title: "Helps"
+    update_success_flash_message: "Help updated!"
+    create_success_flash_message: "Help created!"
   interestings:
     create: "Create Interesting"
     title: "Interestings"
