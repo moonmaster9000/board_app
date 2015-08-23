@@ -57,6 +57,10 @@ describe "USE CASE: updateing an event" do
           expect(gui.spy_updated_event.attributes).to include({date: @new_date, title: @new_title})
         end
 
+        it "saves the event" do
+          expect(read_event(event_id: @event.id).attributes).to include({date: @new_date, title: @new_title})
+        end
+
         it "doesn't send any validation errors" do
           expect(gui.spy_validation_errors).not_to be
         end

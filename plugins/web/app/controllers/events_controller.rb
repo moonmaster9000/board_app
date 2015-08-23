@@ -4,6 +4,37 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def edit
+    use_case_factory.read_event(
+      observer: self,
+      session: app_session,
+      event_id: params[:id],
+      repo_factory: repo_factory,
+    ).execute
+  end
+
+  def event_read(event)
+    @event = Event.new(event.attributes)
+    @errors = {}
+
+    render action: :edit
+  end
+
+  def update
+    use_case_factory.update_event(
+      event_id: params[:id],
+      attributes: params[:event].symbolize_keys,
+      repo_factory: repo_factory,
+      observer: self,
+      session: app_session,
+    ).execute
+  end
+
+  def event_updated(*)
+    flash[:notice] = "Event updated"
+    redirect_to whiteboard_path(params[:whiteboard_id])
+  end
+
   def create
     use_case_factory.create_event(
       observer: self,
