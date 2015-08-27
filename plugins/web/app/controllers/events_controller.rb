@@ -1,23 +1,16 @@
 class EventsController < ApplicationController
   def new
-    @errors = {}
-    @event = Event.new
+    blank_out_errors
+    set_event(Event.new)
   end
 
   def edit
     use_case_factory.read_event(
-      observer: self,
+      observer: EditObserver.new(self),
       session: app_session,
       event_id: params[:id],
       repo_factory: repo_factory,
     ).execute
-  end
-
-  def event_read(event)
-    @event = Event.new(event.attributes)
-    @errors = {}
-
-    render action: :edit
   end
 
   def update
@@ -25,19 +18,14 @@ class EventsController < ApplicationController
       event_id: params[:id],
       attributes: params[:event].symbolize_keys,
       repo_factory: repo_factory,
-      observer: self,
+      observer: UpdateObserver.new(self),
       session: app_session,
     ).execute
   end
 
-  def event_updated(*)
-    flash[:notice] = "Event updated"
-    redirect_to whiteboard_path(params[:whiteboard_id])
-  end
-
   def create
     use_case_factory.create_event(
-      observer: self,
+      observer: CreateObserver.new(self),
       session: app_session,
       whiteboard_id: params[:whiteboard_id],
       event_repo: event_repo,
@@ -45,14 +33,52 @@ class EventsController < ApplicationController
     ).execute
   end
 
-  def event_created(event)
-    redirect_to whiteboard_path(params[:whiteboard_id])
+  def blank_out_errors
+    @errors = {}
   end
 
-  def validation_failed(errors)
+  def set_event(e)
+    @event = e
+  end
+
+  def set_errors(errors)
     @errors = errors
-    @event = Event.new(params[:event])
-    render action: :new
+  end
+
+  class EditObserver < SimpleDelegator
+    def event_read(event)
+      set_event(Event.new(event.attributes))
+      blank_out_errors
+
+      render action: :edit
+    end
+  end
+
+  class CreateObserver < SimpleDelegator
+    def event_created(event)
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+    def validation_failed(errors)
+      set_errors(errors)
+      set_event(Event.new(params[:event]))
+
+      render action: :new
+    end
+  end
+
+  class UpdateObserver < SimpleDelegator
+    def event_updated(*)
+      flash[:notice] = "Event updated"
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+    def validation_failed(errors)
+      set_errors(errors)
+      set_event(Event.new(params[:event]))
+
+      render action: :edit
+    end
   end
 end
 
