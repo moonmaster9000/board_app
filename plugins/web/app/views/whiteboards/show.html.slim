@@ -14,10 +14,10 @@ ul.item-categories
   li
     = render_item_category(:events)
 
-= link_to "Present Standup", whiteboard_standup_path(@whiteboard.id, Date.today.to_s)
+= link_to t('whiteboards.present_standup_link'), whiteboard_standup_path(@whiteboard.id, Date.today.to_s)
 br
-= link_to "Archive Standup", whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
+= link_to t('whiteboards.archive_standup_link'), whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
 br
-= link_to "Email Standup", whiteboard_standup_emails_path(@whiteboard.id, Date.today.to_s), method: :post
+= link_to t('whiteboards.email_standup_link'), whiteboard_standup_emails_path(@whiteboard.id, Date.today.to_s), method: :post
 br
-= link_to "Post Standup To Blog", whiteboard_standup_posts_path(@whiteboard.id, Date.today.to_s), method: :post
+= link_to t('whiteboards.post_standup_link'), whiteboard_standup_posts_path(@whiteboard.id, Date.today.to_s), method: :post

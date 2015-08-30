@@ -15,11 +15,11 @@ class StandupEmailConfigsController < ApplicationController
 
   def validation_failed(validation_errors)
     @validation_errors = validation_errors
-    render action: "new"
+    render action: :new
   end
 
   def standup_email_config_created(config)
-    flash[:notice] = "Standup Email Config created!"
+    flash[:notice] = t('standup_email_configs.create_success_flash_message')
     redirect_to whiteboard_path(params[:whiteboard_id])
   end
 end

@@ -56,6 +56,7 @@ class EventsController < ApplicationController
 
   class CreateObserver < SimpleDelegator
     def event_created(event)
+      flash[:notice] = t('events.create_success_flash_message')
       redirect_to whiteboard_path(params[:whiteboard_id])
     end
 
@@ -69,7 +70,7 @@ class EventsController < ApplicationController
 
   class UpdateObserver < SimpleDelegator
     def event_updated(*)
-      flash[:notice] = "Event updated"
+      flash[:notice] = t('events.update_success_flash_message')
       redirect_to whiteboard_path(params[:whiteboard_id])
     end
 

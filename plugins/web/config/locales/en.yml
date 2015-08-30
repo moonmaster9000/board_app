@@ -5,12 +5,16 @@ en:
   whiteboards:
     new: "New Whiteboard"
     list_title: "Choose a Whiteboard"
+    present_standup_link: "Present Standup"
+    archive_standup_link: "Archive Standup"
+    email_standup_link: "Email Standup"
+    post_standup_link: "Post Standup To Blog"
   new_faces:
     title: "New Faces"
     create: "Create New Face"
   helps:
     create_button: "Create"
-    edit_button: "Update"
+    update_button: "Update"
     edit_link: "Edit"
     title: "Helps"
     update_success_flash_message: "Help updated!"
@@ -21,7 +25,13 @@ en:
   events:
     create: "Create Event"
     title: "Events"
+    create_button: "Create"
+    update_button: "Update"
+    update_success_flash_message: "Event updated!"
+    create_success_flash_message: "Event created!"
   whiteboard:
     attributes:
       name: "Name"
   login: "Login with Okta"
+  standup_email_configs:
+    create_success_flash_message: "Standup Email Configuration Created!"
