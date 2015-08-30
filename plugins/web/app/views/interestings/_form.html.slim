@@ -1,0 +1,14 @@
+= form_for interesting, url: url, method: http_method do |form|
+  = form.label(:interesting, :title)
+  = form.text_field :title
+
+  br
+  = form.label(:interesting, :description)
+  = form.text_area :description
+
+  br
+  = form.label(:interesting, :date)
+  = form.date_field :date
+
+  br
+  = form.submit submit_text

@@ -1,2 +1,4 @@
 - @whiteboard_items.interestings.each do |interesting|
   li= interesting.title
+  ul
+    li= link_to t('interestings.edit_link'), edit_whiteboard_interesting_path(@whiteboard.id, interesting.id)

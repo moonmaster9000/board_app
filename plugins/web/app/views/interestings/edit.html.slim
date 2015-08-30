@@ -1,0 +1,4 @@
+= render partial: "shared/errors", locals: {errors: @errors}
+
+= render partial: "interestings/form", locals: { interesting: @interesting, url: whiteboard_interesting_path(params[:whiteboard_id], params[:id]), http_method: :put, submit_text: t('interestings.update_button')}
+

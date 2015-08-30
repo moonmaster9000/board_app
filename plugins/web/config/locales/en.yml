@@ -22,6 +22,10 @@ en:
   interestings:
     create: "Create Interesting"
     title: "Interestings"
+    edit_link: "Edit"
+    update_button: "Update"
+    create_button: "Create"
+    update_success_flash_message: "Interesting updated!"
   events:
     create: "Create Event"
     title: "Events"
