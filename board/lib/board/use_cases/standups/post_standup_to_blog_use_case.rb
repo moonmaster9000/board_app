@@ -1,5 +1,5 @@
 require "board"
-require "board/entities/post"
+require "board/use_cases/standups/entities/post"
 
 module Board
   module UseCases
@@ -75,3 +75,13 @@ module Board
     end
   end
 end
+
+
+module Board
+  class UseCaseFactory
+    def post_standup_to_blog(*args)
+      PostStandupToBlogUseCase.new(*args)
+    end
+  end
+end
+

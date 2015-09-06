@@ -38,6 +38,15 @@ module Board
   end
 end
 
-Dir[File.join(__dir__, "**", "standup_item_archivers", "*.rb")].each do |archiver|
+Dir[File.join(__dir__, "..", "**", "standup_item_archivers", "*.rb")].each do |archiver|
   require archiver
+end
+
+
+module Board
+  class UseCaseFactory
+    def archive_standup(*args)
+      ArchiveStandupUseCase.new(*args)
+    end
+  end
 end

@@ -1,4 +1,4 @@
-require "board/values/standup"
+require "board/use_cases/standups/values/standup"
 
 describe "Standup value object" do
   it "filters out empty items" do

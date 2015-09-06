@@ -1,4 +1,4 @@
-require "board/values/email"
+require "board/use_cases/standups/values/email"
 require "board/use_case_factory"
 
 module Board
@@ -101,6 +101,15 @@ module Board
           observer.email_sent(email)
         end
       end
+    end
+  end
+end
+
+
+module Board
+  class UseCaseFactory
+    def email_standup(*args)
+      EmailStandupUseCase.new(*args)
     end
   end
 end

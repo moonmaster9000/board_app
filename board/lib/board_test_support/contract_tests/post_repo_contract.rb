@@ -3,7 +3,7 @@ require "board_test_support/contract_tests/entity_repo_contract"
 def assert_works_like_a_post_repo(repo_factory:)
   describe "post repo" do
 
-    require "board/entities/post"
+    require "board/use_cases/standups/entities/post"
     assert_works_like_an_entity_repo(generate_repo_lambda: -> { repo_factory.post_repo }, entity_class: Board::Entities::Post)
 
     it "allows fetching by whiteboard id and standup date" do

@@ -1,4 +1,4 @@
-require "board/entities/standup_email_config"
+require "board/use_cases/standups/entities/standup_email_config"
 require "board_test_support/contract_tests/entity_repo_contract"
 
 def assert_works_like_a_standup_email_config_repo(repo_factory:)

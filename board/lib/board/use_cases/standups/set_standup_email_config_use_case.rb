@@ -1,4 +1,4 @@
-require "board/entities/standup_email_config"
+require "board/use_cases/standups/entities/standup_email_config"
 
 module Board
   module UseCases
@@ -44,6 +44,14 @@ module Board
       def send_validation_errors_to_observer
         @observer.validation_failed(standup_email_config.validation_errors)
       end
+    end
+  end
+end
+
+module Board
+  class UseCaseFactory
+    def create_standup_email_config(*args)
+      SetStandupEmailConfigUseCase.new(*args)
     end
   end
 end

@@ -1,4 +1,4 @@
-require "board/values/standup"
+require "board/use_cases/standups/values/standup"
 
 module Board
   module UseCases
@@ -54,6 +54,14 @@ module Board
   end
 end
 
-Dir[File.join(__dir__, "**", "standup_item_collectors", "*.rb")].each do |file|
+Dir[File.join(__dir__, "..", "**", "standup_item_collectors", "*.rb")].each do |file|
   require file
+end
+
+module Board
+  class UseCaseFactory
+    def present_standup(*args)
+      PresentStandupUseCase.new(*args)
+    end
+  end
 end
