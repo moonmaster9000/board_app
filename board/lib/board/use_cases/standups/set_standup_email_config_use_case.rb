@@ -51,7 +51,7 @@ end
 module Board
   class UseCaseFactory
     def create_standup_email_config(*args)
-      SetStandupEmailConfigUseCase.new(*args)
+      UseCases::SetStandupEmailConfigUseCase.new(*args)
     end
   end
 end

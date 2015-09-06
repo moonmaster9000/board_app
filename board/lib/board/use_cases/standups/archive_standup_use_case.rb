@@ -46,7 +46,7 @@ end
 module Board
   class UseCaseFactory
     def archive_standup(*args)
-      ArchiveStandupUseCase.new(*args)
+      UseCases::ArchiveStandupUseCase.new(*args)
     end
   end
 end

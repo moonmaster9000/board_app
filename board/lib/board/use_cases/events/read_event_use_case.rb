@@ -21,7 +21,7 @@ require "board/use_case_factory"
 module Board
   class UseCaseFactory
     def read_event(*args)
-      ReadEventUseCase.new(*args)
+      UseCases::ReadEventUseCase.new(*args)
     end
   end
 end

@@ -1,3 +1,4 @@
+require "board"
 require "persistence/repos/entity_repo"
 require "persistence/private/post"
 

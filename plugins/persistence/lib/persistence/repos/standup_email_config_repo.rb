@@ -1,4 +1,4 @@
-require "board/use_cases/standups/entities/standup_email_config"
+require "board"
 require "persistence/private/standup_email_config"
 
 module Persistence

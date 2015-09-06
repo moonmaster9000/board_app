@@ -109,7 +109,7 @@ end
 module Board
   class UseCaseFactory
     def email_standup(*args)
-      EmailStandupUseCase.new(*args)
+      UseCases::EmailStandupUseCase.new(*args)
     end
   end
 end

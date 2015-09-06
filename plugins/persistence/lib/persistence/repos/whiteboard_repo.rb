@@ -1,4 +1,4 @@
-require "board/entities/whiteboard"
+require "board"
 require "persistence/private/whiteboard"
 require "persistence/repos/entity_repo"
 

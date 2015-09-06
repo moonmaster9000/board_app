@@ -1,4 +1,4 @@
-require "board/values/whiteboard"
+require "board/use_cases/whiteboards/values/whiteboard"
 
 module Board
   module UseCases
@@ -36,6 +36,14 @@ module Board
 end
 
 
-Dir[File.join(__dir__, "**", "whiteboard_item_collectors", "*.rb")].each do |collector|
+Dir[File.join(__dir__, "..", "**", "whiteboard_item_collectors", "*.rb")].each do |collector|
   require collector
+end
+
+module Board
+  class UseCaseFactory
+    def present_whiteboard_items(*args)
+      UseCases::PresentWhiteboardItemsUseCase.new(*args)
+    end
+  end
 end

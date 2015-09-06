@@ -1,6 +1,6 @@
+require "board"
 require "persistence/repos/entity_repo"
 require "persistence/private/interesting"
-require "board/use_cases/interestings/entities/interesting"
 require "persistence/repos/lookup_by_whiteboard_and_date"
 
 module Persistence

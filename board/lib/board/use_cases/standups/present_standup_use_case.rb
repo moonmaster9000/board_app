@@ -61,7 +61,7 @@ end
 module Board
   class UseCaseFactory
     def present_standup(*args)
-      PresentStandupUseCase.new(*args)
+      UseCases::PresentStandupUseCase.new(*args)
     end
   end
 end

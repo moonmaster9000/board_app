@@ -1,4 +1,4 @@
-require "board/entities/whiteboard"
+require "board/use_cases/whiteboards/entities/whiteboard"
 
 describe "whiteboard" do
   specify "it equals another whiteboard entity with the same id" do

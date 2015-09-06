@@ -1,4 +1,4 @@
-require "board/entities/whiteboard"
+require "board/use_cases/whiteboards/entities/whiteboard"
 
 module Board
   module UseCases
@@ -37,6 +37,14 @@ module Board
       def valid?
         whiteboard.valid?
       end
+    end
+  end
+end
+
+module Board
+  class UseCaseFactory
+    def create_whiteboard(*args)
+      UseCases::CreateWhiteboardUseCase.new(*args)
     end
   end
 end

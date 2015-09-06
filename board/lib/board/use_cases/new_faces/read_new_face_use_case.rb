@@ -21,7 +21,7 @@ require "board/use_case_factory"
 module Board
   class UseCaseFactory
     def read_new_face(*args)
-      ReadNewFaceUseCase.new(*args)
+      UseCases::ReadNewFaceUseCase.new(*args)
     end
   end
 end

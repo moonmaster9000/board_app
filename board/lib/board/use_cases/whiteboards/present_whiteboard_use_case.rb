@@ -14,3 +14,12 @@ module Board
     end
   end
 end
+
+module Board
+  class UseCaseFactory
+    def present_whiteboard(*args)
+      UseCases::PresentWhiteboardUseCase.new(*args)
+    end
+  end
+end
+

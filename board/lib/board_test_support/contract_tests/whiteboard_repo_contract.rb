@@ -1,4 +1,4 @@
-require "board/entities/whiteboard"
+require "board/use_cases/whiteboards/entities/whiteboard"
 require "board_test_support/contract_tests/entity_repo_contract"
 
 def assert_works_like_a_whiteboard_repo(repo_factory:)

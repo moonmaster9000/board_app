@@ -80,7 +80,7 @@ end
 module Board
   class UseCaseFactory
     def post_standup_to_blog(*args)
-      PostStandupToBlogUseCase.new(*args)
+      UseCases::PostStandupToBlogUseCase.new(*args)
     end
   end
 end

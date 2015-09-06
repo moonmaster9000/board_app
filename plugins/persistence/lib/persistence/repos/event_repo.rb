@@ -1,6 +1,6 @@
+require "board"
 require "persistence/repos/entity_repo"
 require "persistence/private/event"
-require "board/use_cases/events/entities/event"
 require "persistence/repos/lookup_by_whiteboard_and_date"
 
 module Persistence

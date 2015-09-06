@@ -22,7 +22,7 @@ require "board/use_case_factory"
 module Board
   class UseCaseFactory
     def create_interesting(*args)
-      CreateInterestingUseCase.new(*args)
+      UseCases::CreateInterestingUseCase.new(*args)
     end
   end
 end
