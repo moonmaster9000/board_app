@@ -1,4 +1,4 @@
-pushd board; cucumber $1 $2; rspec --color --format=doc; popd
+pushd board; rspec --color --format=doc; popd
 pushd plugins/authenticated_board; bundle exec rspec --color --format=doc; popd
 pushd plugins/persistence; bundle exec rspec --color --format=doc; popd
 pushd plugins/web; bundle exec rspec --color --format=doc; popd
