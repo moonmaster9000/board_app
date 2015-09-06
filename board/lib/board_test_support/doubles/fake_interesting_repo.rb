@@ -1,4 +1,0 @@
-require "board_test_support/doubles/fake_entity_belonging_to_whiteboard_repo"
-
-class FakeInterestingRepo < FakeEntityBelongingToWhiteboardRepo
-end

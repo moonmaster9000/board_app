@@ -1,7 +1,7 @@
 require "board"
-require "board_test_support/test_attributes"
-require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_repo_factory"
+require "support/test_attributes"
+require "support/doubles/gui_spy"
+require "support/doubles/fake_repo_factory"
 require "support/board_test_dsl"
 
 describe "USE CASE: Present New Faces at Standup and on Whiteboard" do

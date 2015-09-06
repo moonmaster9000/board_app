@@ -1,4 +1,4 @@
-require "board_test_support/doubles/fake_entity_repo"
+require "support/doubles/fake_entity_repo"
 
 class FakeEntityBelongingToWhiteboardRepo < FakeEntityRepo
   def all_by_whiteboard_id_and_date(whiteboard_id, date)

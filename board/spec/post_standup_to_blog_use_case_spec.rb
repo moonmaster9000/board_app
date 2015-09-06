@@ -1,4 +1,4 @@
-require "board_test_support/doubles/spy_validations"
+require "support/doubles/spy_validations"
 require "board"
 require "support/board_test_dsl"
 require "support/common_assertions"

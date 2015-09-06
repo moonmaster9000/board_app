@@ -1,4 +1,4 @@
-require "board_test_support/doubles/spy_validations"
+require "support/doubles/spy_validations"
 
 class GuiSpy
   include SpyValidations

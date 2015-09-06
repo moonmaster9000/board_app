@@ -1,5 +1,5 @@
 require "board"
-require "board_test_support/doubles/gui_spy"
+require "support/doubles/gui_spy"
 require "support/common_assertions"
 require "support/board_test_dsl"
 

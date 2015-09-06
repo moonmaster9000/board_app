@@ -1,7 +1,7 @@
 require "board"
-require "board_test_support/doubles/gui_spy"
-require "board_test_support/doubles/fake_whiteboard_repo"
-require "board_test_support/test_attributes"
+require "support/doubles/gui_spy"
+require "support/doubles/fake_whiteboard_repo"
+require "support/test_attributes"
 
 describe "USE CASE: Present Whiteboard" do
   include TestAttributes
