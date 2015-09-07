@@ -13,6 +13,7 @@ gem 'email_client', path: '../email_client'
 gem 'wordpress_client', path: '../wordpress_client'
 gem 'okta_authentication_strategy', path: '../okta_authentication_strategy'
 gem 'ip_authentication_strategy', path: '../ip_authentication_strategy'
+gem 'cookie_session', path: '../cookie_session'
 gem 'sqlite3'
 gem 'virtus'
 

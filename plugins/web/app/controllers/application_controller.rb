@@ -35,8 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def app_session
-    require "web/cookie_session"
-    @app_session ||= Web::CookieSession.new(session)
+    @app_session ||= CookieSession.new(session)
   end
 
   def whiteboard_repo

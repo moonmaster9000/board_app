@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+
+gem "board", path: "../../board"
+gem "authenticated_board", path: "../authenticated_board"
+gemspec

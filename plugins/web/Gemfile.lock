@@ -10,6 +10,12 @@ PATH
       board
 
 PATH
+  remote: ../cookie_session
+  specs:
+    cookie_session (0.0.0)
+      authenticated_board
+
+PATH
   remote: ../email_client
   specs:
     email_client (0.0.0)
@@ -220,6 +226,7 @@ DEPENDENCIES
   authenticated_board!
   board!
   coffee-rails (~> 4.0.0)
+  cookie_session!
   email_client!
   ip_authentication_strategy!
   jquery-rails
