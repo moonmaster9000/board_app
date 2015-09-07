@@ -1,5 +1,6 @@
 pushd board; rspec --color --format=doc; popd
 pushd plugins/authenticated_board; bundle exec rspec --color --format=doc; popd
 pushd plugins/persistence; bundle exec rspec --color --format=doc; popd
-pushd plugins/web; bundle exec rspec --color --format=doc; popd
-
+pushd plugins/cookie_session; bundle exec rspec --color --format=doc; popd
+pushd plugins/okta_authentication_strategy; bundle exec rspec --color --format=doc; popd
+pushd plugins/ip_authentication_strategy; bundle exec rspec --color --format=doc; popd
