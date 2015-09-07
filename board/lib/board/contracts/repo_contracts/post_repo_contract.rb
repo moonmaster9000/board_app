@@ -1,4 +1,4 @@
-require "board_test_support/repo_contracts/entity_repo_contract"
+require "board/contracts/repo_contracts/entity_repo_contract"
 
 def assert_works_like_a_post_repo(repo_factory:)
   describe "post repo" do

@@ -1,4 +1,4 @@
-require "authenticated_board_contracts/session_contract"
+require "authenticated_board/contracts/session_contract"
 require "doubles/fake_session"
 
 assert_works_like_session(

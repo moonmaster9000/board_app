@@ -1,6 +1,6 @@
 require "board/use_cases/new_faces/entities/new_face"
-require "board_test_support/repo_contracts/entity_repo_contract"
-require "board_test_support/repo_contracts/entity_that_belongs_to_whiteboard_repo_contract"
+require "board/contracts/repo_contracts/entity_repo_contract"
+require "board/contracts/repo_contracts/entity_that_belongs_to_whiteboard_repo_contract"
 
 def assert_works_like_a_new_face_repo(repo_factory:)
   new_face_repo_lambda = -> { repo_factory.new_face_repo }

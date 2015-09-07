@@ -1,5 +1,5 @@
 require "board/use_cases/whiteboards/entities/whiteboard"
-require "board_test_support/repo_contracts/entity_repo_contract"
+require "board/contracts/repo_contracts/entity_repo_contract"
 
 def assert_works_like_a_whiteboard_repo(repo_factory:)
   assert_works_like_an_entity_repo(
