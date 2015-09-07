@@ -1,6 +1,6 @@
 require "board/use_cases/events/entities/event"
-require "board_test_support/contract_tests/entity_repo_contract"
-require "board_test_support/contract_tests/entity_that_belongs_to_whiteboard_repo_contract"
+require "board_test_support/repo_contracts/entity_repo_contract"
+require "board_test_support/repo_contracts/entity_that_belongs_to_whiteboard_repo_contract"
 
 def assert_works_like_event_repo(repo_factory:)
   event_repo_lambda = -> { repo_factory.event_repo }
