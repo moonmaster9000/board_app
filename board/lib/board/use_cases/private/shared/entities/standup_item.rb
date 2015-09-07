@@ -1,4 +1,4 @@
-require "board/entities/entity"
+require "board/use_cases/private/shared/entities/entity"
 
 module Board
   module Entities
