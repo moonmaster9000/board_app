@@ -12,6 +12,7 @@ gem 'markdown_standup_email_formatter', path: '../markdown_standup_email_formatt
 gem 'email_client', path: '../email_client'
 gem 'wordpress_client', path: '../wordpress_client'
 gem 'okta_authentication_strategy', path: '../okta_authentication_strategy'
+gem 'ip_authentication_strategy', path: '../ip_authentication_strategy'
 gem 'sqlite3'
 gem 'virtus'
 

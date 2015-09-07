@@ -8,12 +8,10 @@ class ApplicationController < ActionController::Base
 
   private
   def authenticate_by_ip
-    require "web/ip_authentication_strategy"
-
     use_case_factory.authenticate(
       observer: IpAuthenticationObserver.new(self),
       session: app_session,
-      authentication_strategy: Web::IpAuthenticationStrategy.new(
+      authentication_strategy: IpAuthenticationStrategy.new(
         whitelist: Rails.application.config.ip_authentication_whitelist,
         user_ip: request.remote_ip,
       ),

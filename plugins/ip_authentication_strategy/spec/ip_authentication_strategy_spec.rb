@@ -1,12 +1,11 @@
-require "web/ip_authentication_strategy"
-require "authentication_strategy_observer_spy"
+require "ip_authentication_strategy"
 
-describe Web::IpAuthenticationStrategy do
+describe IpAuthenticationStrategy do
   context "given a user accesses the site with a whitelisted ip" do
     let(:user_ip) { whitelist.first }
 
     specify "then the authentication strategy succeeds" do
-      Web::IpAuthenticationStrategy.new(
+      IpAuthenticationStrategy.new(
         whitelist: whitelist,
         user_ip: user_ip,
       ).execute(observer: observer)
@@ -19,7 +18,7 @@ describe Web::IpAuthenticationStrategy do
     let(:user_ip) { rand }
 
     specify "then the authentication strategy fails" do
-      Web::IpAuthenticationStrategy.new(
+      IpAuthenticationStrategy.new(
         whitelist: whitelist,
         user_ip: user_ip,
       ).execute(observer: observer)
@@ -30,4 +29,16 @@ describe Web::IpAuthenticationStrategy do
 
   let(:whitelist) { [1,2,3] }
   let(:observer) { AuthenticationStrategyObserverSpy.new }
+
+  class AuthenticationStrategyObserverSpy
+    def authentication_succeeded
+      @spy_authentication_succeeded = true
+    end
+    attr_reader :spy_authentication_succeeded
+
+    def authentication_failed
+      @spy_authentication_failed = true
+    end
+    attr_reader :spy_authentication_failed
+  end
 end

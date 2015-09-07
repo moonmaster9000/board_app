@@ -16,6 +16,11 @@ PATH
       mail (~> 2.6)
 
 PATH
+  remote: ../ip_authentication_strategy
+  specs:
+    ip_authentication_strategy (0.0.0)
+
+PATH
   remote: ../markdown_standup_email_formatter
   specs:
     markdown_standup_email_formatter (0.0.0)
@@ -216,6 +221,7 @@ DEPENDENCIES
   board!
   coffee-rails (~> 4.0.0)
   email_client!
+  ip_authentication_strategy!
   jquery-rails
   letter_opener
   markdown_standup_email_formatter!
