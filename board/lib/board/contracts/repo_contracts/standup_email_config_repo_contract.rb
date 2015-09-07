@@ -1,5 +1,5 @@
 require "board/use_cases/standups/entities/standup_email_config"
-require "board/contracts/repo_contracts/entity_repo_contract"
+require "board/contracts/repo_contracts/private/entity_repo_contract"
 
 def verify_standup_email_config_repo_contract(repo_factory:)
   describe "setting the config" do

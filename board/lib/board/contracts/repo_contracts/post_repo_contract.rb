@@ -1,4 +1,4 @@
-require "board/contracts/repo_contracts/entity_repo_contract"
+require "board/contracts/repo_contracts/private/entity_repo_contract"
 
 def verify_post_repo_contract(repo_factory:)
   describe "post repo" do
