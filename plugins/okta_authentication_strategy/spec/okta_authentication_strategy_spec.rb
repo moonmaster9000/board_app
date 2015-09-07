@@ -1,14 +1,13 @@
-require "web/okta_authentication_strategy"
-require "authentication_strategy_observer_spy"
+require "okta_authentication_strategy"
 
-describe Web::OktaAuthenticationStrategy do
+describe OktaAuthenticationStrategy do
   context "When Okta authenticates a user with a pivotal.io email address" do
     let(:auth_hash) do
       {"info" => {"email" => "pivot@pivotal.io"}}
     end
 
     specify "then the auth strategy succeeds" do
-      Web::OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
+      OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
 
       expect(observer.spy_authentication_succeeded).to be(true)
     end
@@ -20,7 +19,7 @@ describe Web::OktaAuthenticationStrategy do
     end
 
     specify "then the auth strategy fails" do
-      Web::OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
+      OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
 
       expect(observer.spy_authentication_failed).to be(true)
     end
@@ -32,7 +31,7 @@ describe Web::OktaAuthenticationStrategy do
     end
 
     specify "then the auth strategy fails" do
-      Web::OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
+      OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
 
       expect(observer.spy_authentication_failed).to be(true)
     end
@@ -44,11 +43,24 @@ describe Web::OktaAuthenticationStrategy do
     end
 
     specify "then the auth strategy fails" do
-      Web::OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
+      OktaAuthenticationStrategy.new(auth_hash: auth_hash).execute(observer: observer)
 
       expect(observer.spy_authentication_failed).to be(true)
     end
   end
 
   let(:observer) { AuthenticationStrategyObserverSpy.new }
+
+  class AuthenticationStrategyObserverSpy
+    def authentication_succeeded
+      @spy_authentication_succeeded = true
+    end
+    attr_reader :spy_authentication_succeeded
+
+    def authentication_failed
+      @spy_authentication_failed = true
+    end
+    attr_reader :spy_authentication_failed
+  end
 end
+

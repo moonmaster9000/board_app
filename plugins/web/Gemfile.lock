@@ -22,6 +22,11 @@ PATH
       github-markdown
 
 PATH
+  remote: ../okta_authentication_strategy
+  specs:
+    okta_authentication_strategy (0.0.0)
+
+PATH
   remote: ../persistence
   specs:
     persistence (0.0.0)
@@ -214,6 +219,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   markdown_standup_email_formatter!
+  okta_authentication_strategy!
   omniauth-google-oauth2
   persistence!
   rails (= 4.1.9)

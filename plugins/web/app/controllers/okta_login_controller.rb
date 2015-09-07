@@ -5,12 +5,10 @@ class OktaLoginController < ApplicationController
   end
 
   def login
-    require "web/okta_authentication_strategy"
-
     use_case_factory.authenticate(
       observer: self,
       session: app_session,
-      authentication_strategy: Web::OktaAuthenticationStrategy.new(
+      authentication_strategy: OktaAuthenticationStrategy.new(
         auth_hash: request.env["omniauth.auth"],
       )
     ).execute
