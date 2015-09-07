@@ -1,4 +1,4 @@
-require "board/use_cases/utilities/string_extensions"
+require "board/use_cases/private/utilities/string_extensions"
 
 module Board
   module UseCases

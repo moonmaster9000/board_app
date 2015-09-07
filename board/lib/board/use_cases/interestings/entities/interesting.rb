@@ -1,5 +1,5 @@
-require "board/use_cases/private/shared/entities/validations"
-require "board/use_cases/private/shared/entities/standup_item"
+require "board/use_cases/private/entities/validations"
+require "board/use_cases/private/entities/standup_item"
 
 
 module Board

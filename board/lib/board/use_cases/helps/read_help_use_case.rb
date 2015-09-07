@@ -1,4 +1,4 @@
-require "board/use_cases/private/shared/use_cases/read_entity_use_case"
+require "board/use_cases/private/use_cases/read_entity_use_case"
 require "board/use_cases/helps/entities/help"
 
 module Board

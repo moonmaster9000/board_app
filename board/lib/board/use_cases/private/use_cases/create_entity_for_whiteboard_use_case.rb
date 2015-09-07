@@ -1,3 +1,5 @@
+require "board/use_cases/private/utilities/string_extensions"
+
 module Board
   module UseCases
     class CreateEntityForWhiteboardUseCase
@@ -45,13 +47,7 @@ module Board
       end
 
       def entity_name
-        @entity_name ||= turn_camelcase_into_snakecase(@entity_class.name)
-      end
-
-      def turn_camelcase_into_snakecase(camelcase_class_name)
-        demodulized_class_name = camelcase_class_name.split("::").last
-        each_camel_case_word_in_name = demodulized_class_name.scan(/[A-Z][^A-Z]*/)
-        each_camel_case_word_in_name.map(&:downcase).join("_")
+        @entity_name ||= StringExtensions.turn_camelcase_into_snakecase(@entity_class.name)
       end
     end
   end
