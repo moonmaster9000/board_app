@@ -1,4 +1,4 @@
-def assert_works_like_an_entity_repo(generate_repo_lambda:, entity_class:)
+def verify_entity_repo_contract(generate_repo_lambda:, entity_class:)
   describe "Entity Repo" do
     context "When I tell the repo to save some new entities" do
       before do

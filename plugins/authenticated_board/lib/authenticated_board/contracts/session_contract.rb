@@ -1,4 +1,4 @@
-def assert_works_like_session(session_factory:)
+def verify_session_contract(session_factory:)
   describe "Session" do
     it "keeps track of whether or not a user is logged in" do
       session = session_factory.call

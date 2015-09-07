@@ -1,7 +1,7 @@
 require "board/use_cases/standups/entities/standup_email_config"
 require "board/contracts/repo_contracts/entity_repo_contract"
 
-def assert_works_like_a_standup_email_config_repo(repo_factory:)
+def verify_standup_email_config_repo_contract(repo_factory:)
   describe "setting the config" do
     it "persists the email config" do
       config = Board::Entities::StandupEmailConfig.new(whiteboard_id: whiteboard_id)

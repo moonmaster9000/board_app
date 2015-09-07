@@ -1,4 +1,4 @@
-def assert_works_like_an_entity_repo_that_belongs_to_whiteboard(entity_class:, generate_repo_lambda:)
+def verify_whiteboard_entity_contract(entity_class:, generate_repo_lambda:)
   describe "Repo For Entities That Belong To Whiteboards" do
     context "Given entities for different whiteboards on varying dates" do
       before do
