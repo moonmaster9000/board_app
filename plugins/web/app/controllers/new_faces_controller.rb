@@ -1,5 +1,5 @@
 class NewFacesController < ApplicationController
-  before_filter :set_new_face_attributes
+  before_filter :blank_out_errors
 
   def new
     @errors = {}
@@ -8,7 +8,7 @@ class NewFacesController < ApplicationController
 
   def create
     use_case_factory.create_new_face(
-      observer: self,
+      observer: CreateObserver.new(self),
       session: app_session,
       new_face_repo: new_face_repo,
       whiteboard_id: params[:whiteboard_id],
@@ -16,18 +16,69 @@ class NewFacesController < ApplicationController
     ).execute
   end
 
-  def new_face_created(new_face)
-    redirect_to whiteboard_path(params[:whiteboard_id])
+  def edit
+    use_case_factory.read_new_face(
+      observer: EditObserver.new(self),
+      session: app_session,
+      repo_factory: repo_factory,
+      new_face_id: params[:id],
+    ).execute
   end
 
-  def validation_failed(errors)
+  def update
+    use_case_factory.update_new_face(
+      observer: UpdateObserver.new(self),
+      session: app_session,
+      repo_factory: repo_factory,
+      new_face_id: params[:id],
+      attributes: params[:new_face].symbolize_keys,
+    ).execute
+  end
+
+  class CreateObserver < SimpleDelegator
+    def new_face_created(new_face)
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+    def validation_failed(errors)
+      set_errors(errors)
+      set_new_face(params[:new_face])
+
+      render action: :new
+    end
+  end
+
+  class UpdateObserver < SimpleDelegator
+    def new_face_updated(*)
+      flash[:notice] = t('new_faces.update_success_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+    def validation_failed(errors)
+      set_errors(errors)
+      set_new_face(params[:new_face])
+
+      render action: :edit
+    end
+  end
+
+  class EditObserver < SimpleDelegator
+    def new_face_read(new_face)
+      set_new_face(new_face.attributes)
+    end
+  end
+
+  def set_errors(errors)
     @errors = errors
-    @new_face = NewFace.new(params[:new_face])
-    render action: :new
+  end
+
+  def set_new_face(attributes)
+    @new_face = NewFace.new(attributes)
   end
 
   private
-  def set_new_face_attributes
+  def blank_out_errors
+    @errors = {}
   end
 end
 

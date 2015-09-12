@@ -12,6 +12,10 @@ en:
   new_faces:
     title: "New Faces"
     create: "Create New Face"
+    edit_link: "Edit"
+    update_button: "Update"
+    create_button: "Create"
+    update_success_flash_message: "New Face updated!"
   helps:
     create_button: "Create"
     update_button: "Update"

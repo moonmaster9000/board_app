@@ -1,7 +1,3 @@
 = render partial: "shared/errors", locals: {errors: @errors}
 
-= form_for @new_face, url: whiteboard_new_faces_path(params[:whiteboard_id]) do |form|
-  = form.text_field :name
-  = form.date_field :date
-  br
-  = form.submit
+= render partial: "new_faces/form", locals: { new_face: @new_face, url: whiteboard_new_faces_path(params[:whiteboard_id]), http_method: :post, submit_text: t('new_faces.create_button') }

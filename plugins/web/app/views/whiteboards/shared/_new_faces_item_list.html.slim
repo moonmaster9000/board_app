@@ -1,2 +1,4 @@
 - @whiteboard_items.new_faces.each do |new_face|
   li= new_face.name
+  ul
+    li= link_to t('new_faces.edit_link'), edit_whiteboard_new_face_path(@whiteboard.id, new_face.id)
