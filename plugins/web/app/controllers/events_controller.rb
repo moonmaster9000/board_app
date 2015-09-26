@@ -33,6 +33,15 @@ class EventsController < ApplicationController
     ).execute
   end
 
+  def destroy
+    use_case_factory.delete_event(
+      observer: DeleteObserver.new(self),
+      session: app_session,
+      event_id: params[:id],
+      repo_factory: repo_factory,
+    ).execute
+  end
+
   def blank_out_errors
     @errors = {}
   end
@@ -79,6 +88,13 @@ class EventsController < ApplicationController
       set_event(Event.new(params[:event]))
 
       render action: :edit
+    end
+  end
+
+  class DeleteObserver < SimpleDelegator
+    def delete_succeeded
+      flash[:notice] = t('events.delete_success_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
     end
   end
 end

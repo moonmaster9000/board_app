@@ -33,6 +33,9 @@ en:
   events:
     create: "Create Event"
     title: "Events"
+    edit_link: "Edit"
+    delete_link: "Delete"
+    delete_success_flash_message: "Event deleted"
     create_button: "Create"
     update_button: "Update"
     update_success_flash_message: "Event updated!"
