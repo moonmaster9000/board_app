@@ -31,6 +31,18 @@ def verify_entity_repo_contract(generate_repo_lambda:, entity_class:)
       end
     end
 
+    context "Given I have saved an entity" do
+      before do
+        @entity = create_new_entity
+      end
+
+      specify "Then I should be able to delete it" do
+        entity_repo.delete(@entity.id)
+        expect(entity_repo.find(@entity.id)).to be_nil
+      end
+
+    end
+
     let(:entity_repo) { generate_repo_lambda.call }
     let(:entity_klass) { entity_class }
 

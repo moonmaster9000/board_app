@@ -100,6 +100,16 @@ module BoardTestDSL
 
     observer.spy_read_event
   end
+
+  def delete_event(event_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.delete_event(
+      observer: observer,
+      repo_factory: repo_factory,
+      event_id: event_id,
+    ).execute
+  end
   
   def read_new_face(new_face_id:, observer: nil)
     observer ||= self.observer
