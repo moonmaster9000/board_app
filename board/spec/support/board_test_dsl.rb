@@ -111,6 +111,16 @@ module BoardTestDSL
     ).execute
   end
   
+  def delete_new_face(new_face_id:, observer: nil)
+    observer ||= self.observer
+
+    use_case_factory.delete_new_face(
+      observer: observer,
+      repo_factory: repo_factory,
+      new_face_id: new_face_id,
+    ).execute
+  end
+  
   def read_new_face(new_face_id:, observer: nil)
     observer ||= self.observer
 
