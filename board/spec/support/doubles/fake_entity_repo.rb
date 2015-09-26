@@ -17,4 +17,8 @@ class FakeEntityRepo
   def all
     @entities.values
   end
+
+  def delete(id)
+    @entities.delete(id)
+  end
 end

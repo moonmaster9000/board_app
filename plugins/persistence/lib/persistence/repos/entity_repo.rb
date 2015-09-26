@@ -14,8 +14,12 @@ module Persistence
       end
 
       def find(id)
-        entity_record = table_class.find(id)
+        entity_record = table_class.where(id: id).first
         entity_from_record(entity_record)
+      end
+
+      def delete(id)
+        table_class.delete(id)
       end
 
       def all

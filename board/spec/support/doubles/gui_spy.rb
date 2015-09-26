@@ -13,6 +13,11 @@ class GuiSpy
   end
   attr_reader :spy_updated_event
 
+  def delete_succeeded
+    @spy_delete_succeeded = true
+  end
+  attr_reader :spy_delete_succeeded
+
   def interesting_updated(interesting)
     @spy_updated_interesting = interesting
   end
