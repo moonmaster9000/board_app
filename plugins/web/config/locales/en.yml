@@ -27,6 +27,8 @@ en:
     create: "Create Interesting"
     title: "Interestings"
     edit_link: "Edit"
+    delete_link: "Delete"
+    delete_success_flash_message: "Interesting deleted"
     update_button: "Update"
     create_button: "Create"
     update_success_flash_message: "Interesting updated!"

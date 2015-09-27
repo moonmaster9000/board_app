@@ -2,3 +2,4 @@
   li= interesting.title
   ul
     li= link_to t('interestings.edit_link'), edit_whiteboard_interesting_path(@whiteboard.id, interesting.id)
+    li= link_to t('interestings.delete_link'), whiteboard_interesting_path(@whiteboard.id, interesting.id), method: :delete

@@ -35,7 +35,7 @@ class EventsController < ApplicationController
 
   def destroy
     use_case_factory.delete_event(
-      observer: DeleteObserver.new(self),
+      observer: DeleteEventObserver.new(self),
       session: app_session,
       event_id: params[:id],
       repo_factory: repo_factory,
@@ -91,10 +91,9 @@ class EventsController < ApplicationController
     end
   end
 
-  class DeleteObserver < SimpleDelegator
-    def delete_succeeded
-      flash[:notice] = t('events.delete_success_flash_message')
-      redirect_to whiteboard_path(params[:whiteboard_id])
+  class DeleteEventObserver < DeleteObserver
+    def delete_success_flash_message
+      t('events.delete_success_flash_message')
     end
   end
 end
