@@ -22,6 +22,8 @@ en:
     create_button: "Create"
     update_button: "Update"
     edit_link: "Edit"
+    delete_link: "Delete"
+    delete_success_flash_message: "Help deleted"
     title: "Helps"
     update_success_flash_message: "Help updated!"
     create_success_flash_message: "Help created!"

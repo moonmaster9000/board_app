@@ -35,6 +35,21 @@ class HelpsController < ApplicationController
     ).execute
   end
 
+  def destroy
+    use_case_factory.delete_help(
+      observer: DeleteHelpObserver.new(self),
+      session: app_session,
+      help_id: params[:id],
+      repo_factory: repo_factory,
+    ).execute
+  end
+
+  class DeleteHelpObserver < DeleteObserver
+    def delete_success_flash_message
+      t('helps.delete_success_flash_message')
+    end
+  end
+
   def set_help(help)
     @help = help
   end
