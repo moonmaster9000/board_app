@@ -2,4 +2,5 @@
   li= help.description
   ul
     li= link_to t('helps.edit_link'), edit_whiteboard_help_path(@whiteboard.id, help.id)
+    li= link_to t('helps.delete_link'), whiteboard_help_path(@whiteboard.id, help.id), method: :delete
 

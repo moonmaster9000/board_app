@@ -25,6 +25,21 @@ class InterestingsController < ApplicationController
     ).execute
   end
 
+  def destroy
+    use_case_factory.delete_interesting(
+      repo_factory: repo_factory,
+      interesting_id: params[:id],
+      session: app_session,
+      observer: DeleteInterestingObserver.new(self),
+    ).execute
+  end
+
+  class DeleteInterestingObserver < DeleteObserver
+    def delete_success_flash_message
+      t('interestings.delete_success_flash_message')
+    end
+  end
+
   class UpdateObserver < SimpleDelegator
     def interesting_updated(*)
       flash[:notice] = t('interestings.update_success_flash_message')

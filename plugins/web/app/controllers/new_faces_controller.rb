@@ -35,6 +35,21 @@ class NewFacesController < ApplicationController
     ).execute
   end
 
+  def destroy
+    use_case_factory.delete_new_face(
+      observer: DeleteNewFaceObserver.new(self),
+      session: app_session,
+      repo_factory: repo_factory,
+      new_face_id: params[:id],
+    ).execute
+  end
+
+  class DeleteNewFaceObserver < DeleteObserver
+    def delete_success_flash_message
+      t('new_faces.delete_success_flash_message')
+    end
+  end
+
   class CreateObserver < SimpleDelegator
     def new_face_created(new_face)
       redirect_to whiteboard_path(params[:whiteboard_id])

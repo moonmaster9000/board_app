@@ -1,4 +1,5 @@
 - @whiteboard_items.events.each do |event|
   li= event.title
   ul
-    li= link_to "Edit Event", edit_whiteboard_event_path(@whiteboard.id, event.id)
+    li= link_to t('events.edit_link'), edit_whiteboard_event_path(@whiteboard.id, event.id)
+    li= link_to t('events.delete_link'), whiteboard_event_path(@whiteboard.id, event.id), method: :delete
