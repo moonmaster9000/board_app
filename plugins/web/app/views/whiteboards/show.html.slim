@@ -18,6 +18,6 @@ ul.item-categories
 br
 = link_to t('whiteboards.archive_standup_link'), whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
 br
-= link_to t('whiteboards.email_standup_link'), whiteboard_standup_emails_path(@whiteboard.id, Date.today.to_s), method: :post
+= link_to t('whiteboards.email_standup_link'), new_whiteboard_standup_email_path(@whiteboard.id, Date.today.to_s)
 br
 = link_to t('whiteboards.post_standup_link'), whiteboard_standup_posts_path(@whiteboard.id, Date.today.to_s), method: :post

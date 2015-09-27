@@ -1,5 +1,9 @@
 module Standups
   class EmailsController < ApplicationController
+    def new
+
+    end
+
     def create
       use_case_factory.email_standup(
         email_client: email_client,
@@ -9,6 +13,7 @@ module Standups
         whiteboard_id: params[:whiteboard_id],
         date: params[:standup_id],
         repo_factory: repo_factory,
+        attributes: params[:email].symbolize_keys,
       ).execute
     end
 

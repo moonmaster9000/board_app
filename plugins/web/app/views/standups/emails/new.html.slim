@@ -1,0 +1,6 @@
+=form_for :email, url: whiteboard_standup_emails_path(params[:whiteboard_id], params[:standup_id]) do |form|
+  = form.label(:subject, t('standups.email.subject_label'))
+  = form.text_field(:subject)
+
+  br
+  = form.submit t('standups.email.email_button')

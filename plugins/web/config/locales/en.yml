@@ -52,3 +52,8 @@ en:
   login: "Login with Okta"
   standup_email_configs:
     create_success_flash_message: "Standup Email Configuration Created!"
+
+  standups:
+    email:
+      subject_label: "Subject"
+      email_button: "Send Email"
