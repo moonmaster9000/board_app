@@ -61,3 +61,6 @@ en:
   posts:
     post_success_flash_message: "Blog post created!"
     standup_already_posted_flash_message: "This standup has already been posted to the blog!"
+    new_form:
+      title_label: "Title"
+      submit_text: "Create Blog Post"

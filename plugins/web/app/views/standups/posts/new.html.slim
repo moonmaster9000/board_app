@@ -1,0 +1,6 @@
+= form_for :post, url: whiteboard_standup_posts_path(params[:whiteboard_id], params[:standup_id]) do |f|
+  = f.label t('posts.new_form.title_label')
+  = f.text_field :title
+
+  br
+  = f.submit t('posts.new_form.submit_text')
