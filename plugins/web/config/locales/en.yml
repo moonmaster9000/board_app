@@ -57,3 +57,7 @@ en:
     email:
       subject_label: "Subject"
       email_button: "Send Email"
+
+  posts:
+    post_success_flash_message: "Blog post created!"
+    standup_already_posted_flash_message: "This standup has already been posted to the blog!"

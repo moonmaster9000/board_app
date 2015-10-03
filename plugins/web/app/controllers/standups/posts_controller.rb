@@ -11,5 +11,15 @@ module Standups
         session: app_session,
       ).execute
     end
+
+    def post_succeeded
+      flash[:notice] = t('posts.post_success_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
+
+    def standup_already_posted
+      flash[:notice] = t('posts.standup_already_posted_flash_message')
+      redirect_to whiteboard_path(params[:whiteboard_id])
+    end
   end
 end
