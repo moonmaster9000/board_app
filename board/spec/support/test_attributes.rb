@@ -24,7 +24,14 @@ module TestAttributes
   end
 
   def valid_event_attributes
-    { date: valid_date, title: "valid event title" }
+    random_year = rand(1..2015)
+    random_month = rand(1..12)
+    random_day = rand(1..28)
+
+    {
+      date: Date.new(random_year, random_month, random_day),
+      title: "random valid event title ##{rand(1..100)}"
+    }
   end
 
   def invalid_event_attributes

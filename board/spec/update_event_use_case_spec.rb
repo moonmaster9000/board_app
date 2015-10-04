@@ -3,8 +3,7 @@ require "support/doubles/gui_spy"
 require "support/board_test_dsl"
 require "support/common_assertions"
 
-
-describe "USE CASE: updateing an event" do
+describe "USE CASE: updating an event" do
   include CommonAssertions
   include BoardTestDSL
 
@@ -27,10 +26,7 @@ describe "USE CASE: updateing an event" do
 
       context "And I provide valid attributes" do
         before do
-          new_date = valid_event_attributes[:date].next_day
-          new_title = rand.to_s
-          @updated_valid_attributes = valid_event_attributes.merge(date: new_date, title: new_title)
-
+          @updated_valid_attributes = valid_event_attributes
           update_event(event_id: @event.id, observer: gui, **@updated_valid_attributes)
         end
 
