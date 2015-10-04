@@ -15,50 +15,31 @@ describe "USE CASE: updateing an event" do
     end
 
     context "When I update it" do
-      context "And I try to blank out the date" do
+      context "And I provide invalid attributes" do
         before do
-          update_event(event_id: @event.id, observer: gui, date: nil)
+          update_event(event_id: @event.id, observer: gui, **invalid_event_attributes)
         end
         
-        it "informs the observer that a date is required" do
-          assert_observer_got_one_error(gui, :date, :required)
+        it "sends validation errors to the observer" do
+          expect(gui.spy_validation_errors).to be
         end
       end
 
-      context "And I try to blank out the title" do
+      context "And I provide valid attributes" do
         before do
-          update_event(event_id: @event.id, observer: gui, title: nil)
-        end
+          new_date = valid_event_attributes[:date].next_day
+          new_title = rand.to_s
+          @updated_valid_attributes = valid_event_attributes.merge(date: new_date, title: new_title)
 
-        it "informs the observer that a title is required" do
-          assert_observer_got_one_error(gui, :title, :required)
-        end
-      end
-
-      context "And I try to blank out the whiteboard_id" do
-        before do
-          update_event(event_id: @event.id, observer: gui, whiteboard_id: nil)
-        end
-
-        it "informs the observer that a whiteboard_id is required" do
-          assert_observer_got_one_error(gui, :whiteboard_id, :required)
-        end
-      end
-
-      context "And I provide a valid date, title, and whiteboard_id" do
-        before do
-          @new_date = valid_event_attributes[:date].next_day
-          @new_title = rand.to_s
-
-          update_event(event_id: @event.id, observer: gui, date: @new_date, title: @new_title)
+          update_event(event_id: @event.id, observer: gui, **@updated_valid_attributes)
         end
 
         it "sends a event back to the gui with the requested attributes" do
-          expect(gui.spy_updated_event.attributes).to include({date: @new_date, title: @new_title})
+          expect(gui.spy_updated_event.attributes).to include(@updated_valid_attributes)
         end
 
         it "saves the event" do
-          expect(read_event(event_id: @event.id).attributes).to include({date: @new_date, title: @new_title})
+          expect(read_event(event_id: @event.id).attributes).to include(@updated_valid_attributes)
         end
 
         it "doesn't send any validation errors" do

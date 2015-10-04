@@ -3,7 +3,6 @@ require "support/doubles/gui_spy"
 require "support/board_test_dsl"
 require "support/common_assertions"
 
-
 describe "USE CASE: creating a event" do
   include CommonAssertions
   include BoardTestDSL
@@ -14,25 +13,12 @@ describe "USE CASE: creating a event" do
     end
 
     context "when the attributes are invalid" do
-      context "because the date is blank" do
-        it "informs the observer that a date is required" do
-          create_event(whiteboard_id: @whiteboard.id, observer: gui, date: nil)
-          assert_observer_got_one_error(gui, :date, :required)
-        end
+      before do
+        create_event(whiteboard_id: @whiteboard.id, observer: gui, **invalid_event_attributes)
       end
 
-      context "because the title is blank" do
-        it "informs the observer that a description is required" do
-          create_event(whiteboard_id: @whiteboard.id, observer: gui, title: nil)
-          assert_observer_got_one_error(gui, :title, :required)
-        end
-      end
-
-      context "because I don't give it a whiteboard_id" do
-        it "informs the observer that a whiteboard_id is required" do
-          create_event(whiteboard_id: nil, observer: gui)
-          assert_observer_got_one_error(gui, :whiteboard_id, :required)
-        end
+      it "informs the observer that a date is required" do
+        expect(gui.spy_validation_errors).not_to be_empty
       end
     end
 
@@ -40,7 +26,7 @@ describe "USE CASE: creating a event" do
       let(:event_attributes) { valid_event_attributes }
 
       before do
-        create_event({whiteboard_id: @whiteboard.id, observer: gui}.merge(event_attributes))
+        create_event(whiteboard_id: @whiteboard.id, observer: gui, **event_attributes)
       end
 
       it "sends a event back to the gui with the requested attributes" do

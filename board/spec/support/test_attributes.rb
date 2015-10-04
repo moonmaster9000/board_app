@@ -27,6 +27,10 @@ module TestAttributes
     { date: valid_date, title: "valid event title" }
   end
 
+  def invalid_event_attributes
+    { date: nil, title: nil }
+  end
+
   def valid_date
     Date.new(2011, 4, 4)
   end
