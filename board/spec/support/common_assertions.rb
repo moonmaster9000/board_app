@@ -16,10 +16,14 @@ module CommonAssertions
     end
 
     def it_disallows(entity_class, field, value)
-      event = entity_class.new(field => value)
+      entity = entity_class.new(field => value)
 
-      expect(event).not_to be_valid
-      expect(event.validation_errors.select { |ve| ve.field_name == field }).not_to be_empty
+      expect(entity).not_to be_valid
+      expect(entity.validation_errors.find { |ve| ve.field_name == field }).to be
+    end
+
+    def validation_error(entity, field)
+      entity.validation_errors.find { |ve| ve.field_name == field }
     end
   end
 
@@ -31,6 +35,18 @@ module CommonAssertions
 
       it "does not allow an empty string for #{field}" do
         it_disallows entity_class, field, ""
+      end
+    end
+
+    def it_validates_inclusion_of(entity_class, field, values:)
+      it "requires #{field} to be one of the following values: #{values}" do
+        entity = entity_class.new(field => rand)
+        expect(validation_error(entity, field)).to be
+
+        values.each do |value|
+          entity = entity_class.new(field => value)
+          expect(validation_error(entity, field)).not_to be
+        end
       end
     end
   end

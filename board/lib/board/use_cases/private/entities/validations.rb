@@ -7,9 +7,9 @@ module Board
       end
 
       module ClassMethods
-        def validate_field(field_name, validation)
+        def validate_field(field_name, validation, *validation_args)
           validation_class = const_get(validation.to_s.capitalize)
-          field_validations << validation_class.new(field_name)
+          field_validations << validation_class.new(field_name, *validation_args)
         end
 
         def field_validations
@@ -59,6 +59,22 @@ module Board
         end
       end
 
+      class Inclusion
+        attr_reader :field_name
+
+        def initialize(field_name, values:)
+          @field_name = field_name
+          @values = values
+        end
+
+        def valid?(entity)
+          @values.any? { |v| entity.send(@field_name) == v }
+        end
+
+        def error_code
+          :inclusion
+        end
+      end
 
       class Required
         attr_reader :field_name

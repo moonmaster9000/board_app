@@ -11,6 +11,7 @@ module Board
         :title,
         :date,
         :whiteboard_id,
+        :private,
       )
 
       include Validations
@@ -18,6 +19,11 @@ module Board
       validate_field :date, :required
       validate_field :title, :required
       validate_field :whiteboard_id, :required
+      validate_field :private, :inclusion, values: [true, false]
+
+      def private
+        @private ||= true
+      end
     end
   end
 end
