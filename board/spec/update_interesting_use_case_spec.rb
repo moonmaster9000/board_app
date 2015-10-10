@@ -15,33 +15,13 @@ describe "USE CASE: updateing an interesting" do
     end
 
     context "When I update it" do
-      context "And I try to blank out the date" do
+      context "And I provide invalid attributes" do
         before do
-          update_interesting(interesting_id: @interesting.id, observer: gui, date: nil)
-        end
-        
-        it "informs the observer that a date is required" do
-          assert_observer_got_one_error(gui, :date, :required)
-        end
-      end
-
-      context "And I try to blank out the title" do
-        before do
-          update_interesting(interesting_id: @interesting.id, observer: gui, title: nil)
+          update_interesting(interesting_id: @interesting.id, observer: gui, **invalid_interesting_attributes)
         end
 
-        it "informs the observer that a title is required" do
-          assert_observer_got_one_error(gui, :title, :required)
-        end
-      end
-
-      context "And I try to blank out the whiteboard_id" do
-        before do
-          update_interesting(interesting_id: @interesting.id, observer: gui, whiteboard_id: nil)
-        end
-
-        it "informs the observer that a whiteboard_id is required" do
-          assert_observer_got_one_error(gui, :whiteboard_id, :required)
+        it "sends validation errors to the observer" do
+          expect(gui.spy_validation_errors).to be
         end
       end
 

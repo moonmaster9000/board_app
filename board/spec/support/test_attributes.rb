@@ -42,6 +42,10 @@ module TestAttributes
     { date: nil, description: nil }
   end
 
+  def invalid_interesting_attributes
+    { date: nil, title: nil, private: "invalid value"}
+  end
+
   def valid_date
     Date.new(2011, 4, 4)
   end
