@@ -38,12 +38,16 @@ module TestAttributes
     { date: nil, title: nil }
   end
 
+  def invalid_help_attributes
+    { date: nil, description: nil }
+  end
+
   def valid_date
     Date.new(2011, 4, 4)
   end
 
   def valid_help_attributes
-    { date: valid_date, description: "valid description" }
+    { date: valid_date, description: "valid description", private: false, }
   end
 
 end

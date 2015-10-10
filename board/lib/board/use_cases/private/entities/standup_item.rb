@@ -1,4 +1,5 @@
 require "board/use_cases/private/entities/entity"
+require "board/use_cases/private/entities/validations"
 
 module Board
   module Entities

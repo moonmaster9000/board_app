@@ -3,7 +3,6 @@ require "support/doubles/gui_spy"
 require "support/common_assertions"
 require "support/board_test_dsl"
 
-
 describe "USE CASE: creating a help" do
   include CommonAssertions
   include BoardTestDSL
@@ -14,25 +13,12 @@ describe "USE CASE: creating a help" do
     end
 
     context "when the attributes are invalid" do
-      context "because the date is blank" do
-        it "informs the observer that a date is required" do
-          create_help(whiteboard_id: @whiteboard_id, observer: gui, date: nil)
-          assert_observer_got_one_error(gui, :date, :required)
-        end
+      before do
+        create_help(whiteboard_id: @whiteboard_id, observer: gui, **invalid_help_attributes)
       end
 
-      context "because the description is blank" do
-        it "informs the observer that a description is required" do
-          create_help(whiteboard_id: @whiteboard_id, observer: gui, description: nil)
-          assert_observer_got_one_error(gui, :description, :required)
-        end
-      end
-
-      context "because I don't give it a whiteboard_id" do
-        it "informs the observer that a whiteboard_id is required" do
-          create_help(whiteboard_id: nil, observer: gui)
-          assert_observer_got_one_error(gui, :whiteboard_id, :required)
-        end
+      it "sends the validation errors to the observer" do
+        expect(gui.spy_validation_errors).not_to be_empty
       end
     end
 
@@ -40,7 +26,7 @@ describe "USE CASE: creating a help" do
       let(:attributes) { valid_help_attributes }
 
       before do
-        create_help({whiteboard_id: @whiteboard_id, observer: gui}.merge(attributes))
+        create_help(whiteboard_id: @whiteboard_id, observer: gui, **attributes)
       end
 
       it "sends a help back to the gui with the requested attributes" do

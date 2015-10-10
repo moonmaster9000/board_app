@@ -28,6 +28,14 @@ module CommonAssertions
   end
 
   module ClassMethods
+    def assert_private_attribute(entity_class)
+      it_validates_inclusion_of entity_class, :private, values: [true, false]
+
+      it "defaults the 'private' field to true" do
+        expect(entity_class.new.private).to be(true)
+      end
+    end
+
     def it_requires(entity_class, field)
       it "does not allow 'nil' for #{field}" do
         it_disallows entity_class, field, nil

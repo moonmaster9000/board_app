@@ -1,10 +1,12 @@
 require "board/use_cases/private/entities/validations"
 require "board/use_cases/private/entities/standup_item"
+require "board/use_cases/private/entities/private_attribute"
 
 module Board
   module Entities
     class Help
       include StandupItem
+      include PrivateAttribute
 
       add_attributes(
         :description,
