@@ -17,7 +17,7 @@ describe "USE CASE: creating a event" do
         create_event(whiteboard_id: @whiteboard.id, observer: gui, **invalid_event_attributes)
       end
 
-      it "informs the observer that a date is required" do
+      it "sends the validation errors to the observer" do
         expect(gui.spy_validation_errors).not_to be_empty
       end
     end
