@@ -46,6 +46,10 @@ module TestAttributes
     { date: nil, title: nil, private: "invalid value"}
   end
 
+  def invalid_new_face_attributes
+    { date: nil, name: nil, private: "invalid value"}
+  end
+
   def valid_date
     Date.new(2011, 4, 4)
   end

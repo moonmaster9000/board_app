@@ -14,18 +14,12 @@ describe "USE CASE: creating a new_face" do
     end
 
     context "when the attributes are invalid" do
-      context "because the date is blank" do
-        it "informs the observer that a date is required" do
-          create_new_face(whiteboard_id: @whiteboard_id, observer: gui, date: nil)
-          assert_observer_got_one_error(gui, :date, :required)
-        end
+      before do
+        create_new_face(whiteboard_id: @whiteboard_id, observer: gui, **invalid_new_face_attributes)
       end
 
-      context "because the name is blank" do
-        it "informs the observer that a name is required" do
-          create_new_face(whiteboard_id: @whiteboard_id, observer: gui, name: nil)
-          assert_observer_got_one_error(gui, :name, :required)
-        end
+      it "sends the validation errors to the observer" do
+        expect(gui.spy_validation_errors).not_to be_empty
       end
     end
 

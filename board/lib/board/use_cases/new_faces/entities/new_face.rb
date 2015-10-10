@@ -1,5 +1,6 @@
 require "board/use_cases/private/entities/validations"
 require "board/use_cases/private/entities/standup_item"
+require "board/use_cases/private/entities/private_attribute"
 
 module Board
   module Entities
@@ -11,6 +12,8 @@ module Board
         :date,
         :whiteboard_id,
       )
+
+      include PrivateAttribute
 
       include Validations
       validate_field :name, :required
