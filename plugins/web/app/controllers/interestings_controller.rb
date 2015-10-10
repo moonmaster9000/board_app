@@ -19,7 +19,7 @@ class InterestingsController < ApplicationController
     use_case_factory.update_interesting(
       repo_factory: repo_factory,
       interesting_id: params[:id],
-      attributes: params[:interesting].symbolize_keys,
+      attributes: Interesting.new(params[:interesting]).attributes,
       session: app_session,
       observer: UpdateObserver.new(self),
     ).execute
@@ -68,7 +68,7 @@ class InterestingsController < ApplicationController
     use_case_factory.create_interesting(
       whiteboard_id: params[:whiteboard_id],
       interesting_repo: interesting_repo,
-      attributes: params[:interesting].symbolize_keys,
+      attributes: Interesting.new(params[:interesting]).attributes,
       observer: CreateObserver.new(self),
       session: app_session,
     ).execute
@@ -99,4 +99,5 @@ class Interesting
   attribute :title, String
   attribute :description, String
   attribute :date, Date
+  attribute :private, Boolean
 end

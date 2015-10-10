@@ -12,7 +12,7 @@ class NewFacesController < ApplicationController
       session: app_session,
       new_face_repo: new_face_repo,
       whiteboard_id: params[:whiteboard_id],
-      attributes: params[:new_face],
+      attributes: NewFace.new(params[:new_face]).attributes,
     ).execute
   end
 
@@ -31,7 +31,7 @@ class NewFacesController < ApplicationController
       session: app_session,
       repo_factory: repo_factory,
       new_face_id: params[:id],
-      attributes: params[:new_face].symbolize_keys,
+      attributes: NewFace.new(params[:new_face]).attributes,
     ).execute
   end
 
@@ -103,4 +103,5 @@ class NewFace
 
   attribute :name, String
   attribute :date, Date
+  attribute :private, Boolean
 end

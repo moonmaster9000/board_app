@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def update
     use_case_factory.update_event(
       event_id: params[:id],
-      attributes: params[:event].symbolize_keys,
+      attributes: Event.new(params[:event]).attributes,
       repo_factory: repo_factory,
       observer: UpdateObserver.new(self),
       session: app_session,
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
       session: app_session,
       whiteboard_id: params[:whiteboard_id],
       event_repo: event_repo,
-      attributes: params[:event].symbolize_keys,
+      attributes: Event.new(params[:event]).attributes,
     ).execute
   end
 
@@ -105,4 +105,5 @@ class Event
   attribute :title, String
   attribute :description, String
   attribute :date, Date
+  attribute :private, Boolean
 end

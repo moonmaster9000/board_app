@@ -20,7 +20,7 @@ class HelpsController < ApplicationController
       observer: UpdateObserver.new(self),
       session: app_session,
       help_id: params[:id],
-      attributes: params[:help].symbolize_keys,
+      attributes: Help.new(params[:help]).attributes,
       repo_factory: repo_factory,
     ).execute
   end
@@ -31,7 +31,7 @@ class HelpsController < ApplicationController
       session: app_session,
       whiteboard_id: params[:whiteboard_id],
       help_repo: help_repo,
-      attributes: params[:help],
+      attributes: Help.new(params[:help]).attributes,
     ).execute
   end
 
@@ -107,4 +107,5 @@ class Help
 
   attribute :description, String
   attribute :date, Date
+  attribute :private, Boolean
 end

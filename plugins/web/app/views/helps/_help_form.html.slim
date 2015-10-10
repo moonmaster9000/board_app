@@ -1,5 +1,14 @@
 = form_for help, url: url, method: http_method do |form|
+  = form.label :description
   = form.text_area :description
+  br
+
+  = form.label :date
   = form.date_field :date
   br
+
+  = form.label :private
+  = form.check_box :private
+  br
+
   = form.submit submit_text
