@@ -9,7 +9,7 @@ A rewrite of Pivotal's whiteboard app, using a hexagonal architecture.
 * ~~allow creation of email subject in web instead of hardcoding it~~
 * ~~handle blog "post\_succeeded" in web~~
 * ~~allow custom title for blog posts~~
-* make whiteboard items public/private
+* ~~make whiteboard items public/private~~
 * style email
 * style blog post
 * style forms
