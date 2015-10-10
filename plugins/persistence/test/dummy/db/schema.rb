@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010184346) do
+ActiveRecord::Schema.define(version: 20151010190316) do
 
   create_table "persistence_events", force: true do |t|
     t.string   "title"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151010184346) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "archived",      default: false, null: false
+    t.boolean  "private"
   end
 
   create_table "persistence_new_faces", force: true do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20151010184346) do
     t.datetime "updated_at"
     t.integer  "whiteboard_id"
     t.boolean  "archived",      default: false, null: false
+    t.boolean  "private"
   end
 
   create_table "persistence_posts", force: true do |t|
