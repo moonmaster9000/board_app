@@ -101,6 +101,8 @@ GEM
     execjs (2.3.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     github-markdown (0.6.8)
     hashie (3.4.2)
     hike (1.2.3)
@@ -210,6 +212,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cookie_session!
   email_client!
+  font-awesome-rails
   ip_authentication_strategy!
   jquery-rails
   letter_opener

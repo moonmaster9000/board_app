@@ -1,0 +1,4 @@
+li= item.send title_field
+ul
+  li= link_to fa_icon("edit"),  send("edit_whiteboard_#{item_type}_path", @whiteboard.id, item.id)
+  li= link_to fa_icon("trash"), send("whiteboard_#{item_type}_path", @whiteboard.id, item.id), method: :delete

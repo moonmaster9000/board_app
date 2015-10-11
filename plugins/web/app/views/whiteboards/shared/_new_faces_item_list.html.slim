@@ -1,5 +1,1 @@
-- @whiteboard_items.new_faces.each do |new_face|
-  li= new_face.name
-  ul
-    li= link_to t('new_faces.edit_link'), edit_whiteboard_new_face_path(@whiteboard.id, new_face.id)
-    li= link_to t('new_faces.delete_link'), whiteboard_new_face_path(@whiteboard.id, new_face.id), method: :delete
+= render partial: "whiteboards/shared/item", collection: @whiteboard_items.new_faces, locals: { item_type: "new_face", title_field: "name" }
