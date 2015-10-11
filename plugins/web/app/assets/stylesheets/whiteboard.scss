@@ -1,4 +1,4 @@
-.header {
+header {
   background-color: #f9f9f9;
   padding: 5px;
   background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
@@ -21,3 +21,58 @@
   }
 }
 
+section.item-category {
+  clear: both;
+
+  margin-bottom: 55px;
+
+  h2 {
+    float:left;
+    margin: 0px;
+  }
+
+  aside {
+    float:right;
+  }
+
+  hr {
+    clear: both;
+  }
+
+
+}
+
+a:visited {
+  color: rgb(0, 0, 238);
+}
+
+article {
+  &:hover {
+    color: red;
+  }
+
+  clear: both;
+
+  h3 {
+    margin: 0;
+    float: left;
+    font-weight: normal;
+    font-size: 16px;
+  }
+
+  aside {
+    float: right;
+  }
+
+  details {
+    float: left;
+  }
+}
+
+i {
+  font-size: x-large;
+}
+
+nav {
+  clear: both;
+}

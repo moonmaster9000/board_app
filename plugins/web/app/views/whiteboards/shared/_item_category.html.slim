@@ -1,8 +1,10 @@
-h2
-  = t("#{category}.title")
+section.item-category
+  h2
+    = t("#{category}.title")
 
-p
-  = link_to t("#{category}.create"), url_for(controller: category, action: :new, whiteboard_id: @whiteboard.id)
+  aside
+    = link_to fa_icon("plus 2x"), url_for(controller: category, action: :new, whiteboard_id: @whiteboard.id)
 
-ul
+  hr
+
   = render partial: "whiteboards/shared/#{category}_item_list"

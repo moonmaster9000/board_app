@@ -1,1 +1,7 @@
-= render partial: "whiteboards/shared/item", collection: @whiteboard_items.new_faces, locals: { item_type: "new_face", title_field: "name" }
+- @whiteboard_items.new_faces.each do |new_face|
+  article
+    h3= new_face.name
+    aside
+      = link_to fa_icon("edit lg"),  send("edit_whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id)
+      |&nbsp;
+      = link_to fa_icon("trash lg"), send("whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id), method: :delete

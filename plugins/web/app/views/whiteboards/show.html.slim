@@ -1,23 +1,20 @@
-.header
+header
   h1 #{@whiteboard.name} Whiteboard
 
-ul.item-categories
-  li
-    = render_item_category(:new_faces)
 
-  li
-    = render_item_category(:helps)
+= render_item_category(:new_faces)
 
-  li
-    = render_item_category(:interestings)
+= render_item_category(:helps)
 
-  li
-    = render_item_category(:events)
+= render_item_category(:interestings)
 
-= link_to t('whiteboards.present_standup_link'), whiteboard_standup_path(@whiteboard.id, Date.today.to_s)
-br
-= link_to t('whiteboards.archive_standup_link'), whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
-br
-= link_to t('whiteboards.email_standup_link'), new_whiteboard_standup_email_path(@whiteboard.id, Date.today.to_s)
-br
-= link_to t('whiteboards.post_standup_link'), new_whiteboard_standup_post_path(@whiteboard.id, Date.today.to_s)
+= render_item_category(:events)
+
+nav
+  = link_to t('whiteboards.present_standup_link'), whiteboard_standup_path(@whiteboard.id, Date.today.to_s)
+  br
+  = link_to t('whiteboards.archive_standup_link'), whiteboard_standup_archives_path(@whiteboard.id, Date.today.to_s), method: :post
+  br
+  = link_to t('whiteboards.email_standup_link'), new_whiteboard_standup_email_path(@whiteboard.id, Date.today.to_s)
+  br
+  = link_to t('whiteboards.post_standup_link'), new_whiteboard_standup_post_path(@whiteboard.id, Date.today.to_s)

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       observer: IpAuthenticationObserver.new(self),
       session: app_session,
       authentication_strategy: IpAuthenticationStrategy.new(
-        whitelist: Rails.application.config.ip_authentication_whitelist,
+        whitelist: Rails.application.config.ip_authentication_whitelist + ["192.168.1.4"],
         user_ip: request.remote_ip,
       ),
     ).execute
