@@ -1,5 +1,6 @@
-header
-  h1 #{@whiteboard.name} Whiteboard
+- content_for :header do
+  header
+    h1 #{@whiteboard.name} Whiteboard
 
 
 = render_item_category(:new_faces)

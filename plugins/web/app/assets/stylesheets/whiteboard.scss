@@ -46,6 +46,27 @@ a:visited {
   color: rgb(0, 0, 238);
 }
 
+mark {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+
+
+  &.error {
+    background-color: red;
+    color: white;
+  }
+
+  &.notice {
+    background-color: lawngreen;
+    color: white;
+  }
+}
+
 article {
   &:hover {
     color: red;
