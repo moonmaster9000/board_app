@@ -3,7 +3,7 @@ section.item-category
     = t("#{category}.title")
 
   aside
-    = link_to fa_icon("plus 2x"), url_for(controller: category, action: :new, whiteboard_id: @whiteboard.id)
+    = link_to "+", url_for(controller: category, action: :new, whiteboard_id: @whiteboard.id)
 
   hr
 

@@ -2,6 +2,8 @@
   article
     h3= new_face.name
     aside
-      = link_to fa_icon("edit lg"),  send("edit_whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id)
+      = link_to send("edit_whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id) do
+        |&#x270D;
       |&nbsp;
-      = link_to fa_icon("trash lg"), send("whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id), method: :delete
+      = link_to send("whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id), method: :delete do
+        |&#x2612;

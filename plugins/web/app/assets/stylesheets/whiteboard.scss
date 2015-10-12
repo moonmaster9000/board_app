@@ -33,6 +33,11 @@ section.item-category {
 
   aside {
     float:right;
+
+    a {
+      font-size: 20px;
+      text-decoration: none;
+    }
   }
 
   hr {
@@ -83,6 +88,11 @@ article {
 
   aside {
     float: right;
+
+    a {
+      text-decoration: none;
+      font-size: 20px;
+    }
   }
 
   details {

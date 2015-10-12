@@ -4,6 +4,11 @@ article
     p= item.description
 
   aside
-    = link_to fa_icon("edit lg"),  send("edit_whiteboard_#{item_type}_path", @whiteboard.id, item.id)
+    = link_to send("edit_whiteboard_#{item_type}_path", @whiteboard.id, item.id) do
+      |&#x270D;
+
     |&nbsp;
-    = link_to fa_icon("trash lg"), send("whiteboard_#{item_type}_path", @whiteboard.id, item.id), method: :delete
+
+    = link_to send("whiteboard_#{item_type}_path", @whiteboard.id, item.id), method: :delete do
+      |&#x2612;
+
