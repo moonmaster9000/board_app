@@ -5,6 +5,12 @@ module ApplicationHelper
 
   def next_items(location)
     render(
+      partial: "standups/shared/arrow",
+      locals: {
+        direction: :right,
+        location: location,
+      }
+    ) + render(
       partial: "standups/shared/route_keypress",
       locals: {
         keypress: "right",
@@ -16,6 +22,12 @@ module ApplicationHelper
 
   def previous_items(location)
     render(
+      partial: "standups/shared/arrow",
+      locals: {
+        direction: :left,
+        location: location,
+      }
+    ) + render(
       partial: "standups/shared/route_keypress",
       locals: {
         keypress: "left",

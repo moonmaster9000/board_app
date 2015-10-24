@@ -100,10 +100,29 @@ article {
   }
 }
 
-i {
-  font-size: x-large;
+nav.arrows {
+  font-size:50px;
+
+  p {
+    position: fixed;
+    bottom: -50px;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  p.left-arrow {
+    left: 20px;
+  }
+
+  p.right-arrow {
+    right: 20px;
+  }
 }
 
 nav {
   clear: both;
 }
+
