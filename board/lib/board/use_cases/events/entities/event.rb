@@ -7,12 +7,10 @@ module Board
         :description,
         :title,
         :date,
-        :whiteboard_id,
       )
 
       validate_field :date, :required
       validate_field :title, :required
-      validate_field :whiteboard_id, :required
     end
   end
 end

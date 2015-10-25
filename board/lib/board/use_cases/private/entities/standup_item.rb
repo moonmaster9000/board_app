@@ -8,9 +8,11 @@ module Board
 
       add_attributes(
         :archived,
+        :whiteboard_id,
         :private,
       )
 
+      validate_field :whiteboard_id, :required
       validate_field :private, :inclusion, values: [true, false]
 
       def archived

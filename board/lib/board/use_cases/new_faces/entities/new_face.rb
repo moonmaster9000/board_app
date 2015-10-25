@@ -6,12 +6,10 @@ module Board
       add_attributes(
         :name,
         :date,
-        :whiteboard_id,
       )
 
       validate_field :name, :required
       validate_field :date, :required
-      validate_field :whiteboard_id, :required
     end
   end
 end
