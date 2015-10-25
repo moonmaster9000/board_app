@@ -10,6 +10,7 @@ module Board
         :archived,
         :whiteboard_id,
         :private,
+        :author,
       )
 
       validate_field :whiteboard_id, :required
