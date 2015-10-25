@@ -3,16 +3,15 @@ require "board/use_cases/private/entities/entity"
 
 module Board
   module Entities
-    class StandupEmailConfig
-      include Entity
-      include Validations
-
+    class StandupEmailConfig < Entity
       add_attributes(
         :whiteboard_id,
         :to_address,
         :from_address,
         :subject_prefix,
       )
+
+      include Validations
 
       validate_field :from_address, :required
       validate_field :to_address, :required

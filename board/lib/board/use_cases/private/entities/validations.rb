@@ -9,11 +9,27 @@ module Board
       module ClassMethods
         def validate_field(field_name, validation, *validation_args)
           validation_class = const_get(validation.to_s.capitalize)
-          field_validations << validation_class.new(field_name, *validation_args)
+          self_field_validations << validation_class.new(field_name, *validation_args)
         end
 
         def field_validations
+          all_field_validations = []
+          all_field_validations += self_field_validations
+          all_field_validations += ancestor_validations
+          all_field_validations.uniq
+        end
+
+        def self_field_validations
           @validations ||= []
+        end
+
+        def ancestor_validations
+          ancestors.map do |ancestor|
+            next if ancestor == self
+            next if !ancestor.respond_to?(:field_validations)
+
+            ancestor.field_validations
+          end.compact.flatten.uniq
         end
       end
 

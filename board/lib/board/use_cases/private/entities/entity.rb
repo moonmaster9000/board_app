@@ -1,51 +1,65 @@
 module Board
   module Entities
-    module Entity
-      module AttributeManagementClassMethods
+    class Entity
+      class << self
         def add_attributes(*attrs)
-          attributes.unshift *attrs
+          attrs.each do |attr|
+            add_attribute(attr)
+          end
+
           attr_accessor *attrs
         end
 
         def attributes
-          @attributes ||= []
+          all_attrs = []
+          all_attrs += self_attributes
+          all_attrs += ancestor_attributes
+          all_attrs.uniq
+        end
+
+        def add_attribute(attr)
+          self_attributes << attr
+        end
+
+        def self_attributes
+          @self_attributes ||= []
+        end
+
+        def ancestor_attributes
+          ancestors.map do |ancestor|
+            next if ancestor == self
+            next if !ancestor.respond_to?(:attributes)
+
+            ancestor.attributes
+          end.compact.flatten
         end
       end
 
-      module AttributeManagementInstanceMethods
-        def initialize(attributes={})
-          attribute_names.each do |attribute_name|
-            instance_variable_set(:"@#{attribute_name}", attributes[attribute_name])
-          end
-        end
+      add_attributes(:id)
 
-        def attributes
-          attrs = {}
-
-          attribute_names.each do |attribute|
-            attrs[attribute] = send attribute
-          end
-
-          attrs
-        end
-
-        private
-        def attribute_names
-          self.class.attributes
+      def initialize(attributes={})
+        attribute_names.each do |attribute_name|
+          instance_variable_set(:"@#{attribute_name}", attributes[attribute_name])
         end
       end
 
-      module EntityEquality
-        def ==(other_entity)
-          other_entity.id == id
+      def attributes
+        attrs = {}
+
+        attribute_names.each do |attribute|
+          attrs[attribute] = send attribute
         end
+
+        attrs
       end
 
-      def self.included(klass)
-        klass.extend AttributeManagementClassMethods
-        klass.send :include, AttributeManagementInstanceMethods
-        klass.send :include, EntityEquality
-        klass.add_attributes(:id)
+      def ==(other_entity)
+        other_entity.id == id
+      end
+
+      private
+      def attribute_names
+        self.class.attributes
       end
     end
   end
