@@ -1,6 +1,6 @@
 article
   details
-    summary= item.send title_field
+    summary= wrap_date(item.date, item.send(title_field))
     p= item.description
 
   aside

@@ -1,6 +1,6 @@
 - @whiteboard_items.new_faces.each do |new_face|
   article
-    h3= new_face.name
+    h3= wrap_date(new_face.date, new_face.name)
     aside
       = link_to send("edit_whiteboard_new_face_path", @whiteboard.id, new_face.id) do
         |&#x270D;
