@@ -55,7 +55,7 @@ module TestAttributes
   end
 
   def valid_help_attributes
-    { date: valid_date, description: "valid description", private: false, }
+    { date: valid_date, title: "valid title", private: false, }
   end
 
 end

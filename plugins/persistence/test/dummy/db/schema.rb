@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025190134) do
+ActiveRecord::Schema.define(version: 20151031010222) do
 
   create_table "persistence_events", force: true do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151025190134) do
     t.boolean  "archived",      default: false, null: false
     t.boolean  "private"
     t.string   "author"
+    t.string   "title"
   end
 
   create_table "persistence_interestings", force: true do |t|

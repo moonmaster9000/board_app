@@ -105,7 +105,9 @@ class Help
   include ActiveModel::Model
   include Virtus.model
 
+  attribute :title, String
   attribute :description, String
+  attribute :author, String
   attribute :date, Date
   attribute :private, Boolean
 end

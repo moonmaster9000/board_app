@@ -98,6 +98,7 @@ class Interesting
 
   attribute :title, String
   attribute :description, String
+  attribute :author, String
   attribute :date, Date
   attribute :private, Boolean
 end

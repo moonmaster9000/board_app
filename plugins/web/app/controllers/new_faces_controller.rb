@@ -102,6 +102,7 @@ class NewFace
   include Virtus.model
 
   attribute :name, String
+  attribute :author, String
   attribute :date, Date
   attribute :private, Boolean
 end

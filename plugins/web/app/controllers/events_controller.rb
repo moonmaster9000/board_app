@@ -105,5 +105,6 @@ class Event
   attribute :title, String
   attribute :description, String
   attribute :date, Date
+  attribute :author, String
   attribute :private, Boolean
 end
