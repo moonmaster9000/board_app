@@ -2,8 +2,8 @@
   article
     h3= new_face.name
     aside
-      = link_to send("edit_whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id) do
+      = link_to send("edit_whiteboard_new_face_path", @whiteboard.id, new_face.id) do
         |&#x270D;
       |&nbsp;
-      = link_to send("whiteboard_#{"new_face"}_path", @whiteboard.id, new_face.id), method: :delete do
+      = link_to send("whiteboard_new_face_path", @whiteboard.id, new_face.id), method: :delete do
         |&#x2612;
