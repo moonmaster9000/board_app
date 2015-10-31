@@ -11,7 +11,7 @@ A rewrite of Pivotal's whiteboard app, using a hexagonal architecture.
 * ~~allow custom title for blog posts~~
 * ~~make whiteboard items public/private~~
 * ~~standup navigation for mobile~~
-* author attributions
+* ~~author attributions~~
 * style forms
 * style email
 * style blog post
