@@ -12,6 +12,11 @@ module Standups
       ).execute
     end
 
+    def validation_failed(errors)
+      @validation_errors = errors
+      render :new
+    end
+
     def post_succeeded
       flash[:notice] = t('posts.post_success_flash_message')
       redirect_to whiteboard_path(params[:whiteboard_id])

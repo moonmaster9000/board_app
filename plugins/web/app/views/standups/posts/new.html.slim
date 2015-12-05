@@ -1,3 +1,5 @@
+= render partial: "shared/errors", locals: { errors: @validation_errors }
+
 = form_for :post, url: whiteboard_standup_posts_path(params[:whiteboard_id], params[:standup_id]) do |f|
   table
     tr
