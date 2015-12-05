@@ -1,5 +1,8 @@
-= form_for :whiteboard, url: whiteboards_path do |form|
-  = t("whiteboard.attributes.name")
-  = form.text_field :name
-  br
-  = form.submit
+= form_for(:whiteboard, url: whiteboards_path) do |form|
+  table
+    tr
+      td= form.label :name, t("whiteboard.attributes.name")
+      td= form.text_field :name
+    tr
+      td
+      td= form.submit

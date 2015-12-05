@@ -3,16 +3,19 @@ ul
     li #{error.field_name} - #{error.error}
 
 = form_for :standup_email_config, url: whiteboard_standup_email_configs_path(params[:whiteboard_id]) do |form|
-  = form.label(:standup_email_config, :from_address)
-  = form.text_field :from_address
-  br
+  table
+    tr
+      td= form.label :from_address, t("standup_email_configs.attributes.from_address")
+      td= form.text_field :from_address
 
-  = form.label(:standup_email_config, :to_address)
-  = form.text_field :to_address
-  br
+    tr
+      td= form.label :to_address, t("standup_email_configs.attributes.to_address")
+      td= form.text_field :to_address
 
-  = form.label(:standup_email_config, :subject_prefix)
-  = form.text_field :subject_prefix
-  br
+    tr
+      td= form.label :subject_prefix, t("standup_email_configs.attributes.subject_prefix")
+      td= form.text_field :subject_prefix
 
-  = form.submit
+    tr
+      td
+      td= form.submit

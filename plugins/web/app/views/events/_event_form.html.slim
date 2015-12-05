@@ -1,24 +1,20 @@
-= form_for event, url: url, method: http_method do |form|
-  = form.label :title
-  = form.text_field :title
-  br
-
-  = form.label :author
-  = form.text_field :author
-  br
-
-
-
-  = form.label :description
-  = form.text_area :description
-  br
-
-  = form.label :date
-  = form.date_field :date
-  br
-
-  = form.label :private
-  = form.check_box :private
-  br
-
-  = form.submit submit_text
+= form_for(event, url: url, method: http_method) do |form|
+  table
+    tr
+      td= form.label :title
+      td= form.text_field :title
+    tr
+      td= form.label :author
+      td= form.text_field :author
+    tr
+      td= form.label :description
+      td= form.text_area :description
+    tr
+      td= form.label :date
+      td= form.date_field :date
+    tr
+      td= form.label :private
+      td= form.check_box :private
+    tr
+      td
+      td= form.submit submit_text

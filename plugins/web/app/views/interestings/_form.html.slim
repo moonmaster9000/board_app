@@ -1,18 +1,21 @@
 = form_for interesting, url: url, method: http_method do |form|
-  = form.label(:interesting, :title)
-  = form.text_field :title
+  table
+    tr
+      td= form.label(:interesting, :title)
+      td= form.text_field :title
 
-  br
-  = form.label(:interesting, :description)
-  = form.text_area :description
+    tr
+      td= form.label(:interesting, :description)
+      td= form.text_area :description
 
-  br
-  = form.label(:interesting, :date)
-  = form.date_field :date
+    tr
+      td= form.label(:interesting, :date)
+      td= form.date_field :date
 
-  br
-  = form.label :private
-  = form.check_box :private
+    tr
+      td= form.label :private
+      td= form.check_box :private
 
-  br
-  = form.submit submit_text
+    tr
+      td
+      td= form.submit submit_text

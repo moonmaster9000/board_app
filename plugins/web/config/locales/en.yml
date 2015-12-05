@@ -50,8 +50,14 @@ en:
     attributes:
       name: "Name"
   login: "Login with Okta"
+
   standup_email_configs:
     create_success_flash_message: "Standup Email Configuration Created!"
+    attributes:
+      from_address: "From Address"
+      to_address: "To Address"
+      subject_prefix: "Subject Prefix"
+
 
   standups:
     email:
