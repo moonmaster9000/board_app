@@ -1,3 +1,3 @@
-= render partial: "shared/errors", locals: {errors: @errors}
+= render partial: "shared/errors", locals: { errors: @errors, resource: :new_faces}
 
 = render partial: "new_faces/form", locals: { new_face: @new_face, url: whiteboard_new_face_path(params[:whiteboard_id], params[:id]), http_method: :put, submit_text: t('new_faces.update_button')}

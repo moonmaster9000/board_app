@@ -18,6 +18,9 @@ en:
     update_button: "Update"
     create_button: "Create"
     update_success_flash_message: "New Face updated!"
+    attributes:
+      name: "Name"
+      date: "Date"
   helps:
     create_button: "Create"
     update_button: "Update"
@@ -27,6 +30,9 @@ en:
     title: "Helps"
     update_success_flash_message: "Help updated!"
     create_success_flash_message: "Help created!"
+    attributes:
+      title: "Title"
+      date: "Date"
   interestings:
     create: "Create Interesting"
     title: "Interestings"
@@ -36,6 +42,10 @@ en:
     update_button: "Update"
     create_button: "Create"
     update_success_flash_message: "Interesting updated!"
+    attributes:
+      title: "Title"
+      date: "Date"
+
   events:
     create: "Create Event"
     title: "Events"
@@ -46,6 +56,10 @@ en:
     update_button: "Update"
     update_success_flash_message: "Event updated!"
     create_success_flash_message: "Event created!"
+    attributes:
+      title: "Title"
+      date: "Date"
+
   whiteboard:
     attributes:
       name: "Name"
@@ -70,3 +84,6 @@ en:
     new_form:
       title_label: "Title"
       submit_text: "Create Blog Post"
+    attributes:
+      title: "Title"
+

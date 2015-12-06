@@ -1,5 +1,9 @@
 module Standups
   class PostsController < ApplicationController
+    def new
+      @validation_errors = []
+    end
+
     def create
       use_case_factory.post_standup_to_blog(
         title: params[:post][:title],

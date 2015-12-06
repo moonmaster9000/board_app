@@ -1,6 +1,4 @@
-ul
-  - @validation_errors.each do |error|
-    li #{error.field_name} - #{error.error}
+= render partial: "shared/errors", locals: { errors: @validation_errors, resource: :standup_email_configs }
 
 = form_for :standup_email_config, url: whiteboard_standup_email_configs_path(params[:whiteboard_id]) do |form|
   table
