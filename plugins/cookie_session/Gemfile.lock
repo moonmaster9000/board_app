@@ -1,10 +1,4 @@
 PATH
-  remote: .
-  specs:
-    cookie_session (0.0.0)
-      authenticated_board
-
-PATH
   remote: ../../board
   specs:
     board (0.0.1)
@@ -14,6 +8,12 @@ PATH
   specs:
     authenticated_board (0.0.0)
       board
+
+PATH
+  remote: .
+  specs:
+    cookie_session (0.0.0)
+      authenticated_board
 
 GEM
   remote: https://rubygems.org/
@@ -41,3 +41,6 @@ DEPENDENCIES
   board!
   cookie_session!
   rspec
+
+BUNDLED WITH
+   1.11.2

@@ -1,13 +1,13 @@
 PATH
+  remote: ../../
+  specs:
+    board (0.0.1)
+
+PATH
   remote: .
   specs:
     authenticated_board (0.0.0)
       board
-
-PATH
-  remote: ../../
-  specs:
-    board (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -34,3 +34,6 @@ DEPENDENCIES
   authenticated_board!
   board!
   rspec
+
+BUNDLED WITH
+   1.11.2
